@@ -24,15 +24,15 @@ With simple clicks, hiring managers can find potential candidates and conduct in
 ## Team Members: 
 | Full Name     | GitHub Account| Strengths  |
 | ------------- |:-------------:| -----:|
-| Firdaws Bouzeghaya| https://github.com/Firdaws-b | TBD |
-| Kawther Bouzeghaya      | https://github.com/fluffyCookie0|   TBD |
-| Bayan Al Salem |https://github.com/BayanAlsalem|   TBD |
-| Julien Desmangles| https://github.com/ItsDezi| TBD|
-| Thaneekan Thankarajah     | *TBD*|  TBD |
-| Frew Weldemariam |https://github.com/FruitsOfGlory1|    TBD|
+| Firdaws Bouzeghaya| https://github.com/Firdaws-b | XML, Java, C++, Python, FireBase |
+| Kawther Bouzeghaya      | https://github.com/fluffyCookie0| XML, Java, C++, Python, FireBase |
+| Bayan Al Salem |https://github.com/BayanAlsalem|  HTML, XML, CSS, Java, C++, Python  |
+| Julien Desmangles| https://github.com/ItsDezi| TypeScript, HTML, XML, Angular, C#, Java, C++|
+| Thaneekan Thankarajah     | https://github.com/thaneekan|  Javascript, HTML, CSS, Java, PHP |
+| Frew Weldemariam |https://github.com/FruitsOfGlory1|  JavaScript, PHP, Java, Python, SQL  |
 
 ## Technologies Used: 
-**TBD**
+JavaScript **More TBD**
 ## Project Approach: 
 **TBD**
 ## How to Use the Project: 
