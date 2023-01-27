@@ -34,7 +34,50 @@ With simple clicks, hiring managers can find potential candidates and conduct in
 ## Technologies Used: 
 JavaScript **More TBD**
 ## Project Approach: 
-**TBD**
+There are many ways to build a website, but our team will have the following approach:
+
+- **Planning and Research**
+
+    We will start by gathering information on similar career websites and understanding the features and functionality that are typically included. Alos, we will identify any unique or additional features that we want to include in our website. 
+    
+-- ** pre-Design** 
+    We will create wireframes and mockups of the website to define the layout, user flow, and overall look and feel of the website. We are going to make sure to keep the user experience in mind and design a user-friendly interface.
+
+- **Design the user interface**
+
+    We are going to use HTML, CSS, and JavaScript to create a responsive and user-friendly interface for the website. This should include a login page, a registration page, a job search page, and a profile page for both employers and candidates.
+- **Implement the authentication and authorization system**
+
+    PHP will be used to implement a secure authentication and authorization system for the website. This should include functions for creating, reading, updating, and deleting user accounts and passwords.
+
+- **Create the database** 
+
+    Firebase will be used to create a database to store user and job information. You will need to create tables for users, jobs, and applications.
+
+- **Implement the notification system**
+
+    Use PHP and Firebase to implement a notification system for the website. This should include functions for sending email and push notifications to employers when candidates apply to their job postings, and for sending email and push notifications to candidates when they are selected for an interview.
+
+- **Implement the admin panel**
+
+    Use PHP and Firebase to implement an admin panel for managing user profiles and job postings. This should include functions for viewing and editing user profiles, and for viewing, editing, and deleting job postings.
+
+- **Test the website** 
+
+    Once all the features have been implemented, we will test the website thoroughly to ensure that it is functioning correctly and that there are no security vulnerabilities. 
+    
+- **Deploy the website** 
+
+    Once the website has been tested and is ready for deployment, we might use a hosting service to deploy the website.
+
+**Additional functionality that could be considered**
+
+- Adding an additional user, a career advisor.
+
+- Implementing a search and filter system for job postings and candidate profiles
+
+- Implementing a payment gateway for employers to pay for additional services such as priority job posting, featured job    posting, candidate search, and resume download.
+
 ## How to Use the Project: 
 **TBD**
 
