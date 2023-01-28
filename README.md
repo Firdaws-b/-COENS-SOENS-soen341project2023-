@@ -40,12 +40,15 @@ There are many ways to build a website, but our team will have the following app
 
     We will start by gathering information on similar career websites and understanding the features and functionality that are typically included. Alos, we will identify any unique or additional features that we want to include in our website. 
     
--- ** pre-Design** 
-    We will create wireframes and mockups of the website to define the layout, user flow, and overall look and feel of the website. We are going to make sure to keep the user experience in mind and design a user-friendly interface.
+- **Website sketch** 
+
+    We will create wireframes and mockups of the website to define the layout, user flow, and overall look and feel of the website. Also, we are going to make sure to keep the user experience in mind and design a user-friendly interface.
+
 
 - **Design the user interface**
 
     We are going to use HTML, CSS, and JavaScript to create a responsive and user-friendly interface for the website. This should include a login page, a registration page, a job search page, and a profile page for both employers and candidates.
+
 - **Implement the authentication and authorization system**
 
     PHP will be used to implement a secure authentication and authorization system for the website. This should include functions for creating, reading, updating, and deleting user accounts and passwords.
