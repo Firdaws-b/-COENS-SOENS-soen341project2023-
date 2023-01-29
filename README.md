@@ -83,4 +83,3 @@ There are many ways to build a website, but our team will have the following app
 
 ## How to Use the Project: 
 **TBD**
-
