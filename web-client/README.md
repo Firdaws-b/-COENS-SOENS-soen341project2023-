@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# COENS&SOENS-soen341project2023-
+SOEN 341 project
+## Objective:
+Develop a Career Services application where students (people) looking for jobs will be able to post and update their portfolio and employers should be able to post jobs. It helps job-seeking candidates and employers to shortlist their potential job and employees respectively.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In this repository, you will find all necessary information related to the web application developped with all the team memebers contributing to the project. 
 
-## Available Scripts
+## Description:
+Job hunting might be a painful journey for job seekers. Same goes for employers, looking for the perfect match for a position is not easy.
+**Name of the website TBD** helps candidates engage and collaborate with hiring managers. 
+With simple clicks, hiring managers can find potential candidates and conduct interviews to find the perfect match for the position. 
 
-In the project directory, you can run:
+## Core Features: 
+- Browse for available postings. 
 
-### `npm start`
+- Add and manage postings to the system by employers. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Receive notifications when a candidate is selected for an interview. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Create and manage student profiles. 
 
-### `npm test`
+**more features TBDL**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Team Members: 
+| Full Name     | GitHub Account| Strengths  |
+| ------------- |:-------------:| -----:|
+| Firdaws Bouzeghaya| https://github.com/Firdaws-b | XML, Java, C++, Python, FireBase |
+| Kawther Bouzeghaya      | https://github.com/fluffyCookie0| XML, Java, C++, Python, FireBase |
+| Bayan Al Salem |https://github.com/BayanAlsalem|  HTML, XML, CSS, Java, C++, Python  |
+| Julien Desmangles| https://github.com/ItsDezi| TypeScript, HTML, XML, Angular, C#, Java, C++|
+| Thaneekan Thankarajah     | https://github.com/thaneekan|  Javascript, HTML, CSS, Java, PHP |
+| Frew Weldemariam |https://github.com/FruitsOfGlory1|  JavaScript, PHP, Java, Python, SQL  |
 
-### `npm run build`
+## Technologies Used: 
+JavaScript **More TBD**
+## Project Approach: 
+There are many ways to build a website, but our team will have the following approach:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Planning and Research**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    We will start by gathering information on similar career websites and understanding the features and functionality that are typically included. Alos, we will identify any unique or additional features that we want to include in our website. 
+    
+- **Website sketch** 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    We will create wireframes and mockups of the website to define the layout, user flow, and overall look and feel of the website. Also, we are going to make sure to keep the user experience in mind and design a user-friendly interface.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **Design the user interface**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    We are going to use HTML, CSS, and JavaScript to create a responsive and user-friendly interface for the website. This should include a login page, a registration page, a job search page, and a profile page for both employers and candidates.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Implement the authentication and authorization system**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    PHP will be used to implement a secure authentication and authorization system for the website. This should include functions for creating, reading, updating, and deleting user accounts and passwords.
 
-## Learn More
+- **Create the database** 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    Firebase will be used to create a database to store user and job information. You will need to create tables for users, jobs, and applications.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **Implement the notification system**
 
-### Code Splitting
+    Use PHP and Firebase to implement a notification system for the website. This should include functions for sending email and push notifications to employers when candidates apply to their job postings, and for sending email and push notifications to candidates when they are selected for an interview.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Implement the admin panel**
 
-### Analyzing the Bundle Size
+    Use PHP and Firebase to implement an admin panel for managing user profiles and job postings. This should include functions for viewing and editing user profiles, and for viewing, editing, and deleting job postings.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Test the website** 
 
-### Making a Progressive Web App
+    Once all the features have been implemented, we will test the website thoroughly to ensure that it is functioning correctly and that there are no security vulnerabilities. 
+    
+- **Deploy the website** 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    Once the website has been tested and is ready for deployment, we might use a hosting service to deploy the website.
 
-### Advanced Configuration
+**Additional functionality that could be considered**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Adding an additional user, a career advisor.
 
-### Deployment
+- Implementing a search and filter system for job postings and candidate profiles
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Implementing a payment gateway for employers to pay for additional services such as priority job posting, featured job    posting, candidate search, and resume download.
 
-### `npm run build` fails to minify
+## How to Use the Project: 
+**TBD**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
