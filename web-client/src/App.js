@@ -1,7 +1,8 @@
 import './App.css';
 import { useEffect } from 'react';
-
-const API_URL = '';//FireBase db api key goes here
+import NavBar from './navigationBar';
+import { Route, Routes } from 'react-router-dom';
+//nst API_URL = '';//FireBase db api key goes here
 
 const App = () => {
 
@@ -10,10 +11,17 @@ const App = () => {
   },[]);
 
   return (
-    <div className="App">
-      <h1>EmployMe</h1>
-    </div>
-  );
-}
+
+    
+
+  <div className="App">
+
+    <NavBar/>
+
+    <h1>EmployMe</h1>
+
+  </div>
+
+      );}
 
 export default App;
