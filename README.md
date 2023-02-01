@@ -51,7 +51,7 @@ There are many ways to build a website, but our team will have the following app
 
 - **Implement the authentication and authorization system**
 
-    PHP will be used to implement a secure authentication and authorization system for the website. This should include functions for creating, reading, updating, and deleting user accounts and passwords.
+    Node.Js and Express.Js will be used to implement a secure authentication and authorization system for the website. This should include functions for creating, reading, updating, and deleting user accounts and passwords.
 
 - **Create the database** 
 
@@ -59,11 +59,11 @@ There are many ways to build a website, but our team will have the following app
 
 - **Implement the notification system**
 
-    Use PHP and Firebase to implement a notification system for the website. This should include functions for sending email and push notifications to employers when candidates apply to their job postings, and for sending email and push notifications to candidates when they are selected for an interview.
+    Use Node.Js and Firebase to implement a notification system for the website. This should include functions for sending email and push notifications to employers when candidates apply to their job postings, and for sending email and push notifications to candidates when they are selected for an interview.
 
 - **Implement the admin panel**
 
-    Use PHP and Firebase to implement an admin panel for managing user profiles and job postings. This should include functions for viewing and editing user profiles, and for viewing, editing, and deleting job postings.
+    Use Node.Js and Firebase to implement an admin panel for managing user profiles and job postings. This should include functions for viewing and editing user profiles, and for viewing, editing, and deleting job postings.
 
 - **Test the website** 
 
