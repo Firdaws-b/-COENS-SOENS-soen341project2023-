@@ -7,7 +7,7 @@ In this repository, you will find all necessary information related to the web a
 
 ## Description:
 Job hunting might be a painful journey for job seekers. Same goes for employers, looking for the perfect match for a position is not easy.
-**EmployMee** helps candidates engage and collaborate with hiring managers. 
+**EmployMe** helps candidates engage and collaborate with hiring managers. 
 With simple clicks, hiring managers can find potential candidates and conduct interviews to find the perfect match for the position. 
 
 ## Core Features: 
@@ -23,13 +23,13 @@ With simple clicks, hiring managers can find potential candidates and conduct in
 
 ## Team Members: 
 | Full Name     | GitHub Account| Strengths  | Role |
-| ------------- |:-------------:| -----:| -----:|
-| Firdaws Bouzeghaya| https://github.com/Firdaws-b | HTML,XML, Java, C++, Python, FireBase | |
-| Kawther Bouzeghaya      | https://github.com/fluffyCookie0| XML, Java, C++, Python, FireBase | |
-| Bayan Al Salem |https://github.com/BayanAlsalem|  HTML, XML, CSS, Java, C++, Python  | | 
-| Julien Desmangles| https://github.com/ItsDezi| TypeScript, HTML, XML, Angular, C#, Java, C++| |
-| Thaneekan Thankarajah     | https://github.com/thaneekan|  Javascript, HTML, CSS, Java, PHP | |
-| Frew Weldemariam |https://github.com/FruitsOfGlory1|  JavaScript, PHP, Java, Python, SQL  | |
+| ------------- |:-------------:| -----------:| ----------:|
+| Firdaws Bouzeghaya| https://github.com/Firdaws-b | HTML,XML, Java, C++, Python, FireBase | Scrum Master, Fullstack|
+| Kawther Bouzeghaya      | https://github.com/fluffyCookie0| XML, Java, C++, Python, FireBase | Project Manager, Fullstack|
+| Bayan Al Salem |https://github.com/BayanAlsalem|  HTML, XML, CSS, Java, C++, Python  | Frontend | 
+| Julien Desmangles| https://github.com/ItsDezi| TypeScript, HTML, XML, Angular, C#, Java, C++| Product Owner, Fullstack|
+| Thaneekan Thankarajah     | https://github.com/thaneekan|  Javascript, HTML, CSS, Java, PHP | Fullstack |
+| Frew Weldemariam |https://github.com/FruitsOfGlory1|  JavaScript, PHP, Java, Python, SQL  | Frontend |
 
 ## Technologies Used: 
 Frontend : 
