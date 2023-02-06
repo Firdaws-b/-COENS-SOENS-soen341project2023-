@@ -5,12 +5,13 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home'
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-
+//import api_key from './secrets'
 
 //nst API_URL = '';//FireBase db api key goes here
 
 const App = () => {
-console.log(window.location)
+//console.log(api_key);
+//console.log(window.location)
   useEffect(() => {
 //should learn this to retrieve data
   },[]);
@@ -24,7 +25,7 @@ console.log(window.location)
     <NavBar/>
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home/>} />
         <Route path="/sign-in" element={<SignIn/>} />
         <Route path="/sign-up" element={<SignUp/>} />
 
