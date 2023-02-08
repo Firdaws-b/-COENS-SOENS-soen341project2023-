@@ -1,6 +1,7 @@
 import React, {useRef} from "react";
 import {firestore} from "../firebase/firebase";
 import { addDoc, collection } from "@firebase/firestore";
+import NavBar from '../navigationBar';
 
 export default function Home() {
 
@@ -24,6 +25,7 @@ export default function Home() {
 
     return (
         <div>
+            <NavBar/>
             <form onSubmit={handleSave}>
                 <label>Enter Message</label>
                 <input type="text" ref={messageRef}/>

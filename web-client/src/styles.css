@@ -46,3 +46,14 @@ body {
     background-color: #777;
 }
 
+.nav Home {
+    background-color: #70ECC5;
+    opacity: 0.3;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 2rem;
+    padding: 0 1rem;
+}
+

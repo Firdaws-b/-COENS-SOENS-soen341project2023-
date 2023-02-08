@@ -27,7 +27,6 @@ const App = () => {
   <div className="App">
 
     <UserAuthContextProvider>
-    <NavBar/>
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/sign-in" element={<SignIn/>} />
