@@ -1,47 +1,61 @@
-import React from 'react'
-import { useRef, useState } from "react"
-import { Container, Form, Button, Card } from 'react-bootstrap'
-import { useAuth } from '../AuthContext'
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Form, Alert } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { useUserAuth } from "../firebase/UserAuthContext";
 
-export default function SignUp() {
-    const emailRef = useRef()
-    const passwordRef = useRef()
-    const passwordConfirmationRef = useRef()
-   // const { signup } = useAuth();
+const Signup = () => {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [password, setPassword] = useState("");
+  const { signUp } = useUserAuth();
+  let navigate = useNavigate();
 
- /*   function handleSubmit(e) {
-        e.preventDefault()
-
-        signup(emailRef.current.value, passwordRef.current.value, passwordConfirmationRef.current.value)
-    }*/
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await signUp(email, password);
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
 
   return (
-            <Container className="d-flex align-items-center justify-content-center w-100"
-            style = {{minHeight: "100vh", maxWidth: "400px" }}>
-            <Card>
-                <Card.Body>
-                    <h2 className = "text-center mb-4">Sign Up</h2>
-                    <Form>
-                        <Form.Group id="email">
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" ref={emailRef} required />
-                        </Form.Group>
-                        <Form.Group id="password">
-                            <Form.Label>password</Form.Label>
-                            <Form.Control type="password" ref={passwordRef} required />
-                        </Form.Group>
-                        <Form.Group id="password-confirmation">
-                            <Form.Label>password-confirmation</Form.Label>
-                            <Form.Control type="password-confirmation" ref={passwordConfirmationRef} required />
-                        </Form.Group>
-                        <Button className="w-100" type="submit"
-                        style = {{marginTop: "10px"}}>Sign Up</Button>
-                    </Form>
-                </Card.Body>
-                <div classname="w-100 text-center mt-2">
-                    Already have an account? Login
-                </div>
-            </Card>
-            </Container>
-    )
-}
+    <>
+      <div className="p-4 box">
+        <h2 className="mb-3">Create an account</h2>
+        {error && <Alert variant="danger">{error}</Alert>}
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Control
+              type="email"
+              placeholder="Email address"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+
+          <div className="d-grid gap-2">
+            <Button variant="primary" type="Submit">
+              Sign up
+            </Button>
+          </div>
+        </Form>
+      </div>
+      <div className="p-4 box mt-3 text-center">
+        Already have an account? <Link to="/sign-in">Log In</Link>
+      </div>
+    </>
+  );
+};
+
+export default Signup;
