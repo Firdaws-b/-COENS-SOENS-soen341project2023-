@@ -1,7 +1,7 @@
 import React, {useRef} from "react";
 import {firestore} from "../firebase/firebase";
 import { addDoc, collection } from "@firebase/firestore";
-import NavBar from '../navigationBar';
+import NavBar from '../Components/NavBars/welcomePageNavBar';
 
 export default function Home() {
 

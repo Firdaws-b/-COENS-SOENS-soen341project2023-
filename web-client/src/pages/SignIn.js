@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useUserAuth } from "../firebase/UserAuthContext";
-
+import NavBar from "../Components/NavBars/welcomePageNavBar";
 
 import Background from '../assets/office_char.jpg';
 
@@ -27,7 +27,7 @@ const Login = () => {
 
   return (
     <>
-
+  <NavBar/>
         <div style={{  background: `url(${Background})`,  backgroundSize: 'cover' ,backgroundColor: 'blue', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
         <div className="p-4 box" style={{  padding: '20px', }}>
 
