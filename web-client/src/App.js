@@ -8,6 +8,8 @@ import SignUp from './pages/SignUp';
 import Dashboard from './pages/dashboard';
 import { UserAuthContextProvider } from "./firebase/UserAuthContext";
 import ProtectedRoute from "./firebase/protectedRoute";
+import { RoleSelection } from './pages/roleSelection';
+import EmployerSignUp from './pages/employerSignUp'
 
 //import api_key from './secrets'
 
@@ -32,6 +34,8 @@ const App = () => {
         <Route path="/sign-in" element={<SignIn/>} />
         <Route path="/sign-up" element={<SignUp/>} />
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
+        <Route path="/role-selection" element={<RoleSelection/>} />
+        <Route path="/employer-sign-up" element={<EmployerSignUp/>} />
       </Routes>
       </UserAuthContextProvider>
 

@@ -7,7 +7,7 @@ function NavBar() {
       EmployMe
     </Link>
     <ul>
-        <CustomLink to="/sign-up">Sign Up</CustomLink>
+        <CustomLink to="/role-selection">Sign Up</CustomLink>
         <CustomLink to="/sign-in">Sign In</CustomLink>
     </ul>
     </nav>
