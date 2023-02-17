@@ -18,13 +18,13 @@ const Signup = () => {
 
   const { signUp } = useUserAuth();
   let navigate = useNavigate();
-  
+  let ting = "";
   const handleSubmit = async (e) => { //handles firebaseUI authentication
     e.preventDefault();
     setError("");
-    handleSave();
     try {
-      await signUp(email, password);
+     ting = await signUp(email, password);
+     handleSave();
       navigate("/home");
     } catch (err) {
       setError(err.message);
@@ -40,7 +40,8 @@ const Signup = () => {
           email: email,
           firstName: firstName,
           lastName: lastName,
-          role: "User"
+          role: "User",
+          uid: ting.user.uid
       };
       try {
           addDoc(ref, data)
