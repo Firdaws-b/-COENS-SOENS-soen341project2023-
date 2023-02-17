@@ -24,7 +24,7 @@ const EmployerSignUp = () => {
     handleSave();
     try {
       await signUp(email, password);
-      navigate("/dashboard");
+      navigate("/home");
     } catch (err) {
       setError(err.message);
     }

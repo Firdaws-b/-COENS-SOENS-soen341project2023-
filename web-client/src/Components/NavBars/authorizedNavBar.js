@@ -19,7 +19,7 @@ function NavBar() {
   };
   return (
   <nav className="nav">
-    <Link to="/dashboard" className="site-title">
+    <Link to="/home" className="site-title">
       EmployMe
     </Link>
     <ul>

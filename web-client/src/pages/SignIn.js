@@ -19,7 +19,7 @@ const Login = () => {
     setError("");
     try {
       await logIn(email, password);
-      navigate("/dashboard");
+      navigate("/home");
     } catch (err) {
       setError(err.message);
     }
