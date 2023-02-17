@@ -19,7 +19,7 @@ const Signup = () => {
   const { signUp } = useUserAuth();
   let navigate = useNavigate();
   
-  const handleSubmit = async (e) => { 
+  const handleSubmit = async (e) => { //handles firebaseUI authentication
     e.preventDefault();
     setError("");
     handleSave();
@@ -30,7 +30,7 @@ const Signup = () => {
       setError(err.message);
     }
   };
-  const handleSave = async(e) => {
+  const handleSave = async(e) => {//handles user storage in firestore
     const ref = collection(firestore,"Users");
     //const handleSave = async(e) => {
       //e.preventDefault();//so page doesn;t refresh when save button is clicked
