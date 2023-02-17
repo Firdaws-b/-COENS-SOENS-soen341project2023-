@@ -4,6 +4,8 @@ import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useUserAuth } from "../firebase/UserAuthContext";
 import NavBar from "../Components/NavBars/welcomePageNavBar";
+import {firestore} from "../firebase/firebase";
+import { addDoc, collection } from "@firebase/firestore";
 
 import Background from '../assets/office_char.jpg';
 
@@ -11,12 +13,16 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
   const { signUp } = useUserAuth();
   let navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
+  
+  const handleSubmit = async (e) => { 
     e.preventDefault();
     setError("");
+    handleSave();
     try {
       await signUp(email, password);
       navigate("/dashboard");
@@ -24,6 +30,24 @@ const Signup = () => {
       setError(err.message);
     }
   };
+  const handleSave = async(e) => {
+    const ref = collection(firestore,"Users");
+    //const handleSave = async(e) => {
+      //e.preventDefault();//so page doesn;t refresh when save button is clicked
+      //console.log(messageRef.current.value);
+  
+      let data = {
+          email: email,
+          firstName: firstName,
+          lastName: lastName
+      };
+      try {
+          addDoc(ref, data)
+      }catch (e) {
+          console.log(e);
+      }
+  
+  }
 
   return (
     <>
@@ -34,6 +58,20 @@ const Signup = () => {
           <h2 className="mb-3">Create an account</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicName">
+              <Form.Control
+                type="firstName"
+                placeholder="First Name"
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicName">
+              <Form.Control
+                type="lastName"
+                placeholder="Last Name"
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Control
                 type="email"
