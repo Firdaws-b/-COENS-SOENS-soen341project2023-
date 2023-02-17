@@ -16,9 +16,8 @@ export const RoleSelection = () => {
   return (
     <>
     <NavBar/>
-    <form></form>
     <div>roleSelection</div>
-    <div>
+    <div className='role-select'>
         <Button onClick={navigateToUserSignUp}>Job Seeker</Button>
         <Button onClick={navigateEmployerSignUp}>Employer</Button>
     </div>

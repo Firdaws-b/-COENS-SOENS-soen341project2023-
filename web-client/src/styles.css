@@ -57,3 +57,12 @@ body {
     padding: 0 1rem;
 }
 
+.role-select {
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    vertical-align:bottom;
+    gap: 1rem;
+    padding: 0 1rem;
+    position: relative;
+}
