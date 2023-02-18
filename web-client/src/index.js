@@ -6,13 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import "./styles.css"
 import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { UserAuthContextProvider } from "./firebase/UserAuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-    <App />
-    </BrowserRouter>
+    <UserAuthContextProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </UserAuthContextProvider>
   </React.StrictMode>
 );
 

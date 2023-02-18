@@ -5,7 +5,7 @@ import { Button } from "react-bootstrap";
 import { useUserAuth } from "../firebase/UserAuthContext";
 import NavBar from "../Components/NavBars/welcomePageNavBar";
 import {firestore} from "../firebase/firebase";
-import { addDoc, collection } from "@firebase/firestore";
+import { doc, setDoc } from "@firebase/firestore";
 
 import Background from '../assets/office_char.jpg';
 
@@ -17,35 +17,42 @@ const EmployerSignUp = () => {
 
   const { signUp } = useUserAuth();
   let navigate = useNavigate();
-  
+  let ting = "";
   const handleSubmit = async (e) => { //handles firebaseUI authentication
     e.preventDefault();
     setError("");
-    handleSave();
     try {
-      await signUp(email, password);
+      ting = await signUp(email, password);
+      handleSave();
       navigate("/home");
     } catch (err) {
       setError(err.message);
     }
   };
   const handleSave = async(e) => {//handles user storage in firestore
-    const ref = collection(firestore,"Users");
+    const ref = doc(firestore, "Users", ting.user.uid);
     //const handleSave = async(e) => {
       //e.preventDefault();//so page doesn;t refresh when save button is clicked
       //console.log(messageRef.current.value);
   
       let data = {
           email: email,
-          firstName: companyName,
-          role: "Employer"
+          companyName: companyName,
+          role: "Employer",
+          uid: ting.user.uid
       };
-      try {
+      setDoc(ref, data)
+      .then(() => {
+          console.log("Document has been added successfully");
+      })
+      .catch(error => {
+          console.log(error);
+      })
+     /* try {
           addDoc(ref, data)
       }catch (e) {
           console.log(e);
-      }
-  
+      }*/
   }
 
   return (
