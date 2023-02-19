@@ -4,9 +4,8 @@ import React, { useState } from "react";
 
 function NavBar() {
   const [error, setError] = useState("");
-  const { logOut } = useUserAuth();
+  const { logOut, userRole } = useUserAuth();
   const navigate = useNavigate();
-
   const handleLogOut = async (e) => {
     e.preventDefault();
     setError("");
@@ -17,6 +16,20 @@ function NavBar() {
       setError(err.message);
     }
   };
+  if(userRole === "Employer"){
+    return (
+      <nav className="nav">
+        <Link to="/home" className="site-title">
+          EmployMe
+        </Link>
+        <ul>
+        <CustomLink to="/create-job-posting">Create Post</CustomLink>
+        <Link to="/" onClick={handleLogOut}> Log Out</Link>
+        </ul>
+        </nav>
+      )
+  }
+  else{
   return (
   <nav className="nav">
     <Link to="/home" className="site-title">
@@ -27,6 +40,7 @@ function NavBar() {
     </ul>
     </nav>
   )
+}
 }
 
 function CustomLink({to, children, ...props }) {
