@@ -15,6 +15,7 @@ const userAuthContext = createContext();
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState();
   const [userRole, setUserRole] = useState("");
+  const [companyName, setCompanyName] = useState("");
 
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
@@ -59,7 +60,7 @@ UIDQuery();
 
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, userRole }}
+      value={{ user, logIn, signUp, logOut, userRole, companyName }}
     >
       {children}
     </userAuthContext.Provider>
