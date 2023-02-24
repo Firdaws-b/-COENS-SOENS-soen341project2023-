@@ -1,37 +1,44 @@
 //import './App.css';
-import { useEffect } from 'react';
-import NavBar from './navigationBar';
+import React, { useEffect, useContext, useState } from 'react';
+import NavBar from './Components/NavBars/welcomePageNavBar';
 import { Route, Routes } from 'react-router-dom';
-import Home from './pages/Home'
+import Welcome from './pages/Welcome'
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import Dashboard from './pages/dashboard';
-import { UserAuthContextProvider } from "./firebase/UserAuthContext";
+import Home from './pages/home';
+import { UserAuthContextProvider, useUserAuth } from "./firebase/UserAuthContext";
 import ProtectedRoute from "./firebase/protectedRoute";
+import { RoleSelection } from './pages/roleSelection';
+import EmployerSignUp from './pages/employerSignUp';
+import { CreateJobListing } from './pages/CreateJobListing';
+import { doc, getDoc } from "firebase/firestore";
+import { firestore } from './firebase/firebase';
 
-//import api_key from './secrets'
-
-//nst API_URL = '';//FireBase db api key goes here
 
 const App = () => {
-//console.log(api_key);
-//console.log(window.location)
+  const { user } = useUserAuth();
+  const [error, setError] = useState("");
+  const { userRole } = useUserAuth();//not rlly necessary
+
   useEffect(() => {
 //should learn this to retrieve data
   },[]);
 
+
   return (
 
     <>
-
   <div className="App">
 
     <UserAuthContextProvider>
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Welcome/>} />
         <Route path="/sign-in" element={<SignIn/>} />
         <Route path="/sign-up" element={<SignUp/>} />
-        <Route path="/dashboard" element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
+        <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+        <Route path="/create-job-posting" element={<ProtectedRoute><CreateJobListing/></ProtectedRoute>}/>
+        <Route path="/role-selection" element={<RoleSelection/>} />
+        <Route path="/employer-sign-up" element={<EmployerSignUp/>} />
       </Routes>
       </UserAuthContextProvider>
 
@@ -40,3 +47,4 @@ const App = () => {
     </>  );};
 
 export default App;
+

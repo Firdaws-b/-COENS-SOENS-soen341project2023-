@@ -9,12 +9,11 @@ import { doc, setDoc } from "@firebase/firestore";
 
 import Background from '../assets/office_char.jpg';
 
-const Signup = () => {
+const EmployerSignUp = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [companyName, setCompanyName] = useState("");
 
   const { signUp } = useUserAuth();
   let navigate = useNavigate();
@@ -23,8 +22,8 @@ const Signup = () => {
     e.preventDefault();
     setError("");
     try {
-     ting = await signUp(email, password);
-     handleSave();
+      ting = await signUp(email, password);
+      handleSave();
       navigate("/home");
     } catch (err) {
       setError(err.message);
@@ -38,9 +37,8 @@ const Signup = () => {
   
       let data = {
           email: email,
-          firstName: firstName,
-          lastName: lastName,
-          role: "User",
+          companyName: companyName,
+          role: "Employer",
           uid: ting.user.uid
       };
       setDoc(ref, data)
@@ -55,7 +53,6 @@ const Signup = () => {
       }catch (e) {
           console.log(e);
       }*/
-  
   }
 
   return (
@@ -69,16 +66,9 @@ const Signup = () => {
           <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Control
-                type="firstName"
-                placeholder="First Name"
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicName">
-              <Form.Control
-                type="lastName"
-                placeholder="Last Name"
-                onChange={(e) => setLastName(e.target.value)}
+                type="companyName"
+                placeholder="Company Name"
+                onChange={(e) => setCompanyName(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -115,4 +105,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default EmployerSignUp;
