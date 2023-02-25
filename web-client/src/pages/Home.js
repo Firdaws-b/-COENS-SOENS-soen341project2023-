@@ -8,7 +8,7 @@ export default function Home() {
     <>
     <NavBar/>
     <div>Home</div>
-    {ListJobs()}
+    <ListJobs />
     </>
   )
 }

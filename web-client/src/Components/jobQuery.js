@@ -24,8 +24,16 @@ import { useUserAuth } from "../firebase/UserAuthContext";
             setJobs(newData);                
             console.log(jobs, newData);
         })
+        .catch(error => console.log(error.essage))
    
 
     }
-
+    return (
+        <>
+        <h1>List of job postings</h1>
+        <ul>
+            {jobs.map(job => <li key={job.id}>Title:{job.data.Job}  <br />  Company:{job.data.Company}  <br/> Salary:{job.data.Salary}</li>)}
+        </ul>
+        </>
+    )
  }
