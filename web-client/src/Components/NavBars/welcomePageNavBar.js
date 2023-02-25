@@ -8,7 +8,7 @@ function NavBar() {
     </Link>
     <ul>
         <CustomLink to="/Home">
-            Home <i className=' fa-solid fa-house-user' ></i> 
+            Home <iconStyle className=' fa-solid fa-house-user' > </i> 
         </CustomLink>
         <CustomLink to="/Services">
             Services <i className="fa-solid fa-bell-concierge"></i></CustomLink>  
