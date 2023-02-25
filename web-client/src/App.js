@@ -5,7 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Welcome from './pages/Welcome'
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import Home from './pages/Home';
+import Home from './pages/home';
 import { UserAuthContextProvider, useUserAuth } from "./firebase/UserAuthContext";
 import ProtectedRoute from "./firebase/protectedRoute";
 import { RoleSelection } from './pages/roleSelection';
