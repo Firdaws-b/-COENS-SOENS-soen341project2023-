@@ -26,7 +26,7 @@ const Welcome = () => {
           <div className="Home-text-section">
             <h1 className="primary-heading">
               Your journey starts here...
-            </h1>
+            </h1> 
             <p className='primary intro text' >
               Are you a student looking for your dream job? 
               A recruiter looking for hidden talents?
