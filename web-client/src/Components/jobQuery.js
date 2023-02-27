@@ -32,7 +32,18 @@ import { useUserAuth } from "../firebase/UserAuthContext";
         <>
         <h1>List of job postings</h1>
         <ul>
-            {jobs.map(job => <li key={job.id}>Title:{job.data.Job}  <br />  Company:{job.data.Company}  <br/> Salary:{job.data.Salary}</li>)}
+            <table class="styled-table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Company</th>
+                    <th>Salary</th>
+                </tr>
+                </thead>
+                <tbody>
+            {jobs.map(job => <tr key={job.id}><td>{job.data.Job}</td><td>{job.data.Company}</td><td>{job.data.Salary}</td></tr>)}
+            </tbody>
+            </table>
         </ul>
         </>
     )

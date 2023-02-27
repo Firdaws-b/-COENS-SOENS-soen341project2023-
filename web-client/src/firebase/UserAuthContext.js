@@ -33,6 +33,7 @@ export function UserAuthContextProvider({ children }) {
     if (docSnap.exists()) {   
       console.log("Document data:", docSnap.data());
       setUserRole(String(docSnap.data().role));
+      setCompanyName(String(docSnap.data().companyName));
       //console.log("UID",docSnap.data().uid);
       //console.log("email",docSnap.data().email);
       //console.log("Role",docSnap.data().role);
