@@ -15,7 +15,6 @@ const Signup = () => {
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-
     const { signUp } = useUserAuth();
     let navigate = useNavigate();
     let ting = "";
@@ -24,13 +23,13 @@ const Signup = () => {
         setError("");
         try {
             ting = await signUp(email, password);
-            handleSave();
+            await handleSave(ting);
             navigate("/Home");
         } catch (err) {
             setError(err.message);
         }
     };
-    const handleSave = async (e) => {//handles user storage in firestore
+    const handleSave = async (user) => {//handles user storage in firestore
         const ref = doc(firestore, "Users", ting.user.uid);
         //const handleSave = async(e) => {
         //e.preventDefault();//so page doesn;t refresh when save button is clicked
@@ -40,10 +39,15 @@ const Signup = () => {
             email: email,
             firstName: firstName,
             lastName: lastName,
+            selectedCountry: "default",
+            address: "default",
+            city: "default",
+            province: "default",
+            country: "default",
             role: "User",
             uid: ting.user.uid
         };
-        setDoc(ref, data)
+        await setDoc(ref, data)
             .then(() => {
                 console.log("Document has been added successfully");
             })
