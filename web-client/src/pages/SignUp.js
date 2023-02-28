@@ -45,6 +45,7 @@ const Signup = () => {
             province: "default",
             country: "default",
             role: "User",
+            resume:"default",
             uid: ting.user.uid
         };
         await setDoc(ref, data)

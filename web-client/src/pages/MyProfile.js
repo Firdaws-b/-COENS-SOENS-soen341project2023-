@@ -11,6 +11,8 @@ import Wrapper from "../assets/wrappers/ProfilePageFormPage";
 import FormRow from "../Components/FormRow"
 import CountryDropdown from 'country-dropdown-with-flags-for-react';
 import { useUserAuth } from '../firebase/UserAuthContext';
+import {storage} from "../firebase/firebase";
+import {getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 export default function MyProfile() {
     const [user, setUser] = useState(null);
@@ -23,6 +25,7 @@ export default function MyProfile() {
     const [address,setAddress]= useState("");
     const [province, setProvince] = useState("");
     const [city, setCity] = useState("");
+    const [resume, setResume] = useState("");
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
@@ -40,6 +43,7 @@ export default function MyProfile() {
                     setProvince(snapshot.data().province)
                     setAddress(snapshot.data().address)
                     setCity(snapshot.data().city)
+                    setResume(snapshot.data().resume)
                 } else {
                     console.log("User doc missing")
                 }
@@ -81,7 +85,28 @@ export default function MyProfile() {
         
         setCity(value);
     }
+    const handleResumeUpload = async(event) => {
+        const file = event.target.files[0];
+        if(!file){
+            alert("Please choose a file to upload first !");
+            //return;
+        }
+        // if the file exists,create a storage refrence that acts as a pointer to 
+        // the file in the cloud. 
+        const uid = auth.currentUser.uid;
+        const storageRef = ref(storage,`resumes/${uid}.pdf`);
+        await uploadBytes(storageRef, file);
 
+        const downloadUrl = await getDownloadURL(storageRef);
+        const userRef = doc(firestore,"Users", uid);
+        const updatedUser = {
+            ...user, 
+            resume: downloadUrl,
+        };
+        await updateDoc(userRef,updatedUser);
+        setUser(updatedUser);
+        alert("Resume Uploaded successfully !");
+    };
     const handleSaveChanges = async (event) => {
         event.preventDefault();
         if (!isEditing){
@@ -97,6 +122,7 @@ export default function MyProfile() {
             country: country ,
             address:address ,
             province:province ,
+            resume:user.resume,
             city: city
         }
         
@@ -134,9 +160,18 @@ export default function MyProfile() {
                     <Button variant="primary" onClick={() => setIsEditing(!isEditing)} style={{marginRight: "10px"}}>
                     {isEditing ? "Cancel" : "Edit"}
                     </Button>
-                    <Button variant="primary" onClick={handleSaveChanges}>
+                    <Button variant="primary" onClick={handleSaveChanges} style={{marginRight: "10px"}}>
                         Save
                     </Button>
+                    <label htmlFor="resume-upload" className="btn btn-primary">
+                        Upload My Resume
+                        <input
+                            type="file"
+                            id="resume-upload"
+                            accept=".pdf"
+                            onChange={handleResumeUpload}
+                            style={{ display: "none" }} />
+                    </label>
                 </form>
             </Wrapper>
         </div>
