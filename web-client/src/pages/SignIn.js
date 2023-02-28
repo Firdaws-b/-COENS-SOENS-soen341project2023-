@@ -4,8 +4,8 @@ import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { useUserAuth } from "../firebase/UserAuthContext";
 import NavBar from "../Components/NavBars/welcomePageNavBar";
-
 import Background from '../assets/office_char.jpg';
+import NavBarProfilePage from "../Components/NavBars/NavBarProfilePage";
 
 const Login = () => {
     const [email, setEmail] = useState("");

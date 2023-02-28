@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import userAvatar from '../assets/user-avatar.jpg';
-import { Link, Router, useNavigate } from "react-router-dom";
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
 import { Button } from 'react-bootstrap';
 import '../Components/NavBars/NavBarProfilePage.css';
@@ -9,8 +8,6 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import Wrapper from "../assets/wrappers/ProfilePageFormPage";
 import FormRow from "../Components/FormRow"
-import CountryDropdown from 'country-dropdown-with-flags-for-react';
-import { useUserAuth } from '../firebase/UserAuthContext';
 import {storage} from "../firebase/firebase";
 import {getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
@@ -65,10 +62,6 @@ export default function MyProfile() {
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
-    }
-
-    const handleRoleChange = (event) => {
-        setRole(event.target.value);
     }
 
     const handleCountryChange = (event) => {
@@ -146,13 +139,12 @@ export default function MyProfile() {
                         <div className="avatar-container">
                             <img src={userAvatar} alt="User Avatar" className="avatar" />
                         </div>
-                        <FormRow type="text" name="Role" value={role} handleChange={handleRoleChange}disabled={!isEditing} />
                         <FormRow type="text" name="Email Address" value={email} handleChange={handleEmailChange} disabled={!isEditing} />
-                        <span>{<br />}</span>
                         <FormRow type="text" name="Address" value={address.toString()} handleChange={handleAddressChange} disabled={!isEditing} />
-                        <FormRow type="text" name="City" value={city} handleChange={handleCityChange} disabled={!isEditing}/>
                         <span>{<br />}</span>
+                        <FormRow type="text" name="City" value={city} handleChange={handleCityChange} disabled={!isEditing}/>
                         <FormRow type="text" name="State/Province" value={province} handleChange={handleProvinceChange} disabled={!isEditing} />
+                        <span>{<br />}</span>
                         <FormRow type="text" name="Country" value={country} handleChange={handleCountryChange} disabled={!isEditing}/>
                     </div>
                     <span>{<br />}</span>

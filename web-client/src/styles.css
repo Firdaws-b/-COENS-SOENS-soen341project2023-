@@ -279,7 +279,8 @@ body {
 }
 
 .nav {
-    background-color: #333;
+    color: #0275d8;
+    background-color: #0275d8;
     color: white;
     display: flex;
     justify-content: space-between;
@@ -311,7 +312,7 @@ body {
 }
 
 .nav li.active {
-    background-color: #EC8670;
+    background-color: aliceblue;
 }
 
 .nav li.hover {

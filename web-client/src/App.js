@@ -1,25 +1,22 @@
 //import './App.css';
-import React, { useEffect, useContext, useState } from 'react';
-import NavBar from './Components/NavBars/welcomePageNavBar';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Welcome from './pages/Welcome'
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import MyProfile from './pages/MyProfile'
-import { UserAuthContextProvider, useUserAuth } from "./firebase/UserAuthContext";
+import { UserAuthContextProvider} from "./firebase/UserAuthContext";
 import ProtectedRoute from "./firebase/protectedRoute";
 import { RoleSelection } from './pages/roleSelection';
 import EmployerSignUp from './pages/employerSignUp';
 import { CreateJobListing } from './pages/CreateJobListing';
-import { doc, getDoc } from "firebase/firestore";
-import { firestore } from './firebase/firebase';
 
 
 const App = () => {
-  const { user } = useUserAuth();
-  const [error, setError] = useState("");
-  const { userRole } = useUserAuth();//not rlly necessary
+  //const { user } = useUserAuth();
+  //const [error, setError] = useState("");
+ // const { userRole } = useUserAuth();//not rlly necessary
 
   useEffect(() => {
 //should learn this to retrieve data
