@@ -11,8 +11,8 @@ function NavBar() {
             Home <i className='fa-solid fa-house-user'></i></CustomLink>
         <CustomLink to="/Services">
             Services <i className="fa-solid fa-bell-concierge"></i></CustomLink>  
-        <CustomLink to="Got Questions ">
-            Got Questions <i className="fa-duotone fa-question"></i></CustomLink>
+        <CustomLink to="/ContactUs">
+            Contact Us <i className="fa-duotone fa-question"></i></CustomLink>
         <CustomLink to="/role-selection"> Sign Up</CustomLink>
         <CustomLink to="/sign-in"> Sign In <i className="fa-solid fa-right-to-bracket"></i> </CustomLink>
         

@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import navigationBar_welcome from '../Components/NavBars/welcomePageNavBar';
 import Background from '../assets/office_char.jpg';
 import NavBar from "../Components/NavBars/welcomePageNavBar";
+import Wrapper from "../assets/Wrappers/welcomeWrapper";
 
 const Welcome = () => {
   return (
@@ -33,11 +33,11 @@ const Welcome = () => {
               ...Sign up now!!...Hurry! 
             </p>
           </div>
-          <h2 className="intro text">Log</h2>
         </div>
       </div>
     </>
   );
+ 
 };
 
 export default Welcome;
