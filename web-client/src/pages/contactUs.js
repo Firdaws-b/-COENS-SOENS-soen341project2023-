@@ -1,43 +1,89 @@
-import React from 'react';
+import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
+import StyledContactForm from "../assets/Wrappers/StyledContactForm";
 
+const Result = () => {
+  return (
+    <p>
+      Your request has been sent successfully, we'll get back to you very soon.
+    </p>
+  );
+};
 
 export default function ContactUs() {
+  const [showResult, setShowResult] = useState(false);
+
   function sendEmail(e) {
     e.preventDefault();
-    emailjs.sendForm('service_9vxnjlo', 'template_39o7c5l', e.target, 'mvFKgfdK_hI1Vb-Fo')
-      .then((result) => {
-        console.log(result.text);
-      }, (error) => {
-        console.log(error.text);
-      });
-      e.target.reset()
-  };
+    emailjs
+      .sendForm(
+        'service_9vxnjlo',
+        'template_39o7c5l',
+        e.target,
+        'mvFKgfdK_hI1Vb-Fo'
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setShowResult(true);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    e.target.reset();
+  }
+
   return (
-    <div>
+   
+      <div className='container'>
+        <form onSubmit={sendEmail}>
+          <div className='form-group'>
+            <label htmlFor='name'>Name:</label>
+            <input
+              type='text'
+              className='form-control'
+              id='name'
+              name='name'
+              required
+            />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='email'>Email:</label>
+            <input
+              type='email'
+              className='form-control'
+              id='email'
+              name='email'
+              required
+            />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='subject'>Subject:</label>
+            <input
+              type='text'
+              className='form-control'
+              id='subject'
+              name='subject'
+              required
+            />
+          </div>
+          <div className='form-group'>
+            <label htmlFor='message'>Message:</label>
+            <textarea
+              className='form-control'
+              id='message'
+              name='message'
+              rows='6'
+              required
+            ></textarea>
+          </div>
+          <button type='submit' className='btn btn-primary'>
+            Send
+          </button>
+          {showResult ? <Result /> : null}
+        </form>
+      </div>
 
-            <div className="container">
-                <form onSubmit={sendEmail}>
-                    <div className='row pt-5 mx-auto'>
-                        <div className='col-8 form-group pt-2 mx-auto'>
-                            <input type="text" className="form-control" placeholder="Name" name="name" />
-                        </div>
-                        <div className="col-8 form-group pt-2 mx-auto">
-                            <input type="email" className="form-control" placeholder="Email Address" name="email" />
-                        </div>
-                        <div className="col-8 form-group pt-2 mx-auto">
-                            <input type="text" className="form-control" placeholder="Subject" name="subject" />
-                        </div>
-                        <div className="col-8 form-group pt-2 mx-auto">
-                            <textarea type="text" className="form-control" id="" cols="30" rows="8" placeholder="Your message" name="message"></textarea>
-                        </div>
-                        <div className="col-8 pt-3 mx-auto">
-                            <input type="submit" className="btn btn-info" value="Send Message"></input>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-    </div>
   );
 }
