@@ -39,10 +39,10 @@ export default function MyProfile() {
                     setLastName(snapshot.data().lastName)
                     setEmail(snapshot.data().email)
                     setRole(snapshot.data().role)
-                    setCountry(snapshot.data().country)
-                    setProvince(snapshot.data().province)
-                    setAddress(snapshot.data().address)
-                    setCity(snapshot.data().city)
+                    setCountry(snapshot.data().country.toString())
+                    setProvince(snapshot.data().province.toString())
+                    setAddress(snapshot.data().address.toString())
+                    setCity(snapshot.data().city.toString())
                     setResume(snapshot.data().resume)
                 } else {
                     console.log("User doc missing")
@@ -71,19 +71,18 @@ export default function MyProfile() {
         setRole(event.target.value);
     }
 
-    const handleCountryChange = (value) => {
-        setCountry(value);
+    const handleCountryChange = (event) => {
+        setCountry(event.target.value);
     }
-    const handleAddressChange = (value) => {
-        setAddress(value);
+    const handleAddressChange = (event) => {
+        setAddress(event.target.value);
     }
-    const handleProvinceChange = (value) => {
-        console.log(value)
-        setProvince(value);
+    const handleProvinceChange = (event) => {
+        setProvince(event.target.value);
     }
-    const handleCityChange = (value) => {
+    const handleCityChange = (event) => {
         
-        setCity(value);
+        setCity(event.target.value);
     }
     const handleResumeUpload = async(event) => {
         const file = event.target.files[0];
@@ -150,7 +149,7 @@ export default function MyProfile() {
                         <FormRow type="text" name="Role" value={role} handleChange={handleRoleChange}disabled={!isEditing} />
                         <FormRow type="text" name="Email Address" value={email} handleChange={handleEmailChange} disabled={!isEditing} />
                         <span>{<br />}</span>
-                        <FormRow type="text" name="Address" value={address} handleChange={handleAddressChange} disabled={!isEditing} />
+                        <FormRow type="text" name="Address" value={address.toString()} handleChange={handleAddressChange} disabled={!isEditing} />
                         <FormRow type="text" name="City" value={city} handleChange={handleCityChange} disabled={!isEditing}/>
                         <span>{<br />}</span>
                         <FormRow type="text" name="State/Province" value={province} handleChange={handleProvinceChange} disabled={!isEditing} />
