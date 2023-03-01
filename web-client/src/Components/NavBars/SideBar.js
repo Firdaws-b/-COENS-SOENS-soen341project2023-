@@ -20,22 +20,22 @@ export const SideBar = [
         handleClick: (onSidebarClick) => onSidebarClick('My Profile')      
     },
     {
-        title: 'Dashboard',
-        path: '/dashboard',
+        title: 'Home',
+        path: '/Home',
         icon: <RxIcons.RxDashboard />,
         cName: 'nav-text',
-        handleClick: (onSidebarClick) => onSidebarClick('Dashboard')
+        handleClick: (onSidebarClick) => onSidebarClick('Home')
     },
     {
         title: 'Saved Jobs',
-        path: '/',
+        path: '/Home',
         icon: <CiIcons.CiSaveDown2 />,
         cName: 'nav-text',
         handleClick: (onSidebarClick) => onSidebarClick('Saved Jobs')
     },
     {
         title: 'Settings',
-        path: '/',
+        path: '/Home',
         icon: <FiIcons.FiSettings />,
         cName: 'nav-text',
         handleClick: (onSidebarClick) => onSidebarClick('Settings')
