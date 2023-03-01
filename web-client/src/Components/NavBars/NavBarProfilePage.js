@@ -9,93 +9,46 @@ import { useUserAuth } from '../../firebase/UserAuthContext';
 
 export default function NavBarProfilePage({ onSidebarClick }) {
     const [sidebar, setSidebar] = useState(false);
-    const {userRole, logOut} = useUserAuth();
+    const { userRole, logOut } = useUserAuth();
     const showSidebar = () => setSidebar(!sidebar);
     const navigate = useNavigate();;
     const [error, setError] = useState("");
 
-    function handleClick(item) {
-        item.handleClick(onSidebarClick);
-        showSidebar();
-    }
     const handleLogOut = async (e) => {
         e.preventDefault();
         setError("");
         try {
-          await logOut();
-          navigate("/");
+            await logOut();
+            navigate("/");
         } catch (err) {
-          setError(err.message);
+            setError(err.message);
         }
-      };
+    };
 
-      if (userRole ==="Employer")
-      {
-    return (
-        <>
-            <IconContext.Provider value={{ color: 'white' }}>
-                <div className='nav'>
-                <div className='navBarProfilePage'>
-                    <Link to='#' className='menu-bars'>
-                        <FaIcons.FaBars onClick={showSidebar} />
-                    </Link>
-                </div>
-                <div className='nav'>
-                    <ul>
-                    <Link to='/create-job-posting'>
-                        Create Post
-                    </Link>
-                    </ul>
-                </div>
-                <div className='nav'>
-                    <ul>
-                    <Link to='/' onClick={handleLogOut}>
-                        Log Out
-                    </Link>
-                    </ul>
-                </div>
-                </div>
-                <nav className={sidebar ? 'nav-menu-sidebar active' : 'nav-menu-sidebar'}>
-                    <ul className='nav-menu-sidebar-items' onClick={showSidebar}>
-                        <li className='navbar-toggle'>
-                            <Link to='#' className='menu-bars'>
-                                <AiIcons.AiOutlineClose />
-                            </Link>
-                        </li>
-                        {SideBar.map((item, index) => {
-                            return (
-                                <li key={index} className={item.cName} onClick={() => handleClick(item)}>
-                                    <Link to={item.path}>
-                                        {item.icon}
-                                        <span>{item.title}</span>
-                                    </Link>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </nav>
-            </IconContext.Provider>
-        </>
-    );
-                    }
-    else if(userRole === "User")
-    {
+    if (userRole === "Employer") {
         return (
             <>
                 <IconContext.Provider value={{ color: 'white' }}>
                     <div className='nav'>
-                    <div className='navBarProfilePage'>
-                        <Link to='#' className='menu-bars'>
-                            <FaIcons.FaBars onClick={showSidebar} />
-                        </Link>
-                    </div>
-                    <div className='nav'>
-                        <ul>
-                        <Link to='/' onClick={handleLogOut}>
-                            Log Out
-                        </Link>
-                        </ul>
-                    </div>
+                        <div className='navBarProfilePage'>
+                            <Link to='#' className='menu-bars'>
+                                <FaIcons.FaBars onClick={showSidebar} />
+                            </Link>
+                        </div>
+                        <div className='nav'>
+                            <ul>
+                                <Link to='/create-job-posting'>
+                                    Create Post
+                                </Link>
+                            </ul>
+                        </div>
+                        <div className='nav'>
+                            <ul>
+                                <Link to='/' onClick={handleLogOut}>
+                                    Log Out
+                                </Link>
+                            </ul>
+                        </div>
                     </div>
                     <nav className={sidebar ? 'nav-menu-sidebar active' : 'nav-menu-sidebar'}>
                         <ul className='nav-menu-sidebar-items' onClick={showSidebar}>
@@ -106,7 +59,48 @@ export default function NavBarProfilePage({ onSidebarClick }) {
                             </li>
                             {SideBar.map((item, index) => {
                                 return (
-                                    <li key={index} className={item.cName} onClick={() => handleClick(item)}>
+                                    <li key={index} className={item.cName} >
+                                        <Link to={item.path}>
+                                            {item.icon}
+                                            <span>{item.title}</span>
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </nav>
+                </IconContext.Provider>
+            </>
+        );
+    }
+    else if (userRole === "User") {
+        return (
+            <>
+                <IconContext.Provider value={{ color: 'white' }}>
+                    <div className='nav'>
+                        <div className='navBarProfilePage'>
+                            <Link to='#' className='menu-bars'>
+                                <FaIcons.FaBars onClick={showSidebar} />
+                            </Link>
+                        </div>
+                        <div className='nav'>
+                            <ul>
+                                <Link to='/' onClick={handleLogOut}>
+                                    Log Out
+                                </Link>
+                            </ul>
+                        </div>
+                    </div>
+                    <nav className={sidebar ? 'nav-menu-sidebar active' : 'nav-menu-sidebar'}>
+                        <ul className='nav-menu-sidebar-items' onClick={showSidebar}>
+                            <li className='navbar-toggle'>
+                                <Link to='#' className='menu-bars'>
+                                    <AiIcons.AiOutlineClose />
+                                </Link>
+                            </li>
+                            {SideBar.map((item, index) => {
+                                return (
+                                    <li key={index} className={item.cName} >
                                         <Link to={item.path}>
                                             {item.icon}
                                             <span>{item.title}</span>
