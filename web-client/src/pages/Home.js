@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import { useUserAuth } from '../firebase/UserAuthContext';
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
 import '../Components/NavBars/NavBarProfilePage.css'
+import ListJobs from '../Components/jobQuery';
 export default function Dashboard() {
   const [error, setError] = useState("");
   const { logOut } = useUserAuth();
@@ -35,6 +36,7 @@ export default function Dashboard() {
         <Button variant="primary" onClick={handleProfilePage}>
           Profile Page
         </Button>
+        <ListJobs />
 
       </>
     );

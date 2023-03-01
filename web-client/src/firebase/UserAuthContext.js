@@ -15,6 +15,7 @@ const userAuthContext = createContext();
 export function UserAuthContextProvider({ children }) {
   const [user, setUser] = useState();
   const [userRole, setUserRole] = useState("");
+  const [companyName, setCompanyName] = useState("");
 
   function logIn(email, password) {
     return signInWithEmailAndPassword(auth, email, password);
@@ -32,6 +33,7 @@ export function UserAuthContextProvider({ children }) {
     if (docSnap.exists()) {   
       console.log("Document data:", docSnap.data());
       setUserRole(String(docSnap.data().role));
+      setCompanyName(String(docSnap.data().companyName));
       //console.log("UID",docSnap.data().uid);
       //console.log("email",docSnap.data().email);
       //console.log("Role",docSnap.data().role);
@@ -59,7 +61,7 @@ UIDQuery();
 
   return (
     <userAuthContext.Provider
-      value={{ user, logIn, signUp, logOut, userRole }}
+      value={{ user, logIn, signUp, logOut, userRole, companyName }}
     >
       {children}
     </userAuthContext.Provider>
