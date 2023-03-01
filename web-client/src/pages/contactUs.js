@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import emailjs from 'emailjs-com';
-import StyledContactForm from "../assets/wrappers/StyledContactForm";
+import StyledContactForm from "../assets/Wrappers/StyledContactForm";
 
 const Result = () => {
   return (

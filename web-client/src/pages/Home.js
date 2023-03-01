@@ -4,41 +4,36 @@ import { Button } from 'react-bootstrap';
 import { useUserAuth } from '../firebase/UserAuthContext';
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
 import '../Components/NavBars/NavBarProfilePage.css'
-import ListJobs from '../Components/jobQuery';
-export default function Dashboard() {
+import ListAllJobs, { ListJobsFromUID } from '../Components/jobQuery';
+export default function Home() {
   const [error, setError] = useState("");
-  const { logOut } = useUserAuth();
-  const navigate1 = useNavigate();
+  const { userRole } = useUserAuth();
+  //const navigate1 = useNavigate();
 
-  const handleLogOut = async (e) => {
-    e.preventDefault();
-    setError("");
-    try {
-      await logOut();
-      navigate1("/");
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-    const navigate = useNavigate();
-    function handleProfilePage() {
-      console.log('Navigating to ', '/MyProfile');
-      navigate('/MyProfile');
-    }
 
+    //const navigate = useNavigate();
+
+    if(userRole === "User")
+    {
     return (
       <>
       <NavBarProfilePage/>
-        <div>Dashboard</div>
-        <Button variant="primary" onClick={handleLogOut}>
-          Log Out
-        </Button>
-        <Button variant="primary" onClick={handleProfilePage}>
-          Profile Page
-        </Button>
-        <ListJobs />
+        <div>Home</div>
+        <ListAllJobs />
 
       </>
     );
+    }
+    else if(userRole === "Employer")
+    {
+    return (
+      <>
+      <NavBarProfilePage/>
+        <div>Your job postings</div>
+        <ListJobsFromUID />
+
+      </>
+    );
+    }
   }
 

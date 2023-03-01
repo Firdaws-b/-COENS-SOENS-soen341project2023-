@@ -6,7 +6,7 @@ import '../Components/NavBars/NavBarProfilePage.css';
 import { auth, firestore } from '../firebase/firebase';
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-import Wrapper from "../assets/wrappers/ProfilePageFormPage";
+import Wrapper from "../assets/Wrappers/ProfilePageFormPage";
 import FormRow from "../Components/FormRow"
 import {storage} from "../firebase/firebase";
 import {getDownloadURL, ref, uploadBytes } from "firebase/storage";
