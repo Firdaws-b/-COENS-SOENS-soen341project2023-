@@ -288,6 +288,7 @@ body {
   top: 15px;
 }
 .nav {
+    color: #0275d8;
     background-color: #0275d8;
     color: white;
     display: flex;
@@ -320,7 +321,7 @@ body {
 }
 
 .nav li.active {
-    background-color: #EC8670;
+    background-color: aliceblue;
 }
 
 .nav li.hover {
@@ -340,13 +341,19 @@ body {
 
 .role-select {
     display: flex;
-    justify-content:center;
-    align-items:center;
-    vertical-align:bottom;
+    justify-content: center;
+    align-items: center;
+    vertical-align: bottom;
     gap: 1rem;
     padding: 0 1rem;
     position: relative;
 }
+
+.avatar {
+    height: 200px;
+    width: 200px;
+}
+
 
 
 .styled-table {

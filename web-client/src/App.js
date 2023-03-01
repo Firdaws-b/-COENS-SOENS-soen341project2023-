@@ -1,12 +1,12 @@
 //import './App.css';
-import React, { useEffect, useContext, useState } from 'react';
-import NavBar from './Components/NavBars/welcomePageNavBar';
+import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Welcome from './pages/Welcome'
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
-import { UserAuthContextProvider, useUserAuth } from "./firebase/UserAuthContext";
+import MyProfile from './pages/MyProfile'
+import { UserAuthContextProvider} from "./firebase/UserAuthContext";
 import ProtectedRoute from "./firebase/protectedRoute";
 import { RoleSelection } from './pages/roleSelection';
 import EmployerSignUp from './pages/employerSignUp';
@@ -17,9 +17,9 @@ import ContactUs from './pages/contactUs';
 import Testimonial from './Components/Testimonial';
 
 const App = () => {
-  const { user } = useUserAuth();
-  const [error, setError] = useState("");
-  const { userRole } = useUserAuth();//not rlly necessary
+  //const { user } = useUserAuth();
+  //const [error, setError] = useState("");
+ // const { userRole } = useUserAuth();//not rlly necessary
 
   useEffect(() => {
 //should learn this to retrieve data
@@ -37,10 +37,11 @@ const App = () => {
       } />
         <Route path="/sign-in" element={<SignIn/>} />
         <Route path="/sign-up" element={<SignUp/>} />
-        <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
+        <Route path="/Home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
         <Route path="/create-job-posting" element={<ProtectedRoute><CreateJobListing/></ProtectedRoute>}/>
         <Route path="/role-selection" element={<RoleSelection/>} />
         <Route path="/employer-sign-up" element={<EmployerSignUp/>} />
+        <Route path="/MyProfile" element = {<ProtectedRoute><MyProfile></MyProfile></ProtectedRoute>}/>
         <Route path="/ContactUs" element={<ContactUs/>} />
       </Routes>
       </UserAuthContextProvider>
