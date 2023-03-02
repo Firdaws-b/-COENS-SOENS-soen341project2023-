@@ -110,7 +110,7 @@ import { DataContext } from "./storeContext";
                 </thead>
                 <tbody>
             {jobs.map(job => <tr onClick={() => {toJobPost(job)}}
-            key={job.id}><td>{job.data.Job}</td><td>{job.data.Company}</td><td>${job.data.Salary}</td></tr>)}
+            key={job.id}><td>{job.data.Job}</td><td>{job.data.Company}</td><td>{job.data.Salary}</td></tr>)}
             </tbody>
             </table>
         </ul>

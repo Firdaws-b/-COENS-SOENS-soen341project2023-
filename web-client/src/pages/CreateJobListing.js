@@ -32,9 +32,14 @@ export const CreateJobListing = () => {
     }
     const handleSave = async(e) => {
       //e.preventDefault();//so page doesn;t refresh when save button is clicked
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
+
       let data = {
           Company: companyName,
-          Salary: salary,
+          Salary: formatter.format(salary),
           Job: jobTitle,
           Description: description,
           EmployerUID: user.uid//used to only display postings from active employer
