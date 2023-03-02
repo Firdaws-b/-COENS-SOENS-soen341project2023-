@@ -67,6 +67,8 @@ import { DataContext } from "./storeContext";
  export function ListJobsFromUID(){
     const [jobs, setJobs] = useState([]);
     const { user, userRole } = useUserAuth();
+    const [jobSelected, setJobSelected] = useState(false);
+    const {data, setData} = useContext(DataContext);
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -90,7 +92,9 @@ import { DataContext } from "./storeContext";
 
     }
     const toJobPost=(jobData)=>{
-        navigate('/job-post',{state:{data: jobData}});
+        setData({jobby:jobData});
+        setJobSelected(true);
+        navigate('/job-post');
           }
     return (
         <>
