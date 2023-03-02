@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Button, Form } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import NavBar from '../Components/NavBars/authorizedNavBar';
@@ -7,16 +7,16 @@ import { deleteDoc, collection, doc } from "@firebase/firestore";
 import { firestore } from '../firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
+import { DataContext } from '../Components/storeContext';
 
-export const JobPost = (props) => {
+export const JobPost = () => {
   const navigate = useNavigate();
   const {userRole} = useUserAuth();
-  const location = useLocation();
-  const data = location.state.data;
-  const id = data.id;//document name to identify the document that needs to be edited/deleted
-  console.log("data ID", id)
-  const {navigation} = props;
-
+ 
+  const { data } = useContext(DataContext);
+console.log("DATA CONTEXT: ", data);
+const id = data.jobby.id;//document name to identify the document that needs to be edited/deleted
+console.log("data ID", id)
   const handleDelete =async () =>{
     await deleteDoc(doc(firestore, "Postings", id));
     navigate("/home");
@@ -31,16 +31,16 @@ export const JobPost = (props) => {
       <NavBarProfilePage/>
         <div>Job Post</div>
         <h1>
-        {data.data.Job}
+        {data.jobby.data.Job}
         </h1>
         <h2>
-        {data.data.Company}
+        {data.jobby.data.Company}
         </h2>
         <h3>
-        ${data.data.Salary}
+        ${data.jobby.data.Salary}
         </h3>
         <h4>
-        {data.data.Description}
+        {data.jobby.data.Description}
         </h4>
 
     <Button>Edit</Button>
@@ -51,20 +51,20 @@ export const JobPost = (props) => {
   else{
   return (
     <>
-  <NavBarProfilePage/>
+    <NavBarProfilePage/>
     <div>Job Post</div>
     <h1>
-    {data.data.Job}
-    </h1>
-    <h2>
-    {data.data.Company}
-    </h2>
-    <h3>
-    ${data.data.Salary}
-    </h3>
-    <h4>
-    {data.data.Description}
-    </h4>
+        {data.jobby.data.Job}
+        </h1>
+        <h2>
+        {data.jobby.data.Company}
+        </h2>
+        <h3>
+        ${data.jobby.data.Salary}
+        </h3>
+        <h4>
+        {data.jobby.data.Description}
+        </h4>
 
 <Button>Apply</Button>
     </>

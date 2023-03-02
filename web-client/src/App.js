@@ -17,6 +17,7 @@ import { firestore } from './firebase/firebase';
 import ContactUs from './pages/contactUs';
 import Testimonial from './Components/Testimonial';
 import { JobPost } from './pages/jobPost';
+import { DataProvider } from './Components/storeContext';
 
 const App = () => {
   //const { user } = useUserAuth();
@@ -34,6 +35,7 @@ const App = () => {
       <div className="App">
 
         <UserAuthContextProvider>
+          <DataProvider>
           <Routes>
             <Route path="/" element={<Welcome />
             } />
@@ -47,6 +49,7 @@ const App = () => {
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/job-post" element={<ProtectedRoute><JobPost /></ProtectedRoute>} />
           </Routes>
+          </DataProvider>
         </UserAuthContextProvider>
 
 

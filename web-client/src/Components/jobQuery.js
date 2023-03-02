@@ -4,10 +4,14 @@ import { collection, doc, getDoc, getDocs, query, where } from "firebase/firesto
 import { firestore } from "../firebase/firebase";
 import { useUserAuth } from "../firebase/UserAuthContext";
 import { useNavigate } from "react-router-dom";
+import { JobPost } from "../pages/jobPost";
+import { DataContext } from "./storeContext";
 
 
  export default function ListAllJobs(){
+    const [jobSelected, setJobSelected] = useState(false);
     const [jobs, setJobs] = useState([]);
+    const {data, setData} = useContext(DataContext);
     const navigate = useNavigate();
     //const Navigation = useNavigation();
     useEffect(()=>{
@@ -30,8 +34,11 @@ import { useNavigate } from "react-router-dom";
 
 
     }
+    
     const toJobPost=(jobData)=>{
-        navigate('/job-post',{state:{data: jobData}});
+        setData({jobby:jobData});
+        setJobSelected(true);
+        navigate('/job-post');
           }
               return (
         <>
@@ -60,6 +67,8 @@ import { useNavigate } from "react-router-dom";
  export function ListJobsFromUID(){
     const [jobs, setJobs] = useState([]);
     const { user, userRole } = useUserAuth();
+    const [jobSelected, setJobSelected] = useState(false);
+    const {data, setData} = useContext(DataContext);
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -83,7 +92,9 @@ import { useNavigate } from "react-router-dom";
 
     }
     const toJobPost=(jobData)=>{
-        navigate('/job-post',{state:{data: jobData}});
+        setData({jobby:jobData});
+        setJobSelected(true);
+        navigate('/job-post');
           }
     return (
         <>
