@@ -94,3 +94,7 @@ There are many ways to build a website, but our team will have the following app
 
 ## How to Use the Project: 
 **TBD**
+
+## Sprint 2 demo video: 
+https://www.dropbox.com/s/tnasq31bsd06214/Screen%20Recording%202023-03-01%20at%206.15.13%20PM.mov?dl=0
+
