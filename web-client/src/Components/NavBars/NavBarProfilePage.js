@@ -9,8 +9,10 @@ import { useUserAuth } from '../../firebase/UserAuthContext';
 
 export default function NavBarProfilePage({ onSidebarClick }) {
     const [sidebar, setSidebar] = useState(false);
-    const { userRole, logOut } = useUserAuth();
-    const showSidebar = () => setSidebar(!sidebar);
+    const {userRole, logOut} = useUserAuth();
+    const showSidebar = (e) => {
+        e.preventDefault();//prevents re-rendering
+        setSidebar(!sidebar)};
     const navigate = useNavigate();;
     const [error, setError] = useState("");
 
