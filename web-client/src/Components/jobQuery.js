@@ -96,6 +96,15 @@ import { DataContext } from "./storeContext";
         setJobSelected(true);
         navigate('/job-post');
           }
+          function getArraySize(arr){
+            if(arr === null || arr === undefined)
+            {
+                return "";
+            }
+            else{
+                return Object.keys(arr).length;
+            }
+          }
     return (
         <>
         <h1>Your Job Postings</h1>
@@ -106,11 +115,12 @@ import { DataContext } from "./storeContext";
                     <th>Title</th>
                     <th>Company</th>
                     <th>Salary</th>
+                    <th>Applicants</th>
                 </tr>
                 </thead>
                 <tbody>
             {jobs.map(job => <tr onClick={() => {toJobPost(job)}}
-            key={job.id}><td>{job.data.Job}</td><td>{job.data.Company}</td><td>{job.data.Salary}</td></tr>)}
+            key={job.id}><td>{job.data.Job}</td><td>{job.data.Company}</td><td>{job.data.Salary}</td><td>{getArraySize(job.data.applicants)}</td></tr>)}
             </tbody>
             </table>
         </ul>
