@@ -18,7 +18,7 @@ import { DataContext } from "./jobPostContext";
         FetchPost();
     }, [])
     useEffect(() => {
-        console.log("JOBS:",jobs)
+        //console.log("JOBS:",jobs)
 
     },[jobs])
     const FetchPost = async () => {
@@ -28,7 +28,7 @@ import { DataContext } from "./jobPostContext";
             const newData = querySnapshot.docs.map(doc => ({data:doc.data(),
             id:doc.id }));
             setJobs(newData);                
-            console.log(jobs, newData);
+            //console.log(jobs, newData);
         })
         .catch(error => console.log(error.essage))
 
@@ -75,7 +75,7 @@ import { DataContext } from "./jobPostContext";
         FetchPost();
     }, [])
     useEffect(() => {
-        console.log("JOBS:",jobs)
+        //console.log("JOBS:",jobs)
 
     },[jobs])
     const FetchPost = async () => {
@@ -85,7 +85,7 @@ import { DataContext } from "./jobPostContext";
             const newData = querySnapshot.docs.map(doc => ({data:doc.data(),
             id:doc.id }));
             setJobs(newData);                
-            console.log(jobs, newData);
+            //console.log(jobs, newData);
         })
         .catch(error => console.log(error.essage))
 

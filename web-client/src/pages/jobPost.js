@@ -8,6 +8,7 @@ import { firestore } from '../firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
 import { DataContext } from '../Components/jobPostContext';
+import ApplicantQuery from '../Components/applicantQuery';
 
 export const JobPost = () => {
   const navigate = useNavigate();
@@ -53,6 +54,9 @@ console.log("data ID", id)
 
     <Button>Edit</Button>
     <Button onClick={handleDelete}>Delete</Button>
+    <div>
+      <ApplicantQuery data={data.jobby.data.applicants}/>
+    </div>
         </>
     )
   }
