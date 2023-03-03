@@ -5,7 +5,7 @@ import { firestore } from "../firebase/firebase";
 import { useUserAuth } from "../firebase/UserAuthContext";
 import { useNavigate } from "react-router-dom";
 import { JobPost } from "../pages/jobPost";
-import { DataContext } from "./storeContext";
+import { DataContext } from "./jobPostContext";
 
 
  export default function ListAllJobs(){

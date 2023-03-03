@@ -17,7 +17,7 @@ import { firestore } from './firebase/firebase';
 import ContactUs from './pages/contactUs';
 import Testimonial from './Components/Testimonial';
 import { JobPost } from './pages/jobPost';
-import { DataProvider } from './Components/storeContext';
+import { DataProvider } from './Components/jobPostContext';
 
 const App = () => {
   //const { user } = useUserAuth();

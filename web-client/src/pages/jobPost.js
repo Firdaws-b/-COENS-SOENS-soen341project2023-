@@ -7,7 +7,7 @@ import { deleteDoc, collection, doc, FieldValue, arrayUnion, updateDoc } from "@
 import { firestore } from '../firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
-import { DataContext } from '../Components/storeContext';
+import { DataContext } from '../Components/jobPostContext';
 
 export const JobPost = () => {
   const navigate = useNavigate();
