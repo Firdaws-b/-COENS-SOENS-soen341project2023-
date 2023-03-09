@@ -120,7 +120,7 @@ import { DataContext } from "./jobPostContext";
                 </thead>
                 <tbody>
             {jobs.map(job => <tr onClick={() => {toJobPost(job)}}
-            key={job.id}><td>{job.data.Job}</td><td>{job.data.Company}</td><td>{job.data.Salary}</td><td>{getArraySize(job.data.applicants)-1}</td></tr>)}
+            key={job.id}><td>{job.data.Job}</td><td>{job.data.Company}</td><td>{job.data.Salary}</td><td>{getArraySize(job.data.applicants)}</td></tr>)}
             </tbody>
             </table>
         </ul>
