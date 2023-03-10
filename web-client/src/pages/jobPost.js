@@ -3,15 +3,16 @@ import { Button, Form } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
 import NavBar from '../Components/NavBars/authorizedNavBar';
 import { useUserAuth } from '../firebase/UserAuthContext';
-import { deleteDoc, collection, doc } from "@firebase/firestore";
+import { deleteDoc, collection, doc, FieldValue, arrayUnion, updateDoc } from "@firebase/firestore";
 import { firestore } from '../firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
-import { DataContext } from '../Components/storeContext';
+import { DataContext } from '../Components/jobPostContext';
+import ApplicantQuery from '../Components/applicantQuery';
 
 export const JobPost = () => {
   const navigate = useNavigate();
-  const {userRole} = useUserAuth();
+  const {userRole, user} = useUserAuth();
  
   const { data } = useContext(DataContext);
 console.log("DATA CONTEXT: ", data);
@@ -19,6 +20,14 @@ const id = data.jobby.id;//document name to identify the document that needs to 
 console.log("data ID", id)
   const handleDelete =async () =>{
     await deleteDoc(doc(firestore, "Postings", id));
+    navigate("/home");
+  }
+  console.log("UID: ", user.uid);
+  const handleApply =async () =>{
+    const Ref = doc(firestore, "Postings", id);
+    await updateDoc(Ref, {
+      applicants: arrayUnion(user.uid)
+    })
     navigate("/home");
   }
 
@@ -45,6 +54,9 @@ console.log("data ID", id)
 
     <Button>Edit</Button>
     <Button onClick={handleDelete}>Delete</Button>
+    <div>
+      <ApplicantQuery data={data.jobby.data.applicants}/>
+    </div>
         </>
     )
   }
@@ -66,7 +78,7 @@ console.log("data ID", id)
         {data.jobby.data.Description}
         </h4>
 
-<Button>Apply</Button>
+<Button onClick={handleApply}>Apply</Button>
     </>
   )
   }

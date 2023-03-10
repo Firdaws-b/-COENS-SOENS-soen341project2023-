@@ -5,7 +5,7 @@ import { firestore } from "../firebase/firebase";
 import { useUserAuth } from "../firebase/UserAuthContext";
 import { useNavigate } from "react-router-dom";
 import { JobPost } from "../pages/jobPost";
-import { DataContext } from "./storeContext";
+import { DataContext } from "./jobPostContext";
 
 
  export default function ListAllJobs(){
@@ -18,7 +18,7 @@ import { DataContext } from "./storeContext";
         FetchPost();
     }, [])
     useEffect(() => {
-        console.log("JOBS:",jobs)
+        //console.log("JOBS:",jobs)
 
     },[jobs])
     const FetchPost = async () => {
@@ -28,7 +28,7 @@ import { DataContext } from "./storeContext";
             const newData = querySnapshot.docs.map(doc => ({data:doc.data(),
             id:doc.id }));
             setJobs(newData);                
-            console.log(jobs, newData);
+            //console.log(jobs, newData);
         })
         .catch(error => console.log(error.essage))
 
@@ -75,7 +75,7 @@ import { DataContext } from "./storeContext";
         FetchPost();
     }, [])
     useEffect(() => {
-        console.log("JOBS:",jobs)
+        //console.log("JOBS:",jobs)
 
     },[jobs])
     const FetchPost = async () => {
@@ -85,7 +85,7 @@ import { DataContext } from "./storeContext";
             const newData = querySnapshot.docs.map(doc => ({data:doc.data(),
             id:doc.id }));
             setJobs(newData);                
-            console.log(jobs, newData);
+            //console.log(jobs, newData);
         })
         .catch(error => console.log(error.essage))
 
@@ -95,6 +95,15 @@ import { DataContext } from "./storeContext";
         setData({jobby:jobData});
         setJobSelected(true);
         navigate('/job-post');
+          }
+          function getArraySize(arr){
+            if(arr === null || arr === undefined)
+            {
+                return "";
+            }
+            else{
+                return Object.keys(arr).length;
+            }
           }
     return (
         <>
@@ -106,11 +115,12 @@ import { DataContext } from "./storeContext";
                     <th>Title</th>
                     <th>Company</th>
                     <th>Salary</th>
+                    <th>Applicants</th>
                 </tr>
                 </thead>
                 <tbody>
             {jobs.map(job => <tr onClick={() => {toJobPost(job)}}
-            key={job.id}><td>{job.data.Job}</td><td>{job.data.Company}</td><td>${job.data.Salary}</td></tr>)}
+            key={job.id}><td>{job.data.Job}</td><td>{job.data.Company}</td><td>{job.data.Salary}</td><td>{getArraySize(job.data.applicants)}</td></tr>)}
             </tbody>
             </table>
         </ul>
