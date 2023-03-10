@@ -12,7 +12,6 @@ export default function ApplicantQuery(props) {
     const [applicants, setApplicants] = useState([]);
     const { user, userRole } = useUserAuth();
     const [jobSelected, setJobSelected] = useState(false);
-    //const {data, setData} = useContext(DataContext);
     const navigate = useNavigate();
     console.log("applicant props",props);
     useEffect(()=>{
@@ -38,13 +37,11 @@ export default function ApplicantQuery(props) {
     async function handleCVDownload(uid) {
         console.log("DOWNLOAD_UID", uid);
         const storage = getStorage();    
-    //const uid = user.uid;
     const Ref = ref(storage, 'resumes/'+ uid + '.pdf');
     
     // Get the download URL
     getDownloadURL(Ref)
       .then((url) => {
-        // Insert url into an <img> tag to "download"
         const xhr = new XMLHttpRequest();
         xhr.responseType = 'blob';
         xhr.onload = (event) => {
@@ -54,22 +51,16 @@ export default function ApplicantQuery(props) {
         xhr.send();
         console.log("URL", url);
         window.open(url);
-        //navigate(url);
         return url;
-        // Or inserted into an <img> element
-        //const img = document.getElementById('myimg');
-        //img.setAttribute('src', url);
       })
       .catch((error) => {
         alert("User has not uploaded a Resume/CV!")
-        // A full list of error codes is available at
-        // https://firebase.google.com/docs/storage/web/handle-errors
         switch (error.code) {
           case 'storage/object-not-found':
             // File doesn't exist
             break;
           case 'storage/unauthorized':
-            // User doesn't have permission to access the object
+            // User doesn't have permission
             break;
           case 'storage/canceled':
             // User canceled the upload
@@ -77,7 +68,7 @@ export default function ApplicantQuery(props) {
     
     
           case 'storage/unknown':
-            // Unknown error occurred, inspect the server response
+            // Unknown error occurred
             break;
         }
       });
@@ -99,7 +90,7 @@ export default function ApplicantQuery(props) {
                 </thead>
                 <tbody>
             {applicants.map(app => <tr onClick={() => {}}//TBD whether it redirects to a new page
-            key={app.id}><td>{app.data.firstName} {app.data.lastName}</td><td>{app.data.email}</td><td><a><Button onClick={() => handleCVDownload(app.data.uid)}>view/download CV</Button></a></td></tr>)}
+            key={app.id}><td>{app.data.firstName} {app.data.lastName}</td><td>{app.data.email}</td><td><Button onClick={() => handleCVDownload(app.data.uid)}>view/download CV</Button></td></tr>)}
             </tbody>
             </table>
         </ul>
