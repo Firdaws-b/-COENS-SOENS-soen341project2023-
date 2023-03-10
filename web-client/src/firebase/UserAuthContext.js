@@ -31,13 +31,13 @@ export function UserAuthContextProvider({ children }) {
     const docRef = doc(firestore, "Users", user.uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {   
-      console.log("Document data:", docSnap.data());
+      //console.log("Document data:", docSnap.data());
       setUserRole(String(docSnap.data().role));
       setCompanyName(String(docSnap.data().companyName));
       //console.log("UID",docSnap.data().uid);
       //console.log("email",docSnap.data().email);
       //console.log("Role",docSnap.data().role);
-      console.log("UserRole",userRole);
+      //console.log("UserRole",userRole);
 
         //return data;
      } else {
@@ -49,7 +49,7 @@ export function UserAuthContextProvider({ children }) {
 UIDQuery();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      console.log("Auth", currentuser);
+      //console.log("Auth", currentuser);
       //const q = setTimeout(UIDQuery(currentuser.uid), 1000);
       setUser(currentuser);
     });

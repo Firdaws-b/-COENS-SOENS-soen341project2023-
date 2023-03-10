@@ -5,39 +5,39 @@ import * as CiIcons from 'react-icons/ci';
 import * as FiIcons from 'react-icons/fi';
 
 export const SideBar = [
-    { 
+    {
         title: 'My Job Feed',
-        path: '/',
+        path: '/home',
         icon: <CgIcons.CgWorkAlt />,
         cName: 'nav-text',
-        handleClick: (onSidebarClick) => onSidebarClick('My Job Feed'),
+        //handleClick: (onSidebarClick) => onSidebarClick('My Job Feed'),
     },
     {
         title: 'My Profile',
         path: '/MyProfile',
         icon: <CgIcons.CgProfile />,
-        cName: 'nav-text',  
-        handleClick: (onSidebarClick) => onSidebarClick('My Profile')      
+        cName: 'nav-text',
+        //handleClick: (onSidebarClick) => onSidebarClick('My Profile')      
     },
     {
-        title: 'Dashboard',
-        path: '/dashboard',
+        title: 'Home',
+        path: '/home',
         icon: <RxIcons.RxDashboard />,
         cName: 'nav-text',
-        handleClick: (onSidebarClick) => onSidebarClick('Dashboard')
+        //handleClick: (onSidebarClick) => onSidebarClick('Home')
     },
     {
         title: 'Saved Jobs',
-        path: '/',
+        path: '/home',
         icon: <CiIcons.CiSaveDown2 />,
         cName: 'nav-text',
-        handleClick: (onSidebarClick) => onSidebarClick('Saved Jobs')
+        //handleClick: (onSidebarClick) => onSidebarClick('Saved Jobs')
     },
     {
         title: 'Settings',
-        path: '/',
+        path: '/home',
         icon: <FiIcons.FiSettings />,
         cName: 'nav-text',
-        handleClick: (onSidebarClick) => onSidebarClick('Settings')
+        //handleClick: (onSidebarClick) => onSidebarClick('Settings')
     },
 ];

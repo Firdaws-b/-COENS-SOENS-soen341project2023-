@@ -35,55 +35,55 @@ export default function ContactUs() {
   }
 
   return (
-   
-      <div className='container'>
-        <form onSubmit={sendEmail}>
-          <div className='form-group'>
-            <label htmlFor='name'>Name:</label>
-            <input
-              type='text'
-              className='form-control'
-              id='name'
-              name='name'
-              required
-            />
-          </div>
-          <div className='form-group'>
-            <label htmlFor='email'>Email:</label>
-            <input
-              type='email'
-              className='form-control'
-              id='email'
-              name='email'
-              required
-            />
-          </div>
-          <div className='form-group'>
-            <label htmlFor='subject'>Subject:</label>
-            <input
-              type='text'
-              className='form-control'
-              id='subject'
-              name='subject'
-              required
-            />
-          </div>
-          <div className='form-group'>
-            <label htmlFor='message'>Message:</label>
-            <textarea
-              className='form-control'
-              id='message'
-              name='message'
-              rows='6'
-              required
-            ></textarea>
-          </div>
-          <button type='submit' className='btn btn-primary'>
-            Send
-          </button>
-          {showResult ? <Result /> : null}
-        </form>
-      </div>
+
+    <div className='container'>
+      <form onSubmit={sendEmail}>
+        <div className='form-group'>
+          <label htmlFor='name'>Name:</label>
+          <input
+            type='text'
+            className='form-control'
+            id='name'
+            name='name'
+            required
+          />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='email'>Email:</label>
+          <input
+            type='email'
+            className='form-control'
+            id='email'
+            name='email'
+            required
+          />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='subject'>Subject:</label>
+          <input
+            type='text'
+            className='form-control'
+            id='subject'
+            name='subject'
+            required
+          />
+        </div>
+        <div className='form-group'>
+          <label htmlFor='message'>Message:</label>
+          <textarea
+            className='form-control'
+            id='message'
+            name='message'
+            rows='6'
+            required
+          ></textarea>
+        </div>
+        <button type='submit' className='btn btn-primary'>
+          Send
+        </button>
+        {showResult ? <Result /> : null}
+      </form>
+    </div>
 
   );
 }
