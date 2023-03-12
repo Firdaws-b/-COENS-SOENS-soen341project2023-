@@ -50,7 +50,6 @@ export default function ContactUs() {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center'
-     
     }}
   >
       <h1 style={{ color: 'black', marginBottom: '45rem' }}>Contact Us! We are Here to Listen</h1>
