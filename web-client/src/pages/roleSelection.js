@@ -15,6 +15,10 @@ export const RoleSelection = () => {
         navigate('/employer-sign-up');
       };
 
+      const navigateToAdminSignUp = () => {
+        navigate('/sign-up');
+      }
+
       const backgroundStyle = {
         backgroundImage: `url(${Background})`,
         backgroundSize: 'cover',
@@ -30,10 +34,22 @@ export const RoleSelection = () => {
         backgroundColor: 'transparent',
         color: 'black',
         textAlign: 'center',
-        fontSize: '2rem',
+        fontSize: '2.5rem',
         padding: '1rem',
         border: 'none'
       };
+
+      const buttonStyle = {
+        backgroundColor: '#C8D675',
+        color: 'white',
+        fontSize: '1.5rem',
+        padding: '1rem 3rem',
+        margin: '0.5rem',
+        borderRadius: '30px',
+        border: 'none',
+        cursor: 'pointer',
+        boxShadow: '2px 2px 2px grey'
+      }
 
 
 
@@ -49,9 +65,11 @@ export const RoleSelection = () => {
       </div>
       
      <div className='role-select'>
-        <Button onClick={navigateToUserSignUp}>Job Seeker</Button>
-        <Button onClick={navigateEmployerSignUp}>Employer</Button>
+        <Button style={buttonStyle} onClick={navigateToUserSignUp}>Job Seeker</Button>
+        <Button style={buttonStyle} onClick={navigateEmployerSignUp}>Employer</Button>
+        
     </div>
+        <Button style={buttonStyle} onClick={navigateToAdminSignUp}>Adminstartion</Button>
    
     </div>
     </>
