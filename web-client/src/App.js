@@ -17,6 +17,7 @@ import { firestore } from './firebase/firebase';
 import ContactUs from './pages/contactUs';
 import Testimonial from './Components/Testimonial';
 import { JobPost } from './pages/jobPost';
+import EmployerProfilePage from './pages/EmployerProfilePage'
 import { DataProvider } from './Components/jobPostContext';
 
 const App = () => {
@@ -48,6 +49,7 @@ const App = () => {
             <Route path="/MyProfile" element={<ProtectedRoute><MyProfile></MyProfile></ProtectedRoute>} />
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/job-post" element={<ProtectedRoute><JobPost /></ProtectedRoute>} />
+            <Route path="/employers-profile-page" element={<ProtectedRoute><EmployerProfilePage /></ProtectedRoute>} />
           </Routes>
           </DataProvider>
         </UserAuthContextProvider>

@@ -76,6 +76,7 @@ export default function EmployerPorfilePage() {
                     <h3>My Profile</h3>
                     <div className='form-center'>
                         <div className="avatar-container">
+                                <img src={userAvatar} alt="User Avatar"        className="avatar" />
                         </div>
                         <FormRow type="text" name="Email Address" value={email} handleChange={handleEmailChange} disabled={!isEditing} />
                         <FormRow type="text" name="Company Name" value={companyName} handleChange={handleCompanyNameChange} disabled={!isEditing} />
