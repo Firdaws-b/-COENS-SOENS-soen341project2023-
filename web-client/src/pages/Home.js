@@ -5,13 +5,14 @@ import { useUserAuth } from '../firebase/UserAuthContext';
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
 import '../Components/NavBars/NavBarProfilePage.css'
 import ListAllJobs, { ListJobsFromUID } from '../Components/jobQuery';
+import AdminDashboard from "./adminDashboard";
 export default function Home() {
   const [error, setError] = useState("");
   const { userRole } = useUserAuth();
   //const navigate1 = useNavigate();
 
 
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     if(userRole === "User")
     {
@@ -32,6 +33,17 @@ export default function Home() {
         <div>Your job postings</div>
         <ListJobsFromUID />
 
+      </>
+    );
+    }
+
+    else 
+    {
+    return (
+      <>
+      <NavBarProfilePage/>
+        <div>Admin dashboard: List of all the registered users</div>
+      <AdminDashboard/>
       </>
     );
     }

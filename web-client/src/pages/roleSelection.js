@@ -16,7 +16,7 @@ export const RoleSelection = () => {
       };
 
       const navigateToAdminSignUp = () => {
-        navigate('/sign-up');
+        navigate('/admin-sign-up');
       }
 
       const backgroundStyle = {

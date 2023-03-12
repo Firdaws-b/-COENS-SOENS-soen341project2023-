@@ -10,6 +10,8 @@ import MyProfile from './pages/MyProfile'
 import { UserAuthContextProvider } from "./firebase/UserAuthContext";
 import ProtectedRoute from "./firebase/protectedRoute";
 import { RoleSelection } from './pages/roleSelection';
+import AdminSignUp from './pages/adminSignUp';
+import adminDashboard from './pages/adminDashboard';
 import EmployerSignUp from './pages/employerSignUp';
 import { CreateJobListing } from './pages/CreateJobListing';
 import { doc, getDoc } from "firebase/firestore";
@@ -37,14 +39,17 @@ const App = () => {
         <UserAuthContextProvider>
           <DataProvider>
           <Routes>
-            <Route path="/" element={<Welcome />
-            } />
+            <Route path="/" element={<Welcome />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/create-job-posting" element={<ProtectedRoute><CreateJobListing /></ProtectedRoute>} />
+            <Route path="/admin-dashboard" element={<ProtectedRoute><adminDashboard /></ProtectedRoute>} />
+
             <Route path="/role-selection" element={<RoleSelection />} />
             <Route path="/employer-sign-up" element={<EmployerSignUp />} />
+            <Route path="/admin-sign-up" element={<AdminSignUp />} />
+        
             <Route path="/MyProfile" element={<ProtectedRoute><MyProfile></MyProfile></ProtectedRoute>} />
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/job-post" element={<ProtectedRoute><JobPost /></ProtectedRoute>} />
