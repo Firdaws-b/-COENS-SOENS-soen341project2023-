@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
-import { SideBar } from './SideBar';
+import  {SideBar} from './SideBar';
 import './NavBarProfilePage.css';
 import { IconContext } from 'react-icons';
 import { useUserAuth } from '../../firebase/UserAuthContext';
@@ -59,16 +59,7 @@ export default function NavBarProfilePage({ onSidebarClick }) {
                                     <AiIcons.AiOutlineClose />
                                 </Link>
                             </li>
-                            {SideBar.map((item, index) => {
-                                return (
-                                    <li key={index} className={item.cName} >
-                                        <Link to={item.path}>
-                                            {item.icon}
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    </li>
-                                );
-                            })}
+                            <SideBar userRole={userRole}/>
                         </ul>
                     </nav>
                 </IconContext.Provider>
@@ -100,16 +91,7 @@ export default function NavBarProfilePage({ onSidebarClick }) {
                                     <AiIcons.AiOutlineClose />
                                 </Link>
                             </li>
-                            {SideBar.map((item, index) => {
-                                return (
-                                    <li key={index} className={item.cName} >
-                                        <Link to={item.path}>
-                                            {item.icon}
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    </li>
-                                );
-                            })}
+                            <SideBar userRole={userRole}/>
                         </ul>
                     </nav>
                 </IconContext.Provider>
