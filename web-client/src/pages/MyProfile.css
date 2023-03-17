@@ -99,4 +99,6 @@ body {
     max-height: 100px;
     object-fit: cover;
     border-radius: 50%;
+    z-index: 1;
+    
 }
