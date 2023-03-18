@@ -12,6 +12,7 @@ import ProtectedRoute from "./firebase/protectedRoute";
 import { RoleSelection } from './pages/roleSelection';
 import EmployerSignUp from './pages/employerSignUp';
 import { CreateJobListing } from './pages/CreateJobListing';
+import MySavedJobs from './pages/MySavedJobs';
 import { doc, getDoc } from "firebase/firestore";
 import { firestore } from './firebase/firebase';
 import ContactUs from './pages/contactUs';
@@ -50,6 +51,7 @@ const App = () => {
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/job-post" element={<ProtectedRoute><JobPost /></ProtectedRoute>} />
             <Route path="/employers-profile-page" element={<ProtectedRoute><EmployerProfilePage /></ProtectedRoute>} />
+            <Route path="/my-saved-jobs-page" element={<ProtectedRoute><MySavedJobs /></ProtectedRoute>} />
           </Routes>
           </DataProvider>
         </UserAuthContextProvider>

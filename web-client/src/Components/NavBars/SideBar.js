@@ -22,7 +22,7 @@ export const SideBar = ({ userRole }) => {
         },
         {
             title: "Saved Jobs",
-            path: "/saved-jobs",
+            path: "/my-saved-jobs-page",
             icon: <CiIcons.CiSaveDown2 />,
             cName: "nav-text",
         },
