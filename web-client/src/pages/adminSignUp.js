@@ -43,13 +43,13 @@ const AdminSignUp = () => {
             role: "Admin",
             uid: ting.user.uid
         };
-        setDoc(ref, data)
-            .then(() => {
-                console.log("Document has been added successfully");
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        // setDoc(ref, data)
+        //     .then(() => {
+        //        //console.log("Document has been added successfully");
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     })
 
     }
 
