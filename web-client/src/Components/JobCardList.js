@@ -7,17 +7,26 @@ const JobCardList = ({ jobs }) => {
         <div>
             <Row>
                 {jobs.map((job) => (
-                    <Col md={{ span: 7, offset: 1 }} key={job.id}>
-                        <Card className="mb-3">
-                            <Card.Header>JobTitle/Position</Card.Header>
+                    <Col md={{ span: 10, offset: 1 }} key={job.id}>
+                        <Card className="mb-4">
+                            <Card.Header>
+                                <h5>{job.Job}</h5>
+                            </Card.Header>
                             <Card.Body>
-                                <Card.Title>{job.Job}</Card.Title>
-                                <Card.Text>
-                                job.Copmany
-                                <span></span>
-                                Remote or OnSite or Hybrid
+                                <Card.Subtitle className="mb-2 text-muted">{job.Company}</Card.Subtitle>
+                                <Card.Text className="mb-3">
+                                    {job.description}
                                 </Card.Text> 
-                                <Button variant="primary">More details</Button>
+                                <Row>
+                                    <Col>
+                                        <Card.Text>
+                                            location
+                                        </Card.Text>
+                                    </Col>
+                                    <Col className="text-end">
+                                        <Button variant="primary">More details</Button>
+                                    </Col>
+                                </Row>
                             </Card.Body>
                         </Card>
                     </Col>

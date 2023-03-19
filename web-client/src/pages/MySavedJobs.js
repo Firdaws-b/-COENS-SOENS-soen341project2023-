@@ -5,46 +5,64 @@ import { useUserAuth } from '../firebase/UserAuthContext';
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
 import { auth, firestore } from '../firebase/firebase';
 import Wrapper from "../assets/wrappers/ProfilePageFormPage";
-import { doc } from "@firebase/firestore";
+//import { doc } from "@firebase/firestore";
+import { collection, doc, getDoc, updateDoc } from "firebase/firestore";
+
 import { storage } from "../firebase/firebase";
 import JobCardList from "../Components/JobCardList";
 
 const MySavedJobs = () => {
-    console.log('Rendering MySavedJobs component');
+    // console.log('Rendering MySavedJobs component');
     const { user } = useUserAuth();
-    const [savedJobs, setSavedJobs] = useState([]);
-
+    const [savedJobsData, setSavedJobsData] = useState([]);
     useEffect(() => {
         const getSavedJobs = async () => {
-            const docRef = doc(firestore, "Users", user.uid);
-            const docSnap = await docRef.get();
-            if (docSnap.exists()) {
-                const userData = docSnap.data();
-                const savedJobsData = [];
-                for (let i = 0; i < userData.savedJobs.length; i++) {
-                    const postingRef = doc(firestore, "Postings", userData.savedJobs[i]);
-                    const postingSnap = await postingRef.get();
-                    if (postingSnap.exists()) {
-                        savedJobsData.push(postingSnap.data());
+            try {
+                console.log('getSavedJobs called');
+                const userRef = doc(firestore, "Users", user.uid);
+                //console.log('BEFORE USERDOC: ');
+                // const userDoc = await userRef.get();
+                //getDoc(doc(firestore, "Users", uid))
+                const userDoc = await getDoc(doc(firestore, "Users", user.uid));
+                //console.log('AFTER USERDOC: ');
+                if (!userDoc.exists) {
+                    console.log("User document not found !");
+                    return;
+                }
+                //console.log(userRef.path)
+                //console.log('user: ',user);
+                const savedJobsIds = userDoc.data().savedJobs;
+                const newSavedJobsData = [];
+                //const savedJobsData = [];
+                console.log(savedJobsIds.length)
+                for (let i = 0; i < savedJobsIds.length; i++) {
+                    const jobRef = doc(firestore, "Postings", savedJobsIds[i]);
+                    //getDocs(collection(firestore, "Postings"))
+                    const jobDoc = await getDoc(doc(firestore, "Postings", savedJobsIds[i]));
+                    if (jobDoc.exists) {
+                        const jobData = jobDoc.data();
+                        newSavedJobsData.push({
+                            Job: jobData.Job,
+                            Company: jobData.Company,
+                        });
                     }
                 }
-                console.log("Tesgin my savedJob page");
-                setSavedJobs(savedJobsData);
+
+                setSavedJobsData(newSavedJobsData);
+                console.log(savedJobsData);
+            } catch (error) {
+                console.log('Error in getSavedJobs:', error);
             }
         };
         getSavedJobs();
-    }, [user]);
+    }, [user, savedJobsData]);
 
     return (
         <>
             <NavBarProfilePage />
-            <Wrapper>
-                <h1>My Saved Jobs</h1>
-                {savedJobs.length === 0 ? (
-                    <Alert variant="warning">No saved jobs yet!</Alert>
-                ) : (
-                    <h1>Welcome</h1>
-                )}
+            <Wrapper className="mt-4">
+                <h2>My Saved Jobs</h2>
+                <JobCardList jobs={savedJobsData} />
             </Wrapper>
         </>
     );
