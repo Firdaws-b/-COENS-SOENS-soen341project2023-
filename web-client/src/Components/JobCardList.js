@@ -1,32 +1,26 @@
 import React from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
+import "../styles.css";
 
 const JobCardList = ({ jobs }) => {
-    console.log('Rendering MySavedJobs component');
     return (
         <div>
-            <Row>
+            <Row xs={1} md={2} className="g-4">
                 {jobs.map((job) => (
-                    <Col md={{ span: 10, offset: 1 }} key={job.id}>
-                        <Card className="mb-4">
-                            <Card.Header>
-                                <h5>{job.Job}</h5>
+                    <Col key={job.id}>
+                        <Card className="job-card">
+                            <Card.Header className="job-card-header">
+                                <img src={job.CompanyLogo} alt={job.Company} className="job-card-logo" />
+                                <span className="job-card-company">{job.Company}</span>
                             </Card.Header>
-                            <Card.Body>
-                                <Card.Subtitle className="mb-2 text-muted">{job.Company}</Card.Subtitle>
-                                <Card.Text className="mb-3">
-                                    {job.description}
-                                </Card.Text> 
-                                <Row>
-                                    <Col>
-                                        <Card.Text>
-                                            location
-                                        </Card.Text>
-                                    </Col>
-                                    <Col className="text-end">
-                                        <Button variant="primary">More details</Button>
-                                    </Col>
-                                </Row>
+                            <Card.Body className="job-card-body">
+                                <Card.Title className="job-card-title">{job.Job}</Card.Title>
+                                <Card.Text className="job-card-text">
+                                    Remote or OnSite or Hybrid
+                                </Card.Text>
+                                <Button variant="primary" className="job-card-button">
+                                    More details
+                                </Button>
                             </Card.Body>
                         </Card>
                     </Col>

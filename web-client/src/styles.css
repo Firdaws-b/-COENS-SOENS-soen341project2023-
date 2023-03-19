@@ -390,3 +390,52 @@ body {
 .styled-table tbody tr:last-of-type {
     border-bottom: 2px solid #0275d8;
 }
+.job-card-list-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1rem;
+  margin-top: 2rem;
+}
+
+.job-card {
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.job-card-header {
+  display: flex;
+  align-items: center;
+}
+
+.job-card-logo {
+  height: 150px;
+  margin-right: 10px;
+}
+
+.job-card-company {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.job-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.job-card-text {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.job-card-button {
+  font-size: 1.2rem;
+}
