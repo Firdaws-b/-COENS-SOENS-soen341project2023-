@@ -66,7 +66,7 @@ export const RoleSelection = () => {
         <Button style={buttonStyle} onClick={navigateEmployerSignUp}>Employer</Button>
         
     </div>
-        <Button style={buttonStyle} onClick={navigateToAdminSignUp}>Adminstartion</Button>
+        <Button style={buttonStyle} onClick={navigateToAdminSignUp}>administration</Button>
    
     </div>
     </>

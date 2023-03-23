@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button, Card, Row, Col } from "react-bootstrap";
 import Background from '../assets/office_char.jpg';
-import NavBar from "../Components/NavBars/welcomePageNavBar";
+import NavBar from "./NavBars/welcomePageNavBar";
 
 const AdminDashboard = () => {
 
