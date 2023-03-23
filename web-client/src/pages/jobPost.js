@@ -96,7 +96,7 @@ const handleSaveChanges = async (event) => {
     Salary: formatter.format(parseFloat(salary.replace(/\D/g,''))),
     Job: job,
     Description: description,
-    EmployerUID: user.uid
+    //EmployerUID: user.uid
   }
   console.log("updated info: ", updatedUser);
 
