@@ -39,7 +39,7 @@ const formatter = new Intl.NumberFormat('en-US', {
 
       let data = {
           Company: companyName,
-          Salary: formatter.format(salary),
+          Salary: formatter.format(parseFloat(salary.replace(/\D/g,''))),
           Job: jobTitle,
           Description: description,
           EmployerUID: user.uid//used to only display postings from active employer
