@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom";
-import { Form, Alert, Carousel } from "react-bootstrap";
 import { Button, Card, Row, Col } from "react-bootstrap";
 import Background from '../assets/office_char.jpg';
 import NavBar from "../Components/NavBars/welcomePageNavBar";
 
-const adminDashboard = () => {
+const AdminDashboard = () => {
 
   return (
     <>
-      
       <div style={{ background: `url(${Background})`, backgroundSize: 'cover', backgroundColor: 'blue', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
 
       <div style={{ position: 'absolute', top: '10%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'rgba(255, 255, 255, 0)', padding: '10px' }}>
@@ -45,4 +43,4 @@ const adminDashboard = () => {
   );
 };
 
-export default adminDashboard;
+export default AdminDashboard;

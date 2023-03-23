@@ -18,6 +18,7 @@ const Signup = () => {
     const { signUp } = useUserAuth();
     let navigate = useNavigate();
     let ting = "";
+    
     const handleSubmit = async (e) => { //handles firebaseUI authentication
         e.preventDefault();
         setError("");
@@ -31,9 +32,6 @@ const Signup = () => {
     };
     const handleSave = async (user) => {//handles user storage in firestore
         const ref = doc(firestore, "Users", ting.user.uid);
-        //const handleSave = async(e) => {
-        //e.preventDefault();//so page doesn;t refresh when save button is clicked
-        //console.log(messageRef.current.value);
 
         let data = {
             email: email,
@@ -55,12 +53,7 @@ const Signup = () => {
             .catch(error => {
                 console.log(error);
             })
-        /* try {
-             addDoc(ref, data)
-         }catch (e) {
-             console.log(e);
-         }*/
-
+   
     }
 
     return (

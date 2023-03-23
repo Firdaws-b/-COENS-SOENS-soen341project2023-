@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import userAvatar from '../assets/user-avatar.jpg';
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
@@ -55,7 +54,6 @@ export default function AdminProfile() {
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     }
-
    
     const handleSaveChanges = async (event) => {
         event.preventDefault();
@@ -69,7 +67,6 @@ export default function AdminProfile() {
             firstName: firstName,
             lastName: lastName,
             role: role
-        
         }
 
         await updateDoc(userRef, updatedUser);
@@ -103,15 +100,7 @@ export default function AdminProfile() {
                     <Button variant="primary" onClick={handleSaveChanges} style={{ marginRight: "10px" }}>
                         Save
                     </Button>
-                    {/* <label htmlFor="resume-upload" className="btn btn-primary">
-                        Upload My Resume
-                        <input
-                            type="file"
-                            id="resume-upload"
-                            accept=".pdf"
-                            onChange={handleResumeUpload}
-                            style={{ display: "none" }} />
-                    </label> */}
+                    
                 </form>
             </Wrapper>
         </div>

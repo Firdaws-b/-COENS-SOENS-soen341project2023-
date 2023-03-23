@@ -31,9 +31,8 @@ console.log("data ID", id)
     navigate("/home");
   }
 
-
-
-  if(userRole === "Employer" || userRole === "admin")
+ // if(userRole === "Employer" || userRole === "admin")
+ if(userRole === "Employer")
   {
     return(
       <>

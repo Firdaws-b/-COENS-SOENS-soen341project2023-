@@ -5,11 +5,13 @@ import { useUserAuth } from '../firebase/UserAuthContext';
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
 import '../Components/NavBars/NavBarProfilePage.css'
 import ListAllJobs, { ListJobsFromUID } from '../Components/jobQuery';
-import AdminDashboard from "./adminDashboard";
+import AdminDashboard from "./AdminDashboard";
 import AdminProfile from "./AdminProfile";
+
 export default function Home() {
   const [error, setError] = useState("");
   const { userRole } = useUserAuth();
+
     switch(userRole){
       case "User":
         return (
@@ -26,7 +28,6 @@ export default function Home() {
             <NavBarProfilePage/>
             <div>Your job postings</div>
             <ListJobsFromUID />
-    
           </>
         );
         break;
@@ -35,7 +36,7 @@ export default function Home() {
           <>
           <NavBarProfilePage/>
           <AdminDashboard/>
-         =
+        
           </>
         );
         break;

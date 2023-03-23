@@ -10,22 +10,14 @@ export const AdminSideBar = [
         path: '/home',
         icon: <CgIcons.CgWorkAlt />,
         cName: 'nav-text',
-        //handleClick: (onSidebarClick) => onSidebarClick('My Job Feed'),
+      
     },
     {
         title: 'Admin Profile',
         path: '/AdminProfile',
         icon: <CgIcons.CgProfile />,
         cName: 'nav-text',
-        //handleClick: (onSidebarClick) => onSidebarClick('My Profile')      
+           
     },
 
-
-    {
-        title: 'Settings',
-        path: '/home',
-        icon: <FiIcons.FiSettings />,
-        cName: 'nav-text',
-        //handleClick: (onSidebarClick) => onSidebarClick('Settings')
-    },
 ];

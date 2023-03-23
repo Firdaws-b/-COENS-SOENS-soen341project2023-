@@ -6,7 +6,6 @@ import { useUserAuth } from "../firebase/UserAuthContext";
 import NavBar from "../Components/NavBars/welcomePageNavBar";
 import { firestore } from "../firebase/firebase";
 import { doc, setDoc } from "@firebase/firestore";
-
 import Background from '../assets/office_char.jpg';
 
 const AdminSignUp = () => {
@@ -19,23 +18,24 @@ const AdminSignUp = () => {
     const { signUp } = useUserAuth();
     let navigate = useNavigate();
     let ting = "";
+
     const handleSubmit = async (e) => { //handles firebaseUI authentication
         e.preventDefault();
         setError("");
         try {
             ting = await signUp(email, password);
-            handleSave();
+            
+            await handleSave();
             navigate("/Home");
+
+           
         } catch (err) {
             setError(err.message);
         }
     };
-    const handleSave = async (e) => {//handles user storage in firestore
+    const handleSave = async (e) => {
         const ref = doc(firestore, "Users", ting.user.uid);
-        //const handleSave = async(e) => {
-        //e.preventDefault();//so page doesn;t refresh when save button is clicked
-        //console.log(messageRef.current.value);
-
+        
         let data = {
             email: email,
             firstName: firstName,
@@ -43,16 +43,14 @@ const AdminSignUp = () => {
             role: "Admin",
             uid: ting.user.uid
         };
-        // setDoc(ref, data)
-        //     .then(() => {
-        //        //console.log("Document has been added successfully");
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     })
-
-    }
-
+        await setDoc(ref, data)
+        .then(() => {
+            console.log("Document has been added successfully");
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    };
     return (
         <>
             <NavBar />
@@ -102,8 +100,6 @@ const AdminSignUp = () => {
                     <div className="p-4 box mt-3 text-center">Already have an account? <Link to="/sign-in">Log In</Link>
                     </div>
                 </div>
-
-
             </div>
 
         </>

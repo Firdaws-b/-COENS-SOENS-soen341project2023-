@@ -8,9 +8,9 @@ import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import MyProfile from './pages/MyProfile'
 
-import AdminSignUp from './pages/adminSignUp';
+import AdminSignUp from './pages/AdminSignUp';
 import AdminProfile from './pages/AdminProfile';
-import adminDashboard from './pages/adminDashboard';
+import AdminDashboard from './pages/AdminDashboard';
 
 import { UserAuthContextProvider } from "./firebase/UserAuthContext";
 import ProtectedRoute from "./firebase/protectedRoute";
@@ -24,12 +24,9 @@ import ContactUs from './pages/contactUs';
 import Testimonial from './Components/Testimonial';
 import { JobPost } from './pages/jobPost';
 import { DataProvider } from './Components/jobPostContext';
-import AdminDashboard from './Components/listAdminDashboard';
+
 
 const App = () => {
-  //const { user } = useUserAuth();
-  //const [error, setError] = useState("");
-  // const { userRole } = useUserAuth();//not rlly necessary
 
   useEffect(() => {
     //should learn this to retrieve data
@@ -49,14 +46,11 @@ const App = () => {
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
             <Route path="/create-job-posting" element={<ProtectedRoute><CreateJobListing /></ProtectedRoute>} />
-            <Route path="/admin-dashboard" element={<ProtectedRoute><adminDashboard /></ProtectedRoute>} />
+            <Route path="/admin-dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
 
             <Route path="/role-selection" element={<RoleSelection />} />
             <Route path="/employer-sign-up" element={<EmployerSignUp />} />
-            <Route path="/admin-sign-up" element={<AdminSignUp />} />
-
-
-            <Route path="/admin-dashboard" element={<adminDashboard />} />
+            <Route path="/admin-sign-up" element={<AdminSignUp/>} />
         
             <Route path="/MyProfile" element={<ProtectedRoute><MyProfile></MyProfile></ProtectedRoute>} />
             <Route path="/AdminProfile" element={<AdminProfile />} />

@@ -17,7 +17,7 @@ export const RoleSelection = () => {
 
       const navigateToAdminSignUp = () => {
         navigate('/admin-sign-up');
-      }
+      };
 
       const backgroundStyle = {
         backgroundImage: `url(${Background})`,
@@ -42,24 +42,21 @@ export const RoleSelection = () => {
       const buttonStyle = {
         backgroundColor: '#C8D675',
         color: 'white',
-        fontSize: '1.5rem',
+        fontSize: '1rem',
         padding: '1rem 3rem',
         margin: '0.5rem',
         borderRadius: '30px',
         border: 'none',
         cursor: 'pointer',
         boxShadow: '2px 2px 2px grey'
-      }
-
-
+      };
 
   return (
     <>
      <NavBar/>
      
-     
      <div style={backgroundStyle}>
-     
+
      <div style={textDivStyle}>
         Please select what describes you the best
       </div>
