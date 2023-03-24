@@ -76,7 +76,6 @@ export default function ApplicantQuery(props) {
     }
   return (
     <>
-    <div>applicantQuery</div>
     <>
         <h1>Applicants</h1>
         <ul>

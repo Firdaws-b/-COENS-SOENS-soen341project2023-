@@ -34,6 +34,7 @@ export const CreateJobListing = () => {
       //e.preventDefault();//so page doesn;t refresh when save button is clicked
 const formatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
+  minimumFractionDigits: 0,
   currency: 'USD',
 });
 
