@@ -100,6 +100,7 @@ const handleSaveChanges = async (event) => {
   }
   console.log("updated info: ", updatedUser);
 
+
   await updateDoc(userRef, updatedUser);
   setPosting(updatedUser);
   setIsEditing(false);
