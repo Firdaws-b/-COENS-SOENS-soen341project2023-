@@ -60,16 +60,7 @@ export default function NavBarProfilePage({ onSidebarClick }) {
                                     <AiIcons.AiOutlineClose />
                                 </Link>
                             </li>
-                            {SideBar.map((item, index) => {
-                                return (
-                                    <li key={index} className={item.cName} >
-                                        <Link to={item.path}>
-                                            {item.icon}
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    </li>
-                                );
-                            })}
+                            <SideBar userRole={userRole}/>
                         </ul>
                     </nav>
                 </IconContext.Provider>
@@ -101,16 +92,7 @@ export default function NavBarProfilePage({ onSidebarClick }) {
                                     <AiIcons.AiOutlineClose />
                                 </Link>
                             </li>
-                            {SideBar.map((item, index) => {
-                                return (
-                                    <li key={index} className={item.cName} >
-                                        <Link to={item.path}>
-                                            {item.icon}
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    </li>
-                                );
-                            })}
+                            <SideBar userRole={userRole}/>
                         </ul>
                     </nav>
                 </IconContext.Provider>
