@@ -4,13 +4,40 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../styles.css";
 import { Avatar } from "@mui/material";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 const Testimonial = () => {
+
+  const prevArrow = (
+    <button 
+      type="button"
+      className="slick-prev"
+      style={{ left: "-40px" }}
+      >
+        <IoIosArrowBack size={50} color={'black'} />
+      </button>
+
+  );
+  
+  const nextArrow = (
+    <button 
+      type="button"
+      className="slick-next"
+      style={{ right: "-40px"}}
+      >
+        <IoIosArrowForward size={50} color={'black'} />
+      </button>
+  );
+
   return (
     <div className="testimonial" style={{ display: "flex", justifyContent: "center", marginTop: 50 }}>
       <div style={{ width: "50%", textAlign: "center" }}>
         <h1 style={{ marginBottom: 20 }}>Testimonials</h1>
-        <Slider>
+        <Slider
+          prevArrow={prevArrow}
+          nextArrow={nextArrow}
+
+        >
           <Card img="https://img.freepik.com/premium-vector/african-american-woman-avatar-with-glasses-portrait-young-girl-vector-illustration-face_217290-1034.jpg?w=740"
                 text="I found my dream job within a week of signing up, Thanks EmployMe!! :) " 
                 name="Alice Wonderland"
