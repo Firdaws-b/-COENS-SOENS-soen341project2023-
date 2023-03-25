@@ -34,6 +34,7 @@ export const CreateJobListing = () => {
     //e.preventDefault();//so page doesn;t refresh when save button is clicked
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
+      minimumFractionDigits: 0,
       currency: 'USD',
     });
     const userDocRef = doc(firestore, "Users", user.uid);
@@ -64,7 +65,6 @@ export const CreateJobListing = () => {
       console.log("data", companyName);
       try {
         await updateDoc(userRef, data2);
-        addDoc(ref, data);
 
       } catch (e) {
         console.log(e);

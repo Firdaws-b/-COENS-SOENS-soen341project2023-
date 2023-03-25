@@ -17,7 +17,6 @@ export default function Home() {
         return (
           <>
             <NavBarProfilePage/>
-            <div>Home</div>
             <ListAllJobs />
           </>
         );

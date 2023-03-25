@@ -27,7 +27,6 @@ const MySavedJobs = () => {
                 console.log("User document not found !");
                 return;
             }
-
             const savedJobsIds = userDoc.data().savedJobs;
             const jobRefs = savedJobsIds.map(id => doc(firestore, "Postings", id));
             const jobDocs = await Promise.all(jobRefs.map(getDoc));
@@ -35,12 +34,14 @@ const MySavedJobs = () => {
             const newSavedJobsData = jobDocs
                 .filter(doc => doc.exists)
                 .map(doc => ({
-                    Job: doc.data().Job,
-                    Company: doc.data().Company,
-                    CompanyLogo: doc.data().CompanyLogo,
+                    data: doc.data(),
+                    id: doc.id
+                    //Company: doc.data().Company,
+                    //CompanyLogo: doc.data().CompanyLogo,
                 }));
 
             setSavedJobsData(newSavedJobsData);
+            console.log("is the array empty", newSavedJobsData);
         } catch (error) {
             console.log('Error in getSavedJobs:', error);
         }
