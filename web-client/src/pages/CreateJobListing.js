@@ -3,8 +3,7 @@ import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { firestore} from "../firebase/firebase";
 import { useUserAuth } from "../firebase/UserAuthContext";
-import { addDoc, collection, getDoc } from "@firebase/firestore";
-import { doc, updateDoc } from "firebase/firestore";
+import { addDoc, collection, getDoc, doc, updateDoc } from "@firebase/firestore";
 import NavBar from '../Components/NavBars/authorizedNavBar'
 import { useNavigate } from 'react-router-dom';
 export const CreateJobListing = () => {
@@ -44,36 +43,32 @@ export const CreateJobListing = () => {
       console.log("LOGO OF THE COMPANY",companyLogo);
       setCompanyLogo(companyLogo);
       let data = {
+          Company: companyName,
+          Salary: formatter.format(parseFloat(salary.replace(/\D/g,''))),
+          Job: jobTitle,
+          Description: description,
+          CompanyLogo: companyLogo,
+          EmployerUID: user.uid,//used to only display postings from active employer
+          jobID: ref.id,
+      };
+      const new_doc = addDoc(ref, data);
+      const userRef = doc(firestore, "Postings", (await new_doc).id)
+      let data2 = {
         Company: companyName,
-        Salary: formatter.format(salary),
+        Salary: formatter.format(parseFloat(salary.replace(/\D/g,''))),
         Job: jobTitle,
         Description: description,
-        CompanyLogo: companyLogo,
-        EmployerUID: user.uid//used to only display postings from active employer
-      };
-      addDoc(ref, data);
-      //data = {...data,CompanyLogo:companyLogo};
-    }
-    else{
-      console.log("User document not found");
-    }
-    //await addDoc(ref,data);
-    // let data = {
-    //   Company: companyName,
-    //   Salary: formatter.format(salary),
-    //   Job: jobTitle,
-    //   Description: description,
-    //   CompanyLogo: companyLogo,
-    //   EmployerUID: user.uid//used to only display postings from active employer
-    // };
-    // //console.log("data", companyName);
-    // console.log("this is the Company LOGO URL",companyLogo);
-    // try {
-    //   addDoc(ref, data);
-
-    // } catch (e) {
-    //   console.log(e);
-    // }
+        EmployerUID: user.uid,//used to only display postings from active employer
+        jobID: userRef.id
+      };    
+        console.log("data", companyName);
+      try {
+          await updateDoc(userRef, data2);
+          addDoc(ref, data);
+          
+      }catch (e) {
+          console.log(e);
+      }
   }
 
   return (

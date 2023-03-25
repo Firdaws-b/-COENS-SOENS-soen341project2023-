@@ -269,7 +269,7 @@ body {
     justify-content: center;
     z-index: 1;
     border-radius: 5px;
-    background: #0275d8;
+    background: white;
 }
 .testimonial .slick-prev::before,
 .testimonial .slick-next::before {
