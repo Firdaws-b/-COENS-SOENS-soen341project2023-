@@ -125,6 +125,7 @@ const handleSaveChanges = async (event) => {
   }
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
+    minimumFractionDigits: 0,
     currency: 'USD',
   });
   const uid = auth.currentUser.uid
@@ -152,7 +153,7 @@ const handleSaveChanges = async (event) => {
       <>
         <NavBarProfilePage />
       <div>
-                <form className='form' onSubmit={handleSaveChanges}>
+                <form className='jobPostEmployerForm' onSubmit={handleSaveChanges}>
                     <h3>Job Information</h3>
                       <div className='form-center'>
                         <FormRow type="text" name="Job" value={job} handleChange={handleJobChange} disabled={!isEditing} />
@@ -168,10 +169,12 @@ const handleSaveChanges = async (event) => {
                     <Button variant="primary" onClick={handleSaveChanges} style={{ marginRight: "10px" }}>
                         Save
                     </Button>
+                    <Button variant="primary" onClick={handleDelete} style={{ marginRight: "10px" }}>
+                      Delete
+                      </Button>
 
                 </form>
         </div>
-    <Button onClick={handleDelete}>Delete</Button>
     <div>
       <ApplicantQuery data={data.jobby.data.applicants}/>
     </div>
