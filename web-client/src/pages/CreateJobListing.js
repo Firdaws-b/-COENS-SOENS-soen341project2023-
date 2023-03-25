@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
-import { firestore} from "../firebase/firebase";
+import { firestore } from "../firebase/firebase";
 import { useUserAuth } from "../firebase/UserAuthContext";
 import { addDoc, collection, getDoc, doc, updateDoc } from "@firebase/firestore";
 import NavBar from '../Components/NavBars/authorizedNavBar'
@@ -14,7 +14,7 @@ export const CreateJobListing = () => {
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
   const { companyName, user } = useUserAuth();
-  const [companyLogo, setCompanyLogo ] = useState("");
+  const [companyLogo, setCompanyLogo] = useState("");
 
 
   const navigateHome = () => {
@@ -36,41 +36,42 @@ export const CreateJobListing = () => {
       style: 'currency',
       currency: 'USD',
     });
-    const userDocRef = doc(firestore,"Users",user.uid);
+    const userDocRef = doc(firestore, "Users", user.uid);
     const userDocSnapShot = await getDoc(userDocRef);
-    if (userDocSnapShot.exists()){
+    if (userDocSnapShot.exists()) {
       const companyLogo = userDocSnapShot.data().logoUrl;
-      console.log("LOGO OF THE COMPANY",companyLogo);
+      console.log("LOGO OF THE COMPANY", companyLogo);
       setCompanyLogo(companyLogo);
       let data = {
-          Company: companyName,
-          Salary: formatter.format(parseFloat(salary.replace(/\D/g,''))),
-          Job: jobTitle,
-          Description: description,
-          CompanyLogo: companyLogo,
-          EmployerUID: user.uid,//used to only display postings from active employer
-          jobID: ref.id,
+        Company: companyName,
+        Salary: formatter.format(parseFloat(salary.replace(/\D/g, ''))),
+        Job: jobTitle,
+        Description: description,
+        CompanyLogo: companyLogo,
+        EmployerUID: user.uid,//used to only display postings from active employer
+        jobID: ref.id,
       };
       const new_doc = addDoc(ref, data);
       const userRef = doc(firestore, "Postings", (await new_doc).id)
       let data2 = {
         Company: companyName,
-        Salary: formatter.format(parseFloat(salary.replace(/\D/g,''))),
+        Salary: formatter.format(parseFloat(salary.replace(/\D/g, ''))),
         Job: jobTitle,
         Description: description,
         EmployerUID: user.uid,//used to only display postings from active employer
         jobID: userRef.id
-      };    
-        console.log("data", companyName);
+      };
+      console.log("data", companyName);
       try {
-          await updateDoc(userRef, data2);
-          addDoc(ref, data);
-          
-      }catch (e) {
-          console.log(e);
-      }
-  }
+        await updateDoc(userRef, data2);
+        addDoc(ref, data);
 
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+  }
   return (
     <>
       <NavBar />
