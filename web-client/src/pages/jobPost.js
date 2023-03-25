@@ -10,6 +10,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
 import { DataContext } from '../Components/jobPostContext';
 import ApplicantQuery from '../Components/applicantQuery';
+import SavedJobs from './MySavedJobs';
 import Wrapper from "../assets/wrappers/ProfilePageFormPage";
 import FormRow from "../Components/FormRow"
 
@@ -26,24 +27,61 @@ export const JobPost = () => {
 
   //--------------------------------------------------------
   const navigate = useNavigate();
-  const {userRole, user} = useUserAuth();
- 
+  const location = useLocation();
+  const selectedJob = location.state?.job;
+  const { userRole, user } = useUserAuth();
+
   const { data } = useContext(DataContext);
-console.log("DATA CONTEXT: ", data);
-const id = data.jobby.id;//document name to identify the document that needs to be edited/deleted
-console.log("data ID", id)
-  const handleDelete =async () =>{
+
+  console.log("DATA CONTEXT: ", data);
+  const id = data.jobby.id;//document name to identify the document that needs to be edited/deleted
+  console.log("data ID", id)
+  const handleDelete = async () => {
     await deleteDoc(doc(firestore, "Postings", id));
     navigate("/home");
   }
   console.log("UID: ", user.uid);
-  const handleApply =async () =>{
+  const handleApply = async () => {
     const Ref = doc(firestore, "Postings", id);
     await updateDoc(Ref, {
       applicants: arrayUnion(user.uid)
     })
     navigate("/home");
   }
+  const [savedJobs, setSavedJobs] = useState([]);
+  const handleSave = async () => {
+    if(!id){
+      console.log("THE ID IS NOT DEFINED", id);
+      return;
+    }
+    await updateDoc(doc(firestore,"Users",user.uid),{
+      savedJobs:arrayUnion(id),
+    });
+    setSavedJobs([...savedJobs,data.jobby.data]);
+  };
+  useEffect(() => {
+    const getSavedJobs = async () => {
+      const docRef = doc(firestore, "Users", user.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        const savedJobsData = [];
+        if (Array.isArray(userData.savedJobs)) {
+          for (let i = 0; i < userData.savedJobs.length; i++) {
+            const postingRef = doc(firestore, "Postings", userData.savedJobs[i]);
+            console.log("checking the posting ref");
+            //const postingSnap = await postingRef.get();
+            const postingSnap = await getDoc(postingRef);
+            if (postingSnap.exists()) {
+              savedJobsData.push(postingSnap.data().data);
+            }
+          }
+        }
+        setSavedJobs(savedJobsData);
+      }
+    };
+    getSavedJobs();
+  }, []);
   //-------------------------------------------------------
   const handleJobChange = (event) => {
     setJob(event.target.value);
@@ -87,6 +125,7 @@ const handleSaveChanges = async (event) => {
   }
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
+    minimumFractionDigits: 0,
     currency: 'USD',
   });
   const uid = auth.currentUser.uid
@@ -112,54 +151,56 @@ const handleSaveChanges = async (event) => {
   {
     return(
       <>
-      <NavBarProfilePage/>
+        <NavBarProfilePage />
       <div>
-                <form className='form' onSubmit={handleSaveChanges}>
+                <form className='jobPostEmployerForm' onSubmit={handleSaveChanges}>
                     <h3>Job Information</h3>
-                    <div className='form-center'>
+                      <div className='form-center'>
                         <FormRow type="text" name="Job" value={job} handleChange={handleJobChange} disabled={!isEditing} />
-                        <FormRow type="text" name="Company" value={company} handleChange={handleCompanyChange} disabled={!isEditing} />
-                        <FormRow type="text" name="Salary" value={salary} handleChange={handleSalaryChange} disabled={!isEditing} />
+                          <FormRow type="text" name="Company" value={company} handleChange={handleCompanyChange} disabled={!isEditing} />
+                          <FormRow type="text" name="Salary" value={salary} handleChange={handleSalaryChange} disabled={!isEditing} />
                         <FormRow type="text" name="Description" value={description} handleChange={handleDescriptionChange} disabled={!isEditing} />
 
                     </div>
-                    <span>{<br />}</span>
+                      <span>{<br />}</span>
                     <Button variant="primary" onClick={() => setIsEditing(!isEditing)} style={{ marginRight: "10px" }}>
                         {isEditing ? "Cancel" : "Edit"}
                     </Button>
                     <Button variant="primary" onClick={handleSaveChanges} style={{ marginRight: "10px" }}>
                         Save
                     </Button>
+                    <Button variant="primary" onClick={handleDelete} style={{ marginRight: "10px" }}>
+                      Delete
+                      </Button>
 
                 </form>
         </div>
-    <Button onClick={handleDelete}>Delete</Button>
     <div>
       <ApplicantQuery data={data.jobby.data.applicants}/>
     </div>
         </>
     )
   }
-  else{
-  return (
-    <>
-    <NavBarProfilePage/>
-    <div>Job Post</div>
-    <h1>
-        {data.jobby.data.Job}
+  else {
+    return (
+      <>
+        <NavBarProfilePage />
+        <div>Job Post</div>
+        <h1>
+          {data.jobby.data.Job}
         </h1>
         <h2>
-        {data.jobby.data.Company}
+          {data.jobby.data.Company}
         </h2>
         <h3>
         {data.jobby.data.Salary}
         </h3>
         <h4>
-        {data.jobby.data.Description}
+          {data.jobby.data.Description}
         </h4>
-
-<Button onClick={handleApply}>Apply</Button>
-    </>
-  )
+        <Button onClick={handleApply}>Apply</Button>
+        <Button onClick={handleSave} style={{ marginLeft: "20px" }}>Save</Button>
+      </>
+    )
   }
 }

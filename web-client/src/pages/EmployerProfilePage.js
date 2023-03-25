@@ -6,14 +6,14 @@ import { Button } from 'react-bootstrap';
 import '../Components/NavBars/NavBarProfilePage.css';
 import './MyProfile.css'
 import { auth, firestore } from '../firebase/firebase';
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc,collection, query, where, getDocs, writeBatch} from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import Wrapper from "../assets/wrappers/ProfilePageFormPage";
 import FormRow from "../Components/FormRow"
 import { storage } from "../firebase/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
-export default function EmployerPorfilePage() {
+export default function EmployerProfilePage() {
     const [user, setUser] = useState(null);
     const [companyName, setCompanyName] = useState("");
     const [email, setEmail] = useState("");
@@ -49,6 +49,7 @@ export default function EmployerPorfilePage() {
     }
     const handleCompanyNameChange = (event) => {
         setCompanyName(event.target.value);
+    
     }
     const handleCompanyLogo = async(event) => {
         const file = event.target.files[0];
@@ -73,12 +74,25 @@ export default function EmployerPorfilePage() {
         if (!isEditing) {
             return;
         }
-        const uid = auth.currentUser.uid
-        const userRef = doc(firestore, "Users", uid)
+        const uid = auth.currentUser.uid;
+        const userRef = doc(firestore, "Users", uid);
+        
+        const postingRef =collection(firestore,'Postings');
+        console.log(postingRef);
+        
+        const query_ = query(postingRef, where("EmployerUID","==",user.uid));
+        const querySnapshot = await getDocs(query_);
+        const batch = writeBatch(firestore);
+        querySnapshot.forEach(doc => {
+            const docRef = doc.ref;
+            batch.update(docRef, {Company:companyName,CompanyLogo: companyLogo});
+        });
+        await batch.commit();
         const updatedUser = {
             email: email,
             role: role,
             companyName: companyName,
+            logoUrl:companyLogo
         }
 
         await updateDoc(userRef, updatedUser);
