@@ -1,11 +1,14 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useUserAuth } from "../firebase/UserAuthContext";
 import { useNavigate, Link } from "react-router-dom";
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
-import { Button } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 //import {CV_query} from './CV_query';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { CandidateContext, CandidateProvider } from "./CandidateContext";
+import emailjs from 'emailjs-com';
+
 
 
 export default function ApplicantQuery(props) {
@@ -13,6 +16,7 @@ export default function ApplicantQuery(props) {
     const { user, userRole } = useUserAuth();
     const [jobSelected, setJobSelected] = useState(false);
     const navigate = useNavigate();
+    const { setSelectedCandidate = () => {} } = useContext(CandidateContext) || {};
     console.log("applicant props",props);
     useEffect(()=>{
         FetchPost();
@@ -33,6 +37,32 @@ export default function ApplicantQuery(props) {
         .catch(error => console.log(error.essage))
 
 
+    }
+    async function handleSelectCandidate(jobId, candidateId) {
+      const candidateDoc = await getDoc(doc(firestore, "Users", candidateId));
+      const candidateEmail = candidateDoc.data().email;
+
+    
+      setSelectedCandidate({ jobId: jobId, candidate: candidateId });
+      
+      const templateEmail = {
+        to_email: candidateEmail,
+        job_id: jobId,
+        to_name: candidateDoc.data().firstName,
+        message: "We will communicate with you very soon for further details"
+      };
+    
+      try {
+        const response = await emailjs.send(
+          "service_9vxnjlo",
+          "template_twltnch",
+          templateEmail,
+          "mvFKgfdK_hI1Vb-Fo"
+        );
+        console.log("User Notified successfully");
+      } catch (error) {
+        console.log("ERROR!", error);
+      }
     }
     async function handleCVDownload(uid) {
         console.log("DOWNLOAD_UID", uid);
@@ -74,27 +104,43 @@ export default function ApplicantQuery(props) {
       });
         //CV_query(uid);
     }
-  return (
-    <>
-    <div>applicantQuery</div>
-    <>
-        <h1>Applicants</h1>
-        <ul>
-            <table class="styled-table">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>CV</th>
-                </tr>
-                </thead>
-                <tbody>
-            {applicants.map(app => <tr onClick={() => {}}//TBD whether it redirects to a new page
-            key={app.id}><td>{app.data.firstName} {app.data.lastName}</td><td>{app.data.email}</td><td><Button onClick={() => handleCVDownload(app.data.uid)}>view/download CV</Button></td></tr>)}
-            </tbody>
-            </table>
-        </ul>
-        </>
-    </>
-  )
+    return (
+      <>
+          <div>applicantQuery </div>
+          <>
+              <h1>Applicants</h1>
+              <ul>
+                  <Table striped bordered hover responsive>
+                      <thead>
+                          <tr>
+                              <th>Name</th>
+                              <th>Email</th>
+                              <th>CV</th>
+                              <th>Candidate Selection</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          {applicants.map((app) => (
+                              <tr onClick={() => {}} key={app.id}>
+                                  <td>{app.data.firstName} {app.data.lastName}</td>
+                                  <td>{app.data.email}</td>
+                                  <td><Button onClick={() => handleCVDownload(app.data.uid)}>view/download CV</Button></td>
+                                  <td><Button onClick={() => handleSelectCandidate(app.jobId,app.data.uid)}>Select Candidate</Button></td>
+                              </tr>
+                          ))}
+                      </tbody>
+                  </Table>
+              </ul>
+          </>
+      </>
+  );
+  
+}
+export function ApplicantPage(props) {
+  return(
+    <CandidateProvider>
+      <div>applicantQuery</div>
+      <applicantQuery {...props} />
+    </CandidateProvider>
+  );
 }
