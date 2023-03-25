@@ -13,6 +13,8 @@ import SavedJobs from './MySavedJobs';
 
 export const JobPost = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const selectedJob = location.state?.job;
   const { userRole, user } = useUserAuth();
 
   const { data } = useContext(DataContext);
@@ -34,24 +36,30 @@ export const JobPost = () => {
   }
   const [savedJobs, setSavedJobs] = useState([]);
   const handleSave = async () => {
+    if(!id){
+      console.log("THE ID IS NOT DEFINED", id);
+      return;
+    }
     await updateDoc(doc(firestore,"Users",user.uid),{
       savedJobs:arrayUnion(id),
     });
     setSavedJobs([...savedJobs,data.jobby.data]);
   };
-  useEffect(()=>{
-    const getSavedJobs = async() => {
-      const docRef =doc(firestore,"Users",user.uid);
+  useEffect(() => {
+    const getSavedJobs = async () => {
+      const docRef = doc(firestore, "Users", user.uid);
       const docSnap = await getDoc(docRef);
-      if (docSnap.exists()){
+      if (docSnap.exists()) {
         const userData = docSnap.data();
         const savedJobsData = [];
-        if(Array.isArray(userData.savedJobsData)){ //check if this is a valid array.
-          for (let i = 0; i < userData.savedJobesData.length;i++){
-            const postingRef = doc(firestore,"Postings",userData.savedJobs[i]);
-            const postingSnap = await postingRef.get();
-            if (postingSnap.exists()){
-              savedJobsData.push(postingSnap.data());
+        if (Array.isArray(userData.savedJobs)) {
+          for (let i = 0; i < userData.savedJobs.length; i++) {
+            const postingRef = doc(firestore, "Postings", userData.savedJobs[i]);
+            console.log("checking the posting ref");
+            //const postingSnap = await postingRef.get();
+            const postingSnap = await getDoc(postingRef);
+            if (postingSnap.exists()) {
+              savedJobsData.push(postingSnap.data().data);
             }
           }
         }
@@ -59,7 +67,7 @@ export const JobPost = () => {
       }
     };
     getSavedJobs();
-  },[]);
+  }, []);
 
   if (userRole === "Employer" || userRole === "admin") {
     return (
