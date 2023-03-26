@@ -52,7 +52,7 @@ export default function ContactUs() {
       alignItems: 'center'
     }}
   >
-      <h1 style={{ color: 'black', marginBottom: '45rem' }}>Contact Us! We are Here to Listen</h1>
+      <h1 style={{ color: 'black', marginBottom: '35rem' }}>Contact Us! We are Here to Listen</h1>
       
 
       <form onSubmit={sendEmail}>
