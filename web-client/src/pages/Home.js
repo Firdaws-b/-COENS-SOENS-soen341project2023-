@@ -25,7 +25,6 @@ export default function Home() {
         return (
           <>
             <NavBarProfilePage/>
-            <div>Your job postings</div>
             <ListJobsFromUID />
           </>
         );
