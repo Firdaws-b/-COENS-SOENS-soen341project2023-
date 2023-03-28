@@ -3,13 +3,14 @@ import { UserDataContext } from '../Components/userListContext';
 import React,{useEffect, useState, useContext} from 'react'
 import Wrapper from "../assets/wrappers/ProfilePageFormPage";
 import { auth, firestore } from '../firebase/firebase';
-import { doc, getDoc, updateDoc,collection, query, where, getDocs, writeBatch} from "firebase/firestore";
+import { doc, getDoc, updateDoc,collection, query, where, getDocs, writeBatch, deleteDoc} from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { storage } from "../firebase/firebase";
 import FormRow from "../Components/FormRow"
 import { Button } from 'react-bootstrap';
 import userAvatar from '../assets/user-avatar.jpg';
+import { useNavigate } from 'react-router-dom';
 
 export const AdminUserView = () => {
     const { userData } = useContext(UserDataContext);
@@ -22,6 +23,7 @@ export const AdminUserView = () => {
     const [companyLogo, setCompanyLogo] = useState(null);
     const [showSidebar, setShowSidebar] = useState(false);
 
+    const navigate = useNavigate();
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
             if (user) {
@@ -192,6 +194,7 @@ export const AdminUserView = () => {
             return;
         }
         const uid = userData.person.data.uid;
+        console.log("person : ", userData.person.data.uid);
         const userRef = doc(firestore, "Users", uid);
         
         const postingRef =collection(firestore,'Postings');
@@ -236,6 +239,10 @@ export const AdminUserView = () => {
         setIsEditing(false);
     }
     }
+    const handleDelete = async () => {
+        await deleteDoc(doc(firestore, "Users", userData.person.data.uid));
+        navigate("/list-users");
+      }
     //-----------------------------------------------------------------------------------------
 
     if (isLoading) {
@@ -274,6 +281,9 @@ export const AdminUserView = () => {
                     <Button variant="primary" onClick={handleSaveChanges} style={{ marginRight: "10px" }}>
                         Save
                     </Button>
+                    <Button  variant='primary' onClick={handleDelete} style={{ borderColor:'#cc0000',backgroundColor:'#cc0000', marginRight: "10px" }}>
+                            Delete User
+                        </Button>
                     <label htmlFor="logo-upload" className="btn btn-primary">
                         Edit Company's Logo
                         <input
@@ -319,6 +329,9 @@ export const AdminUserView = () => {
                         <Button variant="primary" onClick={handleSaveChanges} style={{ marginRight: "10px" }}>
                             Save
                         </Button>
+                        <Button  variant='primary' onClick={handleDelete} style={{ borderColor:'#cc0000',backgroundColor:'#cc0000', marginRight: "10px" }}>
+                            Delete User
+                        </Button>
                         <label htmlFor="resume-upload" className="btn btn-primary">
                             Upload My Resume
                             <input
@@ -332,6 +345,7 @@ export const AdminUserView = () => {
                 </Wrapper>
             </div>
         );
+
     }
     else if(userData.person.data.role === "Admin")
     {

@@ -11,7 +11,6 @@ export const ListAllUsers = () => {
     const navigate = useNavigate();
     const [users, setUsers] = useState([]);
     const { userData, setUserData } = useContext(UserDataContext);
-
     //const Navigation = useNavigation();
     useEffect(() => {
         FetchPost();
@@ -33,11 +32,25 @@ export const ListAllUsers = () => {
             })
             .catch(error => console.log(error.essage))
 
+            users.forEach(element => {
+                
+            });
 
     }
     const toUserView = (personData) => {
         setUserData({ person: personData });
         navigate('/admin-user-view');
+    }
+    const determineName = (personData) => {
+        if(personData.data.role === "Employer")
+        {
+            return personData.data.companyName;
+        }
+        else
+        {
+            return personData.data.firstName.concat( " ".concat(personData.data.lastName));
+        }
+
     }
     if(userRole === "Admin")
     {
@@ -56,7 +69,7 @@ export const ListAllUsers = () => {
             </thead>
             <tbody>
                 {users.map(person => <tr onClick={() => {toUserView(person) }}
-                    key={person.id}><td>{person.data.firstName} {person.data.lastName}</td><td>{person.data.email}</td><td>{person.data.role}</td></tr>)}
+                    key={person.id}><td>{determineName(person)}</td><td>{person.data.email}</td><td>{person.data.role}</td></tr>)}
             </tbody>
         </table>
     </ul>
