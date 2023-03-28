@@ -253,11 +253,9 @@ export const AdminUserView = () => {
   return (
     <>
         <NavBarProfilePage/>
-        <div>adminUserView</div>
         <div>
             <Wrapper>
                 <form className='form' onSubmit={handleSaveChanges}>
-                    <h3>My Profile</h3>
                     <div className='form-center'>
                         <div className="avatar-container">
                                 <label htmlFor='company-logo-file-input'>
@@ -275,24 +273,9 @@ export const AdminUserView = () => {
                         <span>{<br />}</span>
                         <span>{<br />}</span>
                     </div>
-                    <Button variant="primary" onClick={() => setIsEditing(!isEditing)} style={{ marginRight: "10px" }}>
-                        {isEditing ? "Cancel" : "Edit"}
-                    </Button>
-                    <Button variant="primary" onClick={handleSaveChanges} style={{ marginRight: "10px" }}>
-                        Save
-                    </Button>
                     <Button  variant='primary' onClick={handleDelete} style={{ borderColor:'#cc0000',backgroundColor:'#cc0000', marginRight: "10px" }}>
                             Delete User
                         </Button>
-                    <label htmlFor="logo-upload" className="btn btn-primary">
-                        Edit Company's Logo
-                        <input
-                            type="file"
-                            id="logo-upload"
-                            accept=".jpg, .jpeg, .png"
-                            onChange={handleCompanyLogo}
-                            style={{ display: "none" }} />
-                    </label>
                 </form>
             </Wrapper>
         </div>
@@ -307,7 +290,6 @@ export const AdminUserView = () => {
                 <NavBarProfilePage />
                 <Wrapper>
                     <form className='form' onSubmit={handleSaveChanges}>
-                        <h3>My Profile</h3>
                         <div className='form-center'>
                             <FormRow type="text" name="First name" value={firstName} handleChange={handleFirstNameChange} disabled={!isEditing} />
                             <FormRow type="text" name="Last name" value={lastName} handleChange={handleLastNameChange} disabled={!isEditing} />
@@ -323,24 +305,9 @@ export const AdminUserView = () => {
                             <FormRow type="text" name="Country" value={country} handleChange={handleCountryChange} disabled={!isEditing} />
                         </div>
                         <span>{<br />}</span>
-                        <Button variant="primary" onClick={() => setIsEditing(!isEditing)} style={{ marginRight: "10px" }}>
-                            {isEditing ? "Cancel" : "Edit"}
-                        </Button>
-                        <Button variant="primary" onClick={handleSaveChanges} style={{ marginRight: "10px" }}>
-                            Save
-                        </Button>
                         <Button  variant='primary' onClick={handleDelete} style={{ borderColor:'#cc0000',backgroundColor:'#cc0000', marginRight: "10px" }}>
                             Delete User
                         </Button>
-                        <label htmlFor="resume-upload" className="btn btn-primary">
-                            Upload My Resume
-                            <input
-                                type="file"
-                                id="resume-upload"
-                                accept=".pdf"
-                                onChange={handleResumeUpload}
-                                style={{ display: "none" }} />
-                        </label>
                     </form>
                 </Wrapper>
             </div>
