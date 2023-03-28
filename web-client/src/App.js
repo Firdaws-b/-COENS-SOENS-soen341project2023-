@@ -23,6 +23,7 @@ import Testimonial from './Components/Testimonial';
 import { JobPost } from './pages/jobPost';
 import EmployerProfilePage from './pages/EmployerProfilePage'
 import { DataProvider } from './Components/jobPostContext';
+import { ListAllUsers } from './pages/ListAllUsers';
 
 
 const App = () => {
@@ -50,6 +51,7 @@ const App = () => {
             <Route path="/employer-sign-up" element={<EmployerSignUp />} />
             <Route path="/admin-sign-up" element={<AdminSignUp/>} />
             <Route path="/MyProfile" element={<ProtectedRoute><MyProfile></MyProfile></ProtectedRoute>} />
+            <Route path="/list-users" element={<ProtectedRoute><ListAllUsers></ListAllUsers></ProtectedRoute>} />
             <Route path="/AdminProfile" element={<AdminProfile />} />   
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/job-post" element={<ProtectedRoute><JobPost /></ProtectedRoute>} />

@@ -2,8 +2,17 @@ import { Link } from "react-router-dom";
 import { Button, Card, Row, Col } from "react-bootstrap";
 import Background from '../assets/office_char.jpg';
 import NavBar from "./NavBars/welcomePageNavBar";
+import { useNavigate } from "react-router-dom";
+
 
 const AdminDashboard = () => {
+  const navigate = useNavigate();
+
+  const toUserList = (jobData) => {
+    //setData({ jobby: jobData });
+    //setJobSelected(true);
+    navigate('/list-users');
+}
 
   return (
     <>
@@ -33,7 +42,7 @@ const AdminDashboard = () => {
                 <Card.Text>
                   Here you can manage all the users on the platform, including adding new users, editing existing ones, and removing them if needed.
                 </Card.Text>
-                <Button variant="primary">View All Users</Button>
+                <Button onClick={toUserList} variant="primary">View All Users</Button>
               </Card.Body>
             </Card>
           </Col>
