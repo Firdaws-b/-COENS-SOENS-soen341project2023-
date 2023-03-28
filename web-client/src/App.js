@@ -24,7 +24,8 @@ import { JobPost } from './pages/jobPost';
 import EmployerProfilePage from './pages/EmployerProfilePage'
 import { DataProvider } from './Components/jobPostContext';
 import { ListAllUsers } from './pages/ListAllUsers';
-
+import { UserDataProvider } from './Components/userListContext';
+import { AdminUserView } from './pages/AdminUserView';
 
 const App = () => {
 
@@ -39,6 +40,7 @@ const App = () => {
       <div className="App">
 
         <UserAuthContextProvider>
+          <UserDataProvider>
           <DataProvider>
           <Routes>
             <Route path="/" element={<Welcome />} />
@@ -52,6 +54,7 @@ const App = () => {
             <Route path="/admin-sign-up" element={<AdminSignUp/>} />
             <Route path="/MyProfile" element={<ProtectedRoute><MyProfile></MyProfile></ProtectedRoute>} />
             <Route path="/list-users" element={<ProtectedRoute><ListAllUsers></ListAllUsers></ProtectedRoute>} />
+            <Route path="/admin-user-view" element={<ProtectedRoute><AdminUserView></AdminUserView></ProtectedRoute>} />
             <Route path="/AdminProfile" element={<AdminProfile />} />   
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/job-post" element={<ProtectedRoute><JobPost /></ProtectedRoute>} />
@@ -59,6 +62,7 @@ const App = () => {
             <Route path="/my-saved-jobs-page" element={<ProtectedRoute><MySavedJobs /></ProtectedRoute>} />
           </Routes>
           </DataProvider>
+          </UserDataProvider>
         </UserAuthContextProvider>
 
 
