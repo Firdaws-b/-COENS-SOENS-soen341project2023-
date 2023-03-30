@@ -3,7 +3,7 @@ import { Card, Button, Row, Col } from "react-bootstrap";
 import "../styles.css";
 import { useState, useRef, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import { DataContext } from "./jobPostContext";
+import { DataContext } from "./Contexts/jobPostContext";
 import {useContext} from "react";
 const JobCardList = ({ jobs }) => {
     const navigate = useNavigate();

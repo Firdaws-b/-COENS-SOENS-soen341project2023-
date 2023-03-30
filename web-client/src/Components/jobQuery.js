@@ -5,7 +5,7 @@ import { firestore } from "../firebase/firebase";
 import { useUserAuth } from "../firebase/UserAuthContext";
 import { useNavigate } from "react-router-dom";
 import { JobPost } from "../pages/jobPost";
-import { DataContext } from "./jobPostContext";
+import { DataContext } from "./Contexts/jobPostContext";
 
 
 export default function ListAllJobs() {
@@ -44,7 +44,7 @@ export default function ListAllJobs() {
     }
     return (
         <>
-            <h1>List of job postings</h1>
+            <h1 className="table-headers">List of job postings</h1>
             <ul>
                 <table class="styled-table">
                     <thead>
@@ -56,7 +56,7 @@ export default function ListAllJobs() {
                     </thead>
                     <tbody>
                         {jobs.map(job => <tr onClick={() => { toJobPost(job) }}
-                            key={job.id}><td>{job.data.Job}</td><td>{job.data.Company}</td><td>${job.data.Salary}</td></tr>)}
+                            key={job.id}><td>{job.data.Job}</td><td>{job.data.Company}</td><td>{job.data.Salary}</td></tr>)}
                     </tbody>
                 </table>
             </ul>
@@ -110,7 +110,7 @@ export function ListJobsFromUID() {
     }
     return (
         <>
-            <h1>Your Job Postings</h1>
+            <h1 className="table-headers">Your Job Postings</h1>
             <ul>
                 <table class="styled-table">
                     <thead>

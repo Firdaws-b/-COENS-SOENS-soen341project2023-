@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
-import ApplicantQuery from './applicantQuery';
-import MyProfile from '../pages/MyProfile';
+import ApplicantQuery from '../applicantQuery';
+import MyProfile from '../../pages/MyProfile';
 
 export const CandidateContext = React.createContext();
 

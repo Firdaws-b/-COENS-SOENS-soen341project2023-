@@ -447,3 +447,11 @@ body {
 .job-card-button {
   font-size: 1.2rem;
 }
+
+.table-headers {
+  border-collapse: collapse;
+  margin: auto;
+  font-family: sans-serif;
+  width: 75%;
+  min-width: 400px;
+}

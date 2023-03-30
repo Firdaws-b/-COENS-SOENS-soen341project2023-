@@ -6,7 +6,7 @@ import { firestore } from "../firebase/firebase";
 import { Button, Table } from "react-bootstrap";
 //import {CV_query} from './CV_query';
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
-import { CandidateContext, CandidateProvider } from "./CandidateContext";
+import { CandidateContext, CandidateProvider } from "./Contexts/CandidateContext";
 import emailjs from 'emailjs-com';
 
 
@@ -104,13 +104,13 @@ export default function ApplicantQuery(props) {
       });
         //CV_query(uid);
     }
+    //changed table back to default for consistency
     return (
       <>
-          <div>applicantQuery </div>
           <>
-              <h1>Applicants</h1>
+              <h1 className="table-headers">Applicants</h1>
               <ul>
-                  <Table striped bordered hover responsive>
+                  <table class="styled-table"/*striped bordered hover responsive*/>
                       <thead>
                           <tr>
                               <th>Name</th>
@@ -129,7 +129,7 @@ export default function ApplicantQuery(props) {
                               </tr>
                           ))}
                       </tbody>
-                  </Table>
+                  </table>
               </ul>
           </>
       </>
