@@ -39,7 +39,12 @@ const MySavedJobs = () => {
                     //Company: doc.data().Company,
                     //CompanyLogo: doc.data().CompanyLogo,
                 }));
-
+                newSavedJobsData.forEach(element => {//filters out deleted jobs
+                    if(element.data === undefined)
+                    {
+                        newSavedJobsData.splice(newSavedJobsData.indexOf(element), 1);
+                    }
+                });
             setSavedJobsData(newSavedJobsData);
             console.log("is the array empty", newSavedJobsData);
         } catch (error) {
