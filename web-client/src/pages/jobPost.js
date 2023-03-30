@@ -8,7 +8,7 @@ import { firestore, auth } from '../firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from "firebase/auth";
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
-import { DataContext } from '../Components/jobPostContext';
+import { DataContext } from '../Components/Contexts/jobPostContext';
 import ApplicantQuery from '../Components/applicantQuery';
 import SavedJobs from './MySavedJobs';
 import Wrapper from "../assets/wrappers/ProfilePageFormPage";
@@ -147,7 +147,7 @@ const handleSaveChanges = async (event) => {
 
 
 
-  if(userRole === "Employer" || userRole === "Admin")
+  if(userRole === "Employer")
   {
     return(
       <>
@@ -181,6 +181,36 @@ const handleSaveChanges = async (event) => {
         </>
     )
   }
+
+  else if(userRole === "Admin")
+  {
+    return(
+      <>
+        <NavBarProfilePage />
+      <div>
+                <form className='jobPostEmployerForm' onSubmit={handleSaveChanges}>
+                    <h3>Job Information</h3>
+                      <div className='form-center'>
+                        <FormRow type="text" name="Job" value={job} handleChange={handleJobChange} disabled={true} />
+                          <FormRow type="text" name="Company" value={company} handleChange={handleCompanyChange} disabled={true} />
+                          <FormRow type="text" name="Salary" value={salary} handleChange={handleSalaryChange} disabled={true} />
+                        <FormRow type="text" name="Description" value={description} handleChange={handleDescriptionChange} disabled={true} />
+
+                    </div>
+                      <span>{<br />}</span>
+                    <Button variant="primary" onClick={handleDelete} style={{  borderColor:'#cc0000',backgroundColor:'#cc0000', marginRight: "10px" }}>
+                      Delete
+                      </Button>
+
+                </form>
+        </div>
+    <div>
+      <ApplicantQuery data={data.jobby.data.applicants}/>
+    </div>
+        </>
+    )
+  }
+
   else {
     return (
       <>

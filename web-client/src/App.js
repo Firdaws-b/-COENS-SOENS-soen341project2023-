@@ -22,10 +22,11 @@ import ContactUs from './pages/contactUs';
 import Testimonial from './Components/Testimonial';
 import { JobPost } from './pages/jobPost';
 import EmployerProfilePage from './pages/EmployerProfilePage'
-import { DataProvider } from './Components/jobPostContext';
+import { DataProvider } from './Components/Contexts/jobPostContext';
 import { ListAllUsers } from './pages/ListAllUsers';
-import { UserDataProvider } from './Components/userListContext';
+import { UserDataProvider } from './Components/Contexts/userListContext';
 import { AdminUserView } from './pages/AdminUserView';
+import { AdminJobView } from './pages/AdminJobView';
 
 const App = () => {
 
@@ -60,6 +61,7 @@ const App = () => {
             <Route path="/job-post" element={<ProtectedRoute><JobPost /></ProtectedRoute>} />
             <Route path="/employers-profile-page" element={<ProtectedRoute><EmployerProfilePage /></ProtectedRoute>} />
             <Route path="/my-saved-jobs-page" element={<ProtectedRoute><MySavedJobs /></ProtectedRoute>} />
+            <Route path="/admin-job-view" element={<ProtectedRoute>< AdminJobView/></ProtectedRoute>} />
           </Routes>
           </DataProvider>
           </UserDataProvider>

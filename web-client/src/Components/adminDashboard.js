@@ -13,6 +13,11 @@ const AdminDashboard = () => {
     //setJobSelected(true);
     navigate('/list-users');
 }
+  const toJobList = (jobData) => {
+    //setData({ jobby: jobData });
+    //setJobSelected(true);
+    navigate('/admin-job-view');
+}
 
   return (
     <>
@@ -46,7 +51,20 @@ const AdminDashboard = () => {
               </Card.Body>
             </Card>
           </Col>
+          <Col md={{ span: 6, offset: 3 }}>
+            <Card className="mb-3">
+              <Card.Header>Job Posts</Card.Header>
+              <Card.Body>
+                <Card.Title>View all job posts</Card.Title>
+                <Card.Text>
+                  Here, you can view and manage all active job postings.
+                </Card.Text>
+                <Button onClick = {toJobList} variant="primary">View All Postings</Button>
+              </Card.Body>
+            </Card>
+          </Col>
         </Row>
+
       </div>
     </>
   );

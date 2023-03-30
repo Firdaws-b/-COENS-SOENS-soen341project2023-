@@ -1,5 +1,5 @@
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
-import { UserDataContext } from '../Components/userListContext';
+import { UserDataContext } from '../Components/Contexts/userListContext';
 import React,{useEffect, useState, useContext} from 'react'
 import Wrapper from "../assets/wrappers/ProfilePageFormPage";
 import { auth, firestore } from '../firebase/firebase';

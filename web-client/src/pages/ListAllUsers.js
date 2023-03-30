@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
-import { UserDataContext } from '../Components/userListContext';
+import { UserDataContext } from '../Components/Contexts/userListContext';
 
 export const ListAllUsers = () => {
     const { userRole, user } = useUserAuth();
