@@ -40,9 +40,16 @@ export const CreateJobListing = () => {
     const userDocRef = doc(firestore, "Users", user.uid);
     const userDocSnapShot = await getDoc(userDocRef);
     if (userDocSnapShot.exists()) {
-      const companyLogo = userDocSnapShot.data().logoUrl;
+      let companyLogo = userDocSnapShot.data().logoUrl;
       console.log("LOGO OF THE COMPANY", companyLogo);
+      if(companyLogo === undefined)
+      {
+        setCompanyLogo("");
+        companyLogo = "";
+      }
+      else{
       setCompanyLogo(companyLogo);
+      }
       let data = {
         Company: companyName,
         Salary: formatter.format(parseFloat(salary.replace(/\D/g, ''))),
