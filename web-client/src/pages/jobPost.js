@@ -159,8 +159,11 @@ const handleSaveChanges = async (event) => {
                         <FormRow type="text" name="Job" value={job} handleChange={handleJobChange} disabled={!isEditing} />
                           <FormRow type="text" name="Company" value={company} handleChange={handleCompanyChange} disabled={!isEditing} />
                           <FormRow type="text" name="Salary" value={salary} handleChange={handleSalaryChange} disabled={!isEditing} />
-                        <FormRow type="text" name="Description" value={description} handleChange={handleDescriptionChange} disabled={!isEditing} />
-
+                          <div className="form-row">
+                        <label className="form-label">Description  </label>
+                        <textarea className="form-input" rows="5" name="Description" type="text" value={description} onChange={handleDescriptionChange} disabled={!isEditing}>
+                        </textarea>
+                        </div>
                     </div>
                       <span>{<br />}</span>
                     <Button variant="primary" onClick={() => setIsEditing(!isEditing)} style={{ marginRight: "10px" }}>
@@ -194,8 +197,11 @@ const handleSaveChanges = async (event) => {
                         <FormRow type="text" name="Job" value={job} handleChange={handleJobChange} disabled={true} />
                           <FormRow type="text" name="Company" value={company} handleChange={handleCompanyChange} disabled={true} />
                           <FormRow type="text" name="Salary" value={salary} handleChange={handleSalaryChange} disabled={true} />
-                        <FormRow type="text" name="Description" value={description} handleChange={handleDescriptionChange} disabled={true} />
-
+                          <div className="form-row">
+                        <label className="form-label">Description  </label>
+                        <textarea className="form-input" rows="5" name="Description" type="text" value={description} onChange={handleDescriptionChange} disabled={!isEditing}>
+                        </textarea>
+                        </div>
                     </div>
                       <span>{<br />}</span>
                     <Button variant="primary" onClick={handleDelete} style={{  borderColor:'#cc0000',backgroundColor:'#cc0000', marginRight: "10px" }}>
