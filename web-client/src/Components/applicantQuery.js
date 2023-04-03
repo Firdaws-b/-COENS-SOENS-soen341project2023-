@@ -107,34 +107,29 @@ export default function ApplicantQuery(props) {
     //changed table back to default for consistency
     return (
       <>
-          <>
-              <h1 className="table-headers">Applicants</h1>
-              <ul>
-                  <table class="styled-table"/*striped bordered hover responsive*/>
-                      <thead>
-                          <tr>
-                              <th>Name</th>
-                              <th>Email</th>
-                              <th>CV</th>
-                              <th>Candidate Selection</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          {applicants.map((app) => (
-                              <tr onClick={() => {}} key={app.id}>
-                                  <td>{app.data.firstName} {app.data.lastName}</td>
-                                  <td>{app.data.email}</td>
-                                  <td><Button onClick={() => handleCVDownload(app.data.uid)}>view/download CV</Button></td>
-                                  <td><Button onClick={() => handleSelectCandidate(app.jobId,app.data.uid)}>Select Candidate</Button></td>
-                              </tr>
-                          ))}
-                      </tbody>
-                  </table>
-              </ul>
-          </>
-      </>
+     
+      <table className="table table-striped table-bordered table-hover">
+        <thead className="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>CV</th>
+            <th>Candidate Selection</th>
+          </tr>
+        </thead>
+        <tbody>
+          {applicants.map((app) => (
+            <tr onClick={() => {}} key={app.id}>
+              <td>{app.data.firstName} {app.data.lastName}</td>
+              <td>{app.data.email}</td>
+              <td><Button onClick={() => handleCVDownload(app.data.uid)}>view/download CV</Button></td>
+              <td><Button onClick={() => handleSelectCandidate(app.jobId,app.data.uid)}>Select Candidate</Button></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
-  
 }
 export function ApplicantPage(props) {
   return(
