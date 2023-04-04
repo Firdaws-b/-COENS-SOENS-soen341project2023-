@@ -59,7 +59,7 @@ export const ListAllUsers = () => {
     <NavBarProfilePage/>
     <h1>List of all Users</h1>
     <ul>
-        <table class="styled-table">
+        <table className="styled-table">
             <thead>
                 <tr>
                     <th>Name</th>
