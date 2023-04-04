@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
-import { Form, Alert, Carousel } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import Background from '../assets/office_char.jpg';
 import NavBar from "../Components/NavBars/welcomePageNavBar";
-import Wrapper from "../assets/wrappers/welcomeWrapper";
 import Testimonial from "../Components/Testimonial";
 
 const Welcome = () => {

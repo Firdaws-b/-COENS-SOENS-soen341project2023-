@@ -1,5 +1,3 @@
-
-//import './App.css';
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Welcome from './pages/Welcome'
@@ -16,10 +14,7 @@ import { RoleSelection } from './pages/roleSelection';
 import EmployerSignUp from './pages/employerSignUp';
 import { CreateJobListing } from './pages/CreateJobListing';
 import MySavedJobs from './pages/MySavedJobs';
-import { doc, getDoc } from "firebase/firestore";
-import { firestore } from './firebase/firebase';
 import ContactUs from './pages/contactUs';
-import Testimonial from './Components/Testimonial';
 import { JobPost } from './pages/jobPost';
 import EmployerProfilePage from './pages/EmployerProfilePage'
 import { DataProvider } from './Components/Contexts/jobPostContext';
