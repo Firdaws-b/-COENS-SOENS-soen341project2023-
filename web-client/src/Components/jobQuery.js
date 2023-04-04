@@ -13,6 +13,7 @@ export default function ListAllJobs() {
     const [jobSelected, setJobSelected] = useState(false);
     const [jobs, setJobs] = useState([]);
     const { data, setData } = useContext(DataContext);
+    const { user, userRole } = useUserAuth();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -37,10 +38,23 @@ export default function ListAllJobs() {
     }
 
     const handleJobCardClick = (jobData) => {
+        setJobs(jobs.map((job) => {
+            if(job.id == jobData.id) {
+                return {
+                    ...job,
+                    data: {
+                        ...job.data,
+                        applicants: [...(job.data.applicants || []),user.uid]
+                    }
+                };
+            } else {
+                return job;
+            }
+        }));
         setData({ jobby: jobData });
         setJobSelected(true);
         navigate('/job-post');
-    }
+    };
 
     return (
         <>

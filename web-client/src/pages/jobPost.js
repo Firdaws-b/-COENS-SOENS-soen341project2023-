@@ -40,7 +40,7 @@ export const JobPost = () => {
     await deleteDoc(doc(firestore, "Postings", id));
     navigate("/home");
   }
-  console.log("UID: ", user.uid);
+  console.log("UID user: ", user.uid);
   const handleApply = async () => {
     const Ref = doc(firestore, "Postings", id);
     await updateDoc(Ref, {
