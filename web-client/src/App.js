@@ -3,7 +3,9 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Welcome from './pages/Welcome';
+
 import Services from './pages/Services';
+
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
@@ -46,7 +48,9 @@ const App = () => {
           <DataProvider>
           <Routes>
             <Route path="/" element={<Welcome />} />
+
             <Route path="/Services" element={<Services />} />
+
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
