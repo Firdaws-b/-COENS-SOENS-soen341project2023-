@@ -3,11 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button, Card, Row, Col, Form, Alert, Carousel } from 'react-bootstrap';
 import { useUserAuth } from '../firebase/UserAuthContext';
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
-import { auth, firestore } from '../firebase/firebase';
+import { firestore } from '../firebase/firebase';
 import Wrapper from "../assets/wrappers/ProfilePageFormPage";
-import { collection, doc, getDoc, updateDoc } from "firebase/firestore";
+import {  doc, getDoc } from "firebase/firestore";
 import '../styles.css'
-import { storage } from "../firebase/firebase";
 import JobCardList from "../Components/JobCardList";
 
 const MySavedJobs = () => {

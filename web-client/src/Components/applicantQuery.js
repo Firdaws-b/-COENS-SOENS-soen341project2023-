@@ -1,10 +1,7 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { useUserAuth } from "../firebase/UserAuthContext";
-import { useNavigate, Link } from "react-router-dom";
-import { collection, doc, getDoc, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { useContext, useEffect, useState } from "react";
+import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
-import { Button, Table } from "react-bootstrap";
-//import {CV_query} from './CV_query';
+import { Button } from "react-bootstrap";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { CandidateContext, CandidateProvider } from "./Contexts/CandidateContext";
 import emailjs from 'emailjs-com';
@@ -13,9 +10,6 @@ import emailjs from 'emailjs-com';
 
 export default function ApplicantQuery(props) {
     const [applicants, setApplicants] = useState([]);
-    const { user, userRole } = useUserAuth();
-    const [jobSelected, setJobSelected] = useState(false);
-    const navigate = useNavigate();
     const { setSelectedCandidate = () => {} } = useContext(CandidateContext) || {};
     console.log("applicant props",props);
     useEffect(()=>{
@@ -42,7 +36,7 @@ export default function ApplicantQuery(props) {
       const candidateDoc = await getDoc(doc(firestore, "Users", candidateId));
       const candidateEmail = candidateDoc.data().email;
 
-    
+      console.log(jobId);   
       setSelectedCandidate({ jobId: jobId, candidate: candidateId });
       
       const templateEmail = {
@@ -75,7 +69,6 @@ export default function ApplicantQuery(props) {
         const xhr = new XMLHttpRequest();
         xhr.responseType = 'blob';
         xhr.onload = (event) => {
-          const blob = xhr.response;
         };
         xhr.open('GET', url);
         xhr.send();
@@ -102,39 +95,33 @@ export default function ApplicantQuery(props) {
             break;
         }
       });
-        //CV_query(uid);
     }
     //changed table back to default for consistency
     return (
       <>
-          <>
-              <h1 className="table-headers">Applicants</h1>
-              <ul>
-                  <table class="styled-table"/*striped bordered hover responsive*/>
-                      <thead>
-                          <tr>
-                              <th>Name</th>
-                              <th>Email</th>
-                              <th>CV</th>
-                              <th>Candidate Selection</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          {applicants.map((app) => (
-                              <tr onClick={() => {}} key={app.id}>
-                                  <td>{app.data.firstName} {app.data.lastName}</td>
-                                  <td>{app.data.email}</td>
-                                  <td><Button onClick={() => handleCVDownload(app.data.uid)}>view/download CV</Button></td>
-                                  <td><Button onClick={() => handleSelectCandidate(app.jobId,app.data.uid)}>Select Candidate</Button></td>
-                              </tr>
-                          ))}
-                      </tbody>
-                  </table>
-              </ul>
-          </>
-      </>
+     
+      <table className="table table-striped table-bordered table-hover">
+        <thead className="thead-dark">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>CV</th>
+            <th>Candidate Selection</th>
+          </tr>
+        </thead>
+        <tbody>
+          {applicants.map((app) => (
+            <tr onClick={() => {}} key={app.id}>
+              <td>{app.data.firstName} {app.data.lastName}</td>
+              <td>{app.data.email}</td>
+              <td><Button onClick={() => handleCVDownload(app.data.uid)}>view/download CV</Button></td>
+              <td><Button onClick={() => handleSelectCandidate(app.jobId,app.data.uid)}>Select Candidate</Button></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
-  
 }
 export function ApplicantPage(props) {
   return(
