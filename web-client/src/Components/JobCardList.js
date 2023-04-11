@@ -4,19 +4,19 @@ import "../styles.css";
 import { useState, useRef, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { DataContext } from "./Contexts/jobPostContext";
-import {useContext} from "react";
-const JobCardList = ({ jobs }) => {
+import { useContext } from "react";
+import { useUserAuth } from "../firebase/UserAuthContext";
+//import {Checkmark} from 'react-checkmark';
+const JobCardList = ({ jobs, handleJobCardClick }) => {
     const navigate = useNavigate();
-    
+
     const [selectedJob, setSelectedJob] = useState(null);
     const { data, setData } = useContext(DataContext);
+    const { user, userRole } = useUserAuth();
     const [fromSavedJobs, setFromSavedJobs] = useState(false); // Define fromSavedJobs state variable
-    console.log("CHECKING THE ARRAY OF SAVED JOBS: ", jobs);
-
     const handleMoreDetails = (jobData) => {
-        setData({jobby: jobData})
+        setData({ jobby: jobData })
         setSelectedJob(true);
-        console.log("Is this function called ???", jobData.id);
         navigate("/job-post");
     };
     return (
@@ -45,6 +45,12 @@ const JobCardList = ({ jobs }) => {
                                 >
                                     More details
                                 </Button>
+                                {job.data.applicants && job.data.applicants.includes(user.uid) ? (<Button className="btn btn-success" style={{ marginLeft: "10px", pointerEvents: "none", opacity: 1 }}>
+                                    Applied
+                                </Button>
+                                ) : (
+                                    null
+                                )}
                             </Card.Body>
                         </Card>
                     </Col>
