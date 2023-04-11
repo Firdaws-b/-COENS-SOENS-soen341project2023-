@@ -4,6 +4,7 @@ import emailjs from 'emailjs-com';
 import { Form, Button } from 'react-bootstrap';
 import Background from '../assets/office_char.jpg';
 import NavBar from "../Components/NavBars/welcomePageNavBar";
+import Background3 from '../assets/people.jpg';
 
 import StyledContactForm from "../assets/wrappers/StyledContactForm";
 
@@ -43,22 +44,19 @@ export default function ContactUs() {
     <>
     <NavBar />
 
-    <div style={{
-      backgroundImage: `url(${Background})`,
-      backgroundSize: 'cover',
-      height: '100vh',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center'
-    }}
-  >
-      <h1 style={{ color: 'black', marginBottom: '35rem' }}>Contact Us! We are Here to Listen</h1>
-      
+      <div style={{ background: `url(${Background3})`, backgroundSize: 'cover', backgroundColor: 'blue', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '93vh' }}>
+      <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'rgba(255, 255, 255, 0)', padding: '30px' }}>
 
+
+        <h1 style={{ fontSize: '4rem' ,color: 'white'}}>Contact Us!</h1>
+        <h2 style={{ fontSize: '2rem' ,color: 'white',marginBottom: '7rem' }}>We are Here to Listen!</h2>
+      </div>
+
+<div style={{ alignItems: 'center'}}>
       <form onSubmit={sendEmail}>
 
-        <div className='form-group' style={{ marginBottom: '1rem' }}>
-          <label htmlFor='name' style={{ fontSize: '1.3rem', color: '#0D6EFD' }}>Name</label>
+        <div className='form-group' style={{ marginBottom: '1rem', marginTop:'4rem' }}>
+          <label htmlFor='name' style={{ fontSize: '2rem', color: 'black' }}>Name</label>
           <input
             type='text'
             className='form-control'
@@ -72,7 +70,7 @@ export default function ContactUs() {
         </div>
 
         <div className='form-group' style={{ marginBottom: '1rem' }}>
-          <label htmlFor='email' style={{ fontSize: '1.3rem', color: '#0D6EFD' }}>Email</label>
+          <label htmlFor='email' style={{ fontSize: '2rem', color: 'black' }}>Email</label>
           <input
             type='email'
             className='form-control'
@@ -85,7 +83,7 @@ export default function ContactUs() {
           />
         </div>
         <div className='form-group'style={{ marginBottom: '1rem' }}>
-          <label htmlFor='subject' style={{ fontSize: '1.3rem', color: '#0D6EFD' }}>Subject</label>
+          <label htmlFor='subject' style={{ fontSize: '2rem', color: 'black' }}>Subject</label>
           <input
             type='text'
             className='form-control'
@@ -98,7 +96,7 @@ export default function ContactUs() {
           />
         </div>
         <div className='form-group' style={{ marginBottom: '1rem' }}>
-          <label htmlFor='message' style={{ fontSize: '1.3rem', color: '#0D6EFD' }}>Message</label>
+          <label htmlFor='message' style={{ fontSize: '2rem', color: 'black' }}>Message</label>
           <textarea
             className='form-control'
             id='message'
@@ -115,6 +113,7 @@ export default function ContactUs() {
         </button>
         {showResult ? <Result /> : null}
       </form>
+      </div>
       </div>
   
       </>
