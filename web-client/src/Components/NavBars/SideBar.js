@@ -32,12 +32,7 @@ export const SideBar = ({ userRole }) => {
             icon: <RxIcons.RxDashboard />,
             cName: "nav-text",
         },
-        {
-            title: "Settings",
-            path: "/settings",
-            icon: <FiIcons.FiSettings />,
-            cName: "nav-text",
-        },
+
     ];
 
     const employerSidebarItems = [
@@ -59,12 +54,7 @@ export const SideBar = ({ userRole }) => {
             icon: <RxIcons.RxDashboard />,
             cName: "nav-text",
         },
-        {
-            title: "Settings",
-            path: "/settings",
-            icon: <FiIcons.FiSettings />,
-            cName: "nav-text",
-        },
+
     ];
 
     const sidebarItems = userRole === "Employer" ? employerSidebarItems : userSidebarItems;

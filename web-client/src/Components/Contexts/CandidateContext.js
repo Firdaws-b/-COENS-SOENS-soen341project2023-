@@ -1,17 +1,12 @@
-import React, { createContext, useState } from 'react';
-import ApplicantQuery from '../applicantQuery';
-import MyProfile from '../../pages/MyProfile';
-
+import React, { useMemo, useState } from 'react';
 export const CandidateContext = React.createContext();
-
 export function CandidateProvider ({ children }) {
-    const [selectedCandidate, setSelectedCandidate] = useState([]);
-
+    const [selectedCandidate, setSelectedCandidate] = useState({});
+    const value = useMemo(() => ({ selectedCandidate, setSelectedCandidate }), [selectedCandidate]);
+  
     return (
-        <CandidateContext.Provider value={{ selectedCandidate, setSelectedCandidate}}>
-            {children}
-        </CandidateContext.Provider>
-
-    
+      <CandidateContext.Provider value={value}>
+        {children}
+      </CandidateContext.Provider>
     );
-};
+  };

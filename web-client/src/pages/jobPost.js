@@ -148,73 +148,85 @@ export const JobPost = () => {
 
 
 
-  if (userRole === "Employer") {
-    return (
-      <>
-        <NavBarProfilePage />
-        <div>
-          <form className='jobPostEmployerForm' onSubmit={handleSaveChanges}>
-            <h3>Job Information</h3>
-            <div className='form-center'>
-              <FormRow type="text" name="Job" value={job} handleChange={handleJobChange} disabled={!isEditing} />
-              <FormRow type="text" name="Company" value={company} handleChange={handleCompanyChange} disabled={!isEditing} />
-              <FormRow type="text" name="Salary" value={salary} handleChange={handleSalaryChange} disabled={!isEditing} />
-              <div className="form-row">
-                <label className="form-label">Description  </label>
-                <textarea className="form-input" rows="5" name="Description" type="text" value={description} onChange={handleDescriptionChange} disabled={!isEditing}>
-                </textarea>
-              </div>
-            </div>
-            <span>{<br />}</span>
+if (userRole === "Employer") {
+  return (
+<>
+  <NavBarProfilePage />
+  <div className="container my-4">
+  <h3 className="card-title">Job Information</h3>
+    <div className='row'>
+      <div className='col-md-8'>
+        <form className='jobPostEmployerForm' onSubmit={handleSaveChanges}>
+          <div className='form-group'>
+            <FormRow type="text" name="Job" value={job} handleChange={handleJobChange} disabled={!isEditing} />
+          </div>
+          <div className='form-group'>
+            <FormRow type="text" name="Company" value={company} handleChange={handleCompanyChange} disabled={!isEditing} />
+          </div>
+          <div className='form-group'>
+            <FormRow type="text" name="Salary" value={salary} handleChange={handleSalaryChange} disabled={!isEditing} />
+          </div>
+          <div className='form-group'>
+            <label className="form-label">Description</label>
+            <textarea className="form-control" rows="5" name="Description" type="text" value={description} onChange={handleDescriptionChange} disabled={!isEditing}></textarea>
+          </div>
+          <div className='form-group'>
             <Button variant="primary" onClick={() => setIsEditing(!isEditing)} style={{ marginRight: "10px" }}>
               {isEditing ? "Cancel" : "Edit"}
             </Button>
-            <Button variant="primary" onClick={handleSaveChanges} style={{ marginRight: "10px" }}>
+            <Button variant="primary" onClick={handleSaveChanges} style={{ marginRight: "10px" }} disabled={!isEditing}>
               Save
             </Button>
-            <Button variant="primary" onClick={handleDelete} style={{ marginRight: "10px" }}>
+            <Button variant="danger" onClick={handleDelete} style={{ marginRight: "10px" }} disabled={!isEditing}>
               Delete
             </Button>
-
-          </form>
+          </div>
+        </form>
+      </div>
+      <div className='col-md-8 mt-3'>
+        <div className="card">
+          <div className="card-header">
+            <h5 className="card-title">Applicants</h5>
+          </div>
+          <div className='card-body'>
+            <ApplicantQuery data={data.jobby.data.applicants}/>
+          </div>
         </div>
-        <div>
+      </div>
+    </div>
+  </div>
+</>
+  );
+}
+
+  else if(userRole === "Admin")
+  { return (
+    <>
+      <NavBarProfilePage />
+      <div className="job-details-container">
+        <div className="job-details">
+          <h3>Job Information</h3>
+          <div className="form-row">
+            <FormRow type="text" name="Job" value={job} handleChange={handleJobChange} disabled={true} />
+            <FormRow type="text" name="Company" value={company} handleChange={handleCompanyChange} disabled={true} />
+            <FormRow type="text" name="Salary" value={salary} handleChange={handleSalaryChange} disabled={true} />
+          </div>
+          <div className="form-row">
+            <label className="form-label">Description</label>
+            <div className="form-input">{description}</div>
+          </div>
+          <Button variant="primary" onClick={handleDelete} style={{ borderColor: "#cc0000", backgroundColor: "#cc0000", marginTop: "20px" }}>
+            Delete
+          </Button>
+        </div>
+        <div className="applicant-details">
+          <h3>Applicants</h3>
           <ApplicantQuery data={data.jobby.data.applicants} />
         </div>
-      </>
-    )
-  }
-
-  else if (userRole === "Admin") {
-    return (
-      <>
-        <NavBarProfilePage />
-        <div>
-          <form className='jobPostEmployerForm' onSubmit={handleSaveChanges}>
-            <h3>Job Information</h3>
-            <div className='form-center'>
-              <FormRow type="text" name="Job" value={job} handleChange={handleJobChange} disabled={true} />
-              <FormRow type="text" name="Company" value={company} handleChange={handleCompanyChange} disabled={true} />
-              <FormRow type="text" name="Salary" value={salary} handleChange={handleSalaryChange} disabled={true} />
-              <div className="form-row">
-                <label className="form-label">Description  </label>
-                <textarea className="form-input" rows="5" name="Description" type="text" value={description} onChange={handleDescriptionChange} disabled={!isEditing}>
-                </textarea>
-              </div>
-            </div>
-            <span>{<br />}</span>
-            <Button variant="primary" onClick={handleDelete} style={{ borderColor: '#cc0000', backgroundColor: '#cc0000', marginRight: "10px" }}>
-              Delete
-            </Button>
-
-          </form>
-        </div>
-        <div>
-          <ApplicantQuery data={data.jobby.data.applicants} />
-        </div>
-      </>
-    )
-  }
+      </div>
+    </>
+  );
+}
 
   else {
     return (
