@@ -7,6 +7,8 @@ function NavBar() {
       EmployMe <i className="fa-solid fa-briefcase fa-1x" ></i>
     </Link>
     <ul>
+        <CustomLink to="/Services">
+            Services <i className="fa-solid fa-bell-concierge"></i></CustomLink>  
         <CustomLink to="/ContactUs">
             Contact Us <i className="fa-duotone fa-question"></i></CustomLink>
         <CustomLink to="/role-selection"> Sign Up</CustomLink>

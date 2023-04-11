@@ -1,8 +1,5 @@
 import React from 'react';
 import NavBar from "../Components/NavBars/welcomePageNavBar";
-import Background2 from '../assets/our_services.png';
-import Background1 from '../assets/book_background.jpg';
-import Background from '../assets/office_char.jpg';
 import Background3 from '../assets/people.jpg';
 
 const Services = () => {
