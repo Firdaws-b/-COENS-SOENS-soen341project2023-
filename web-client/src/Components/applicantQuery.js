@@ -5,33 +5,28 @@ import { Button } from "react-bootstrap";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { CandidateContext, CandidateProvider } from "./Contexts/CandidateContext";
 import emailjs from 'emailjs-com';
-
-
-
 export default function ApplicantQuery(props) {
     const [applicants, setApplicants] = useState([]);
     const { setSelectedCandidate = () => {} } = useContext(CandidateContext) || {};
     console.log("applicant props",props);
     useEffect(()=>{
+      const FetchPost = async () => {
+        const q = query(collection(firestore, "Users"), where('uid', 'in', props.data));
+        await getDocs(q)
+            .then(querySnapshot=>{               
+                const newData = querySnapshot.docs.map(doc => ({data:doc.data(),
+                id:doc.id }));
+                setApplicants(newData);                
+                console.log("applicants",applicants);
+            })
+            .catch(error => console.log(error.essage))
+        };
         FetchPost();
-    }, [])
+    }, [applicants, props.data])
     useEffect(() => {
         console.log("JOBS:",applicants)
 
     },[applicants])
-    const FetchPost = async () => {
-    const q = query(collection(firestore, "Users"), where('uid', 'in', props.data));
-    await getDocs(q)
-        .then(querySnapshot=>{               
-            const newData = querySnapshot.docs.map(doc => ({data:doc.data(),
-            id:doc.id }));
-            setApplicants(newData);                
-            console.log("applicants",applicants);
-        })
-        .catch(error => console.log(error.essage))
-
-
-    }
     async function handleSelectCandidate(jobId, candidateId) {
       const candidateDoc = await getDoc(doc(firestore, "Users", candidateId));
       const candidateEmail = candidateDoc.data().email;
@@ -47,7 +42,7 @@ export default function ApplicantQuery(props) {
       };
     
       try {
-        const response = await emailjs.send(
+        await emailjs.send(
           "service_9vxnjlo",
           "template_twltnch",
           templateEmail,
@@ -88,18 +83,17 @@ export default function ApplicantQuery(props) {
           case 'storage/canceled':
             // User canceled the upload
             break;
-    
-    
           case 'storage/unknown':
             // Unknown error occurred
             break;
+            default:
         }
       });
     }
     //changed table back to default for consistency
     return (
       <>
-     
+    
       <table className="table table-striped table-bordered table-hover">
         <thead className="thead-dark">
           <tr>

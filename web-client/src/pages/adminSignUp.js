@@ -9,7 +9,6 @@ import { doc, setDoc } from "@firebase/firestore";
 import Background from '../assets/office_char.jpg';
 
 const AdminSignUp = () => {
-
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
     const [password, setPassword] = useState("");
@@ -28,7 +27,6 @@ const AdminSignUp = () => {
             await handleSave();
             navigate("/Home");
 
-           
         } catch (err) {
             setError(err.message);
         }

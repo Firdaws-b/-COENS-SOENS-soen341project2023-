@@ -5,8 +5,6 @@ import Wrapper from "../assets/wrappers/ProfilePageFormPage";
 import { auth, firestore } from '../firebase/firebase';
 import { doc, getDoc, updateDoc,collection, query, where, getDocs, writeBatch, deleteDoc} from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { storage } from "../firebase/firebase";
 import FormRow from "../Components/FormRow"
 import { Button } from 'react-bootstrap';
 import userAvatar from '../assets/user-avatar.jpg';
@@ -21,7 +19,6 @@ export const AdminUserView = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
     const [companyLogo, setCompanyLogo] = useState(null);
-    const [showSidebar, setShowSidebar] = useState(false);
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -42,8 +39,6 @@ export const AdminUserView = () => {
                         setAddress(snapshot.data().address)
                         setCity(snapshot.data().city)
                         setResume(snapshot.data().resume)
-                    } else {
-                        console.log("User doc missing")
                     }
                 }
                 else if(userData.person.data.role === "Employer")
@@ -56,8 +51,6 @@ export const AdminUserView = () => {
                     setRole(snapshot.data().role)
                     setCompanyName(snapshot.data().companyName)
                     setCompanyLogo(snapshot.data().logoUrl)
-                } else {
-                    console.log("User doc missing")
                 }
             }
             else if(userData.person.data.role === "Admin")
@@ -71,41 +64,17 @@ export const AdminUserView = () => {
                     setEmail(snapshot.data().email)
                     setRole(snapshot.data().role)
                 
-                } else {
-                    console.log("User doc missing")
-                }
+                } 
             }
-
-            } else {
-                console.log("User not logged in")
-                setUser(null);
             }
             setIsLoading(false);
         });
-    }, []);
+    }, [userData.person.data.role, userData.person.data.uid]);
 
     const handleCompanyNameChange = (event) => {
         setCompanyName(event.target.value);
     
     }
-    const handleCompanyLogo = async(event) => {
-        const file = event.target.files[0];
-        if (!file) {
-            alert("Please choose a file to upload first !");
-        }
-        const uid = userData.person.data.uid;
-        const fileExtensionRegex = /(\.jpg|\.jpeg|\.png)$/i;
-        const fileExtension = file.name.match(fileExtensionRegex)[0];
-        const storageRef = ref(storage, `companyLogo/${uid}.${fileExtension}`);
-        await uploadBytes(storageRef, file);
-        const url = await getDownloadURL(storageRef);
-        const userRef = doc(firestore,"Users", uid);
-        const updatedUser = {...user, logoUrl: url};
-        await updateDoc(userRef, updatedUser);
-        setCompanyLogo(url);
-        setUser(updatedUser);
-        alert("Logo of the company added successfully !");
-    };
     //-----------------------------------------------------------------------------------------
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -113,7 +82,7 @@ export const AdminUserView = () => {
     const [address, setAddress] = useState("");
     const [province, setProvince] = useState("");
     const [city, setCity] = useState("");
-    const [resume, setResume] = useState("");
+    const [, setResume] = useState("");
 
     const handleFirstNameChange = (event) => {
         setFirstName(event.target.value);
@@ -140,28 +109,6 @@ export const AdminUserView = () => {
 
         setCity(event.target.value);
     }
-    const handleResumeUpload = async (event) => {
-        const file = event.target.files[0];
-        if (!file) {
-            alert("Please choose a file to upload first !");
-            //return;
-        }
-        // if the file exists,create a storage refrence that acts as a pointer to 
-        // the file in the cloud. 
-        const uid = userData.person.data.uid;
-        const storageRef = ref(storage, `resumes/${uid}.pdf`);
-        await uploadBytes(storageRef, file);
-
-        const downloadUrl = await getDownloadURL(storageRef);
-        const userRef = doc(firestore, "Users", uid);
-        const updatedUser = {
-            ...user,
-            resume: downloadUrl,
-        };
-        await updateDoc(userRef, updatedUser);
-        setUser(updatedUser);
-        alert("Resume Uploaded successfully !");
-    };
     const handleSaveChanges = async (event) => {
         if(userData.person.data.role === "User")
         {
@@ -242,7 +189,7 @@ export const AdminUserView = () => {
     const handleDelete = async () => {
         await deleteDoc(doc(firestore, "Users", userData.person.data.uid));
         navigate("/list-users");
-      }
+    }
     //-----------------------------------------------------------------------------------------
 
     if (isLoading) {
@@ -250,7 +197,7 @@ export const AdminUserView = () => {
     }
     if(userData.person.data.role === "Employer")
     {
-  return (
+return (
     <>
         <NavBarProfilePage/>
         <div>
@@ -281,7 +228,7 @@ export const AdminUserView = () => {
         </div>
 
     </>
-  )
+)
     }
     else if(userData.person.data.role === "User")
     {

@@ -1,19 +1,16 @@
-import react from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
 import "../styles.css";
-import { useState, useRef, useEffect } from "react";
+import { useState} from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { DataContext } from "./Contexts/jobPostContext";
 import { useContext } from "react";
 import { useUserAuth } from "../firebase/UserAuthContext";
-//import {Checkmark} from 'react-checkmark';
-const JobCardList = ({ jobs, handleJobCardClick }) => {
+const JobCardList = ({ jobs}) => {
     const navigate = useNavigate();
-
     const [selectedJob, setSelectedJob] = useState(null);
-    const { data, setData } = useContext(DataContext);
-    const { user, userRole } = useUserAuth();
-    const [fromSavedJobs, setFromSavedJobs] = useState(false); // Define fromSavedJobs state variable
+    const { setData } = useContext(DataContext);
+    const { user} = useUserAuth();
+    const [fromSavedJobs, ] = useState(false); // Define fromSavedJobs state variable
     const handleMoreDetails = (jobData) => {
         setData({ jobby: jobData })
         setSelectedJob(true);
@@ -22,7 +19,7 @@ const JobCardList = ({ jobs, handleJobCardClick }) => {
     return (
         <div>
             <Row xs={1} md={2} className="g-4">
-                {jobs.map((job, index) => (
+                {jobs.map((job) => (
                     <Col key={job.id}>
                         <Card className="job-card">
                             <Card.Header className="job-card-header">

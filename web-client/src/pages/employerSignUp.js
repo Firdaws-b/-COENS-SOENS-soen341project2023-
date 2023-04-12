@@ -31,9 +31,6 @@ const EmployerSignUp = () => {
   };
   const handleSave = async(e) => {//handles user storage in firestore
     const ref = doc(firestore, "Users", ting.user.uid);
-    //const handleSave = async(e) => {
-      //e.preventDefault();//so page doesn;t refresh when save button is clicked
-      //console.log(messageRef.current.value);
   
       let data = {
           email: email,
@@ -51,11 +48,6 @@ const EmployerSignUp = () => {
       .catch(error => {
           console.log(error);
       })
-     /* try {
-          addDoc(ref, data)
-      }catch (e) {
-          console.log(e);
-      }*/
   }
 
   return (

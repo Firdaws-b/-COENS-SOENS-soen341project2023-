@@ -1,15 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut
-} from "firebase/auth";
+import {createUserWithEmailAndPassword,signInWithEmailAndPassword,onAuthStateChanged,signOut} from "firebase/auth";
 import { auth } from "./firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { firestore } from './firebase';
-//import { UIDQuery } from "../fetchData";
-
 const userAuthContext = createContext();
 
 export function UserAuthContextProvider({ children }) {
@@ -31,26 +24,15 @@ export function UserAuthContextProvider({ children }) {
     const docRef = doc(firestore, "Users", user.uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {   
-      //console.log("Document data:", docSnap.data());
       setUserRole(String(docSnap.data().role));
       setCompanyName(String(docSnap.data().companyName));
-      //console.log("UID",docSnap.data().uid);
-      //console.log("email",docSnap.data().email);
-      //console.log("Role",docSnap.data().role);
-      //console.log("UserRole",userRole);
-
-        //return data;
-     } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
+        
+    }
   }
 }
 UIDQuery();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
-      //console.log("Auth", currentuser);
-      //const q = setTimeout(UIDQuery(currentuser.uid), 1000);
       setUser(currentuser);
     });
 

@@ -215,11 +215,12 @@ button,
 [type="reset"],
 [type="submit"] {
     -webkit-appearance: button;
+    appearance: button;
 }
 
 /**
-       * Remove the inner border and padding in Firefox.
-       */
+* Remove the inner border and padding in Firefox.
+   */
 
 button::-moz-focus-inner,
 [type="button"]::-moz-focus-inner,
@@ -315,9 +316,8 @@ textarea {
 
 [type="search"] {
     -webkit-appearance: textfield;
-    /* 1 */
+    appearance: textfield;
     outline-offset: -2px;
-    /* 2 */
 }
 
 /**
@@ -377,4 +377,3 @@ template {
 [hidden] {
     display: none;
 }
-

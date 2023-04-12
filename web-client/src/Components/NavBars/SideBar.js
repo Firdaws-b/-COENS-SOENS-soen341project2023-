@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import * as CgIcons from 'react-icons/cg';
 import * as RxIcons from 'react-icons/rx';
 import * as CiIcons from 'react-icons/ci';
-import * as FiIcons from 'react-icons/fi';
 
 export const SideBar = ({ userRole }) => {
     // Define different sets of sidebar items based on the user's role

@@ -18,7 +18,6 @@ function NavBar() {
     </nav>
   )
 }
-
 function CustomLink({to, iconStyle, children, ...props }) {
   
   const isActive = useMatch({ path: useResolvedPath(to).pathname,end: true});

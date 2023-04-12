@@ -6,7 +6,6 @@ const Services = () => {
   return (
     <>
       <NavBar />
-     
     
       <div style={{ background: `url(${Background3})`, backgroundSize: 'cover', backgroundColor: 'blue', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '93vh' }}>
       <div style={{ position: 'absolute', top: '20%', left: '50%', transform: 'translate(-50%, -50%)', backgroundColor: 'rgba(255, 255, 255, 0)', padding: '30px' }}>

@@ -3,7 +3,7 @@ import { useUserAuth } from '../../firebase/UserAuthContext';
 import React, { useState } from "react";
 
 function NavBar() {
-  const [error, setError] = useState("");
+  const [, setError] = useState("");
   const { logOut, userRole } = useUserAuth();
   const navigate = useNavigate();
   const handleLogOut = async (e) => {

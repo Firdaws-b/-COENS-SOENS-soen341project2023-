@@ -21,7 +21,7 @@ export default function MyProfile() {
     const [address, setAddress] = useState("");
     const [province, setProvince] = useState("");
     const [city, setCity] = useState("");
-    const [resume, setResume] = useState("");
+    const [, setResume] = useState("");
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
@@ -79,7 +79,7 @@ export default function MyProfile() {
         const file = event.target.files[0];
         if (!file) {
             alert("Please choose a file to upload first !");
-            //return;
+
         }
         // if the file exists,create a storage refrence that acts as a pointer to 
         // the file in the cloud. 

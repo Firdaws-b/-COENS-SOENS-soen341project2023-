@@ -1,19 +1,17 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../firebase/firebase";
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { useContext, useEffect, useState } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
 import { useUserAuth } from "../firebase/UserAuthContext";
 import { useNavigate } from "react-router-dom";
-import { JobPost } from "../pages/jobPost";
 import { DataContext } from "./Contexts/jobPostContext";
 import JobCardList from "../Components/JobCardList";
 import Spinner from "../Components/Spinner";
 
 export default function ListAllJobs() {
-    const [jobSelected, setJobSelected] = useState(false);
+    const [, setJobSelected] = useState(false);
     const [jobs, setJobs] = useState([]);
-    const { data, setData } = useContext(DataContext);
-    const { user, userRole } = useUserAuth();
+    const { setData } = useContext(DataContext);
+    const { user} = useUserAuth();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -39,7 +37,7 @@ export default function ListAllJobs() {
 
     const handleJobCardClick = (jobData) => {
         setJobs(jobs.map((job) => {
-            if(job.id == jobData.id) {
+            if(job.id === jobData.id) {
                 return {
                     ...job,
                     data: {
@@ -79,16 +77,16 @@ export default function ListAllJobs() {
 
 export function ListJobsFromUID() {
     const [jobs, setJobs] = useState([]);
-    const { user, userRole } = useUserAuth();
-    const [jobSelected, setJobSelected] = useState(false);
-    const { data, setData } = useContext(DataContext);
+    const { user } = useUserAuth();
+    const [, setJobSelected] = useState(false);
+    const { setData } = useContext(DataContext);
     const navigate = useNavigate();
 
     useEffect(() => {
         FetchPost();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     useEffect(() => {
-        //console.log("JOBS:",jobs)
 
     }, [jobs])
     const FetchPost = async () => {
@@ -100,7 +98,7 @@ export function ListJobsFromUID() {
                     id: doc.id
                 }));
                 setJobs(newData);
-                //console.log(jobs, newData);
+                
             })
             .catch(error => console.log(error.essage))
 

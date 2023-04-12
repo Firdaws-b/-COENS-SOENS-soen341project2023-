@@ -1,25 +1,21 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { Button, Form, Card,Container,Row,Col } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
-import NavBar from '../Components/NavBars/authorizedNavBar';
+import { Button, Card,Container,Row,Col } from 'react-bootstrap';
 import { useUserAuth } from '../firebase/UserAuthContext';
-import { deleteDoc, collection, doc, FieldValue, arrayUnion, updateDoc, getDoc } from "@firebase/firestore";
+import { deleteDoc, doc, arrayUnion, updateDoc, getDoc } from "@firebase/firestore";
 import { firestore, auth } from '../firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from "firebase/auth";
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
 import { DataContext } from '../Components/Contexts/jobPostContext';
 import ApplicantQuery from '../Components/applicantQuery';
-import SavedJobs from './MySavedJobs';
-import Wrapper from "../assets/wrappers/ProfilePageFormPage";
 import FormRow from "../Components/FormRow"
 import "../styles.css";
 
 
 export const JobPost = () => {
-  const [posting, setPosting] = useState(null);
+  const [, setPosting] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [, setIsLoading] = useState(true);
   const [salary, setSalary] = useState("");
   const [company, setCompany] = useState("");
   const [job, setJob] = useState("");
@@ -28,8 +24,6 @@ export const JobPost = () => {
 
   //--------------------------------------------------------
   const navigate = useNavigate();
-  const location = useLocation();
-  const selectedJob = location.state?.job;
   const { userRole, user } = useUserAuth();
 
   const { data } = useContext(DataContext);
@@ -71,7 +65,6 @@ export const JobPost = () => {
           for (let i = 0; i < userData.savedJobs.length; i++) {
             const postingRef = doc(firestore, "Postings", userData.savedJobs[i]);
             console.log("checking the posting ref");
-            //const postingSnap = await postingRef.get();
             const postingSnap = await getDoc(postingRef);
             if (postingSnap.exists()) {
               savedJobsData.push(postingSnap.data().data);
@@ -82,7 +75,7 @@ export const JobPost = () => {
       }
     };
     getSavedJobs();
-  }, []);
+  }, [user.uid]);
   //-------------------------------------------------------
   const handleJobChange = (event) => {
     setJob(event.target.value);
@@ -98,10 +91,7 @@ export const JobPost = () => {
   }
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
-      // if (user) {
-      const uid = user.uid;
       const snapshot = await getDoc(doc(firestore, "Postings", data.jobby.data.jobID));
-      console.log("snapshot: ", snapshot.data);
       if (snapshot.exists()) {
         setPosting(snapshot.data().jobID)
         setDescription(snapshot.data().Description)
@@ -109,7 +99,6 @@ export const JobPost = () => {
         setCompany(snapshot.data().Company)
         setSalary(snapshot.data().Salary)
       } else {
-        console.log("User doc missing")
       }
       /*} /*else {
           console.log("User not logged in")
@@ -118,7 +107,7 @@ export const JobPost = () => {
       setIsLoading(false);
     });
     console.log("COMPANY IS: ", company);
-  }, []);
+  }, [company, data.jobby.data.jobID]);
   const handleSaveChanges = async (event) => {
     event.preventDefault();
     if (!isEditing) {
@@ -129,24 +118,17 @@ export const JobPost = () => {
       minimumFractionDigits: 0,
       currency: 'USD',
     });
-    const uid = auth.currentUser.uid
     const userRef = doc(firestore, "Postings", data.jobby.data.jobID)
     const updatedUser = {
       Company: company,
       Salary: formatter.format(parseFloat(salary.replace(/\D/g, ''))),
       Job: job,
       Description: description,
-      //EmployerUID: user.uid
     }
-    console.log("updated info: ", updatedUser);
-
-
     await updateDoc(userRef, updatedUser);
     setPosting(updatedUser);
     setIsEditing(false);
   }
-
-
 
 if (userRole === "Employer") {
   return (
