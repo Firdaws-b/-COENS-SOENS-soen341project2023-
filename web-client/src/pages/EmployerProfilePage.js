@@ -17,11 +17,15 @@ export default function EmployerProfilePage() {
     const [user, setUser] = useState(null);
     const [companyName, setCompanyName] = useState("");
     const [email, setEmail] = useState("");
+    const [vision, setVision] = useState("");
+    const [sector, setSector] = useState("");
+    const [location, setCompanyLoaction] = useState("");
+
+
     const [role, setRole] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
     const [companyLogo, setCompanyLogo] = useState(null);
-    const [showSidebar, setShowSidebar] = useState(false);
 
     useEffect(() => {
         onAuthStateChanged(auth, async (user) => {
@@ -34,6 +38,9 @@ export default function EmployerProfilePage() {
                     setRole(snapshot.data().role)
                     setCompanyName(snapshot.data().companyName)
                     setCompanyLogo(snapshot.data().logoUrl)
+                    setVision(snapshot.data().vision)
+                    setCompanyLoaction(snapshot.data().location)
+                    setSector(snapshot.data().sector)
                 } else {
                     console.log("User doc missing")
                 }
@@ -49,7 +56,15 @@ export default function EmployerProfilePage() {
     }
     const handleCompanyNameChange = (event) => {
         setCompanyName(event.target.value);
-    
+    }
+    const handleSectorChange = (event) => {
+        setSector(event.target.value);
+    }
+    const handleVisionChange = (event) => {
+        setVision(event.target.value);
+    }
+    const handleLocationChange = (event) => {
+        setCompanyLoaction(event.target.value);
     }
     const handleCompanyLogo = async(event) => {
         const file = event.target.files[0];
@@ -63,10 +78,17 @@ export default function EmployerProfilePage() {
         await uploadBytes(storageRef, file);
         const url = await getDownloadURL(storageRef);
         const userRef = doc(firestore,"Users", uid);
-        const updatedUser = {...user, logoUrl: url};
+        const updatedUser = {...user,
+            logoUrl: url,
+            vision: vision,
+            location: location,
+            sector: sector};
         await updateDoc(userRef, updatedUser);
         setCompanyLogo(url);
         setUser(updatedUser);
+        setSector(sector);
+        setVision(vision);
+        setCompanyLoaction(location);
         alert("Logo of the company added successfully !");
     };
     const handleSaveChanges = async (event) => {
@@ -74,6 +96,7 @@ export default function EmployerProfilePage() {
         if (!isEditing) {
             return;
         }
+        console.log("State variables before update:", { vision, sector, location }); // log the state variables
         const uid = auth.currentUser.uid;
         const userRef = doc(firestore, "Users", uid);
         
@@ -85,20 +108,31 @@ export default function EmployerProfilePage() {
         const batch = writeBatch(firestore);
         querySnapshot.forEach(doc => {
             const docRef = doc.ref;
-            batch.update(docRef, {Company:companyName,CompanyLogo: companyLogo});
+            batch.update(docRef, {Company:companyName,CompanyLogo: companyLogo,
+            vision:vision,
+            sector:sector,
+            location:location});
         });
         await batch.commit();
         const updatedUser = {
             email: email,
             role: role,
             companyName: companyName,
-            logoUrl:companyLogo
+            logoUrl: companyLogo,
+            sector: sector,
+            vision: vision,
+            location: location
         }
-
+    
         await updateDoc(userRef, updatedUser);
         setUser(updatedUser);
         setIsEditing(false);
+        setVision(vision);
+        setSector(sector);
+        setCompanyLoaction(location);
+        console.log("State variables after update:", { vision, sector, location }); // log the state variables
     }
+    
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -125,7 +159,13 @@ export default function EmployerProfilePage() {
                         <FormRow type="text" name="Company Name" value={companyName} handleChange={handleCompanyNameChange} disabled={!isEditing} />
                         <span>{<br />}</span>
                         <span>{<br />}</span>
+                        <FormRow type="text" name="Industry/Sector" value={sector} handleChange={handleSectorChange} disabled={!isEditing} />
                         <span>{<br />}</span>
+                        <span>{<br />}</span>
+                        <FormRow type="text" name="Vision" value={vision} handleChange={handleVisionChange} disabled={!isEditing} />
+                        <span>{<br />}</span>
+                        <span>{<br />}</span>
+                        <FormRow type="text" name="Location" value={location} handleChange={handleLocationChange} disabled={!isEditing} />
                     </div>
                     <Button variant="primary" onClick={() => setIsEditing(!isEditing)} style={{ marginRight: "10px" }}>
                         {isEditing ? "Cancel" : "Edit"}

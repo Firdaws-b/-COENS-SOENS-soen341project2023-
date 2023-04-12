@@ -73,7 +73,6 @@ export default function MyProfile() {
         setProvince(event.target.value);
     }
     const handleCityChange = (event) => {
-
         setCity(event.target.value);
     }
     const handleResumeUpload = async (event) => {

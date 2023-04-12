@@ -39,6 +39,9 @@ const EmployerSignUp = () => {
           email: email,
           companyName: companyName,
           role: "Employer",
+          vision: "default",
+          sector: "default",
+          location: "default",
           uid: ting.user.uid
       };
       setDoc(ref, data)
