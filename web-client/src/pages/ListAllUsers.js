@@ -48,7 +48,7 @@ export const ListAllUsers = () => {
         }
         else
         {
-            return personData.data.firstName.concat( " ".concat(personData.data.lastName));
+            return <>{personData.data.firstName} {(personData.data.lastName)}</>;
         }
 
     }

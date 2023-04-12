@@ -89,24 +89,6 @@ export const AdminUserView = () => {
         setCompanyName(event.target.value);
     
     }
-    const handleCompanyLogo = async(event) => {
-        const file = event.target.files[0];
-        if (!file) {
-            alert("Please choose a file to upload first !");
-        }
-        const uid = userData.person.data.uid;
-        const fileExtensionRegex = /(\.jpg|\.jpeg|\.png)$/i;
-        const fileExtension = file.name.match(fileExtensionRegex)[0];
-        const storageRef = ref(storage, `companyLogo/${uid}.${fileExtension}`);
-        await uploadBytes(storageRef, file);
-        const url = await getDownloadURL(storageRef);
-        const userRef = doc(firestore,"Users", uid);
-        const updatedUser = {...user, logoUrl: url};
-        await updateDoc(userRef, updatedUser);
-        setCompanyLogo(url);
-        setUser(updatedUser);
-        alert("Logo of the company added successfully !");
-    };
     //-----------------------------------------------------------------------------------------
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
