@@ -215,6 +215,22 @@ export const AdminUserView = () => {
     }
     }
     const handleDelete = async () => {
+        console.log("userData: ", userData.person.data);
+        if(userData.person.data.role === "Employer")
+        {
+        const refer = collection(firestore, 'Postings');
+        const query_ = query(refer, where("Company","==",userData.person.data.companyName));
+        const querySnapshot = await getDocs(query_);
+        console.log("SNAPSHOT: ", querySnapshot);
+        querySnapshot.forEach(async docu => {
+            const docRef = doc(firestore, "Postings", docu.id);
+            console.log("doc: ",docu.id);
+            await deleteDoc(docRef);
+            //batch.update(docRef, batch.delete(docu.ref));
+        });
+        }
+        //await batch.commit();
+        //auth.deleteUser(userData.person.data.uid);
         await deleteDoc(doc(firestore, "Users", userData.person.data.uid));
         navigate("/list-users");
       }
