@@ -22,6 +22,7 @@ export const AdminUserView = () => {
     const [isEditing, setIsEditing] = useState(false);
     const [companyLogo, setCompanyLogo] = useState(null);
     const [showSidebar, setShowSidebar] = useState(false);
+    const [showPromoteButton, setShowPromoteButton] = useState(false);
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -88,24 +89,6 @@ export const AdminUserView = () => {
         setCompanyName(event.target.value);
     
     }
-    const handleCompanyLogo = async(event) => {
-        const file = event.target.files[0];
-        if (!file) {
-            alert("Please choose a file to upload first !");
-        }
-        const uid = userData.person.data.uid;
-        const fileExtensionRegex = /(\.jpg|\.jpeg|\.png)$/i;
-        const fileExtension = file.name.match(fileExtensionRegex)[0];
-        const storageRef = ref(storage, `companyLogo/${uid}.${fileExtension}`);
-        await uploadBytes(storageRef, file);
-        const url = await getDownloadURL(storageRef);
-        const userRef = doc(firestore,"Users", uid);
-        const updatedUser = {...user, logoUrl: url};
-        await updateDoc(userRef, updatedUser);
-        setCompanyLogo(url);
-        setUser(updatedUser);
-        alert("Logo of the company added successfully !");
-    };
     //-----------------------------------------------------------------------------------------
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -140,27 +123,19 @@ export const AdminUserView = () => {
 
         setCity(event.target.value);
     }
-    const handleResumeUpload = async (event) => {
-        const file = event.target.files[0];
-        if (!file) {
-            alert("Please choose a file to upload first !");
-            //return;
-        }
-        // if the file exists,create a storage refrence that acts as a pointer to 
-        // the file in the cloud. 
+    const promotionHandler = async (event) => {
+        setRole("Admin");
+        setShowPromoteButton(true);
         const uid = userData.person.data.uid;
-        const storageRef = ref(storage, `resumes/${uid}.pdf`);
-        await uploadBytes(storageRef, file);
-
-        const downloadUrl = await getDownloadURL(storageRef);
         const userRef = doc(firestore, "Users", uid);
         const updatedUser = {
             ...user,
-            resume: downloadUrl,
+            role: "Admin",
         };
         await updateDoc(userRef, updatedUser);
-        setUser(updatedUser);
-        alert("Resume Uploaded successfully !");
+        //setUser(updatedUser);
+        //alert("Resume Uploaded successfully !");
+        //handleSaveChanges();
     };
     const handleSaveChanges = async (event) => {
         if(userData.person.data.role === "User")
@@ -307,6 +282,9 @@ export const AdminUserView = () => {
                         <span>{<br />}</span>
                         <Button  variant='primary' onClick={handleDelete} style={{ borderColor:'#cc0000',backgroundColor:'#cc0000', marginRight: "10px" }}>
                             Delete User
+                        </Button>
+                        <Button disabled = {showPromoteButton}  variant='primary' onClick={promotionHandler} style={{ marginRight: "10px" }}>
+                            Promote to Admin
                         </Button>
                     </form>
                 </Wrapper>

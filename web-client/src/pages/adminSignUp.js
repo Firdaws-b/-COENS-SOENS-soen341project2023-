@@ -15,11 +15,15 @@ const AdminSignUp = () => {
     const [password, setPassword] = useState("");
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
+    const [code, setCode] = useState("");
+
     const { signUp } = useUserAuth();
     let navigate = useNavigate();
     let ting = "";
 
     const handleSubmit = async (e) => { //handles firebaseUI authentication
+        if(code === "BFFJKT")
+        {
         e.preventDefault();
         setError("");
         try {
@@ -32,6 +36,10 @@ const AdminSignUp = () => {
         } catch (err) {
             setError(err.message);
         }
+    }
+    else{
+        alert("Incorrect admin code. Please contact the EmployMe cybersecurity office.")
+    }
     };
     const handleSave = async (e) => {
         const ref = doc(firestore, "Users", ting.user.uid);
@@ -89,7 +97,13 @@ const AdminSignUp = () => {
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </Form.Group>
-
+                        <Form.Group className="mb-3" controlId="adminCode">
+                            <Form.Control
+                                type="code"
+                                placeholder="Authorization code"
+                                onChange={(e) => setCode(e.target.value)}
+                            />
+                        </Form.Group>
                         <div className="d-grid gap-2">
                             <Button variant="primary" type="Submit">
                                 Sign up
