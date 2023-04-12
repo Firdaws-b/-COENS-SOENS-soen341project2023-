@@ -455,6 +455,10 @@ body {
   width: 75%;
   min-width: 400px;
 }
+.job-info-header {
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
 .job-post {
   display: flex;
   flex-direction: column;

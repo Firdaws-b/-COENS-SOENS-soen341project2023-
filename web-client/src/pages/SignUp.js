@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Form, Alert } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import { Form, Alert, Button } from "react-bootstrap";
 import { useUserAuth } from "../firebase/UserAuthContext";
 import NavBar from "../Components/NavBars/welcomePageNavBar";
 import { firestore } from "../firebase/firebase";

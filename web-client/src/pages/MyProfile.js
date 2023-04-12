@@ -1,15 +1,13 @@
-
 import React, { useState, useEffect } from 'react';
 import userAvatar from '../assets/user-avatar.jpg';
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
 import { Button } from 'react-bootstrap';
 import '../Components/NavBars/NavBarProfilePage.css';
-import { auth, firestore } from '../firebase/firebase';
+import { auth, firestore, storage } from '../firebase/firebase';
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import Wrapper from "../assets/wrappers/ProfilePageFormPage";
 import FormRow from "../Components/FormRow"
-import { storage } from "../firebase/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 export default function MyProfile() {
