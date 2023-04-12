@@ -251,9 +251,6 @@ export const AdminUserView = () => {
                     <Button  variant='primary' onClick={handleDelete} style={{ borderColor:'#cc0000',backgroundColor:'#cc0000', marginRight: "10px" }}>
                             Delete User
                         </Button>
-                        <Button disabled = {showPromoteButton}  variant='primary' onClick={promotionHandler} style={{ marginRight: "10px" }}>
-                            Promote to Admin
-                        </Button>
                 </form>
             </Wrapper>
         </div>
