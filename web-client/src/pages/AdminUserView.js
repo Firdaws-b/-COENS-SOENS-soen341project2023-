@@ -18,7 +18,8 @@ export const AdminUserView = () => {
     const [role, setRole] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
-    const [companyLogo, setCompanyLogo] = useState(null);
+    const [companyLogo, setCompanyLogo] = useState(null); 
+    const [showPromoteButton, setShowPromoteButton] = useState(false);
 
     const navigate = useNavigate();
     useEffect(() => {
@@ -109,6 +110,17 @@ export const AdminUserView = () => {
 
         setCity(event.target.value);
     }
+    const promotionHandler = async (event) => {
+        setRole("Admin");
+        setShowPromoteButton(true);
+        const uid = userData.person.data.uid;
+        const userRef = doc(firestore, "Users", uid);
+        const updatedUser = {
+            ...user,
+            role: "Admin",
+        };
+        await updateDoc(userRef, updatedUser);
+    };
     const handleSaveChanges = async (event) => {
         if(userData.person.data.role === "User")
         {
@@ -187,6 +199,22 @@ export const AdminUserView = () => {
     }
     }
     const handleDelete = async () => {
+        console.log("userData: ", userData.person.data);
+        if(userData.person.data.role === "Employer")
+        {
+        const refer = collection(firestore, 'Postings');
+        const query_ = query(refer, where("Company","==",userData.person.data.companyName));
+        const querySnapshot = await getDocs(query_);
+        console.log("SNAPSHOT: ", querySnapshot);
+        querySnapshot.forEach(async docu => {
+            const docRef = doc(firestore, "Postings", docu.id);
+            console.log("doc: ",docu.id);
+            await deleteDoc(docRef);
+            //batch.update(docRef, batch.delete(docu.ref));
+        });
+        }
+        //await batch.commit();
+        //auth.deleteUser(userData.person.data.uid);
         await deleteDoc(doc(firestore, "Users", userData.person.data.uid));
         navigate("/list-users");
     }
@@ -254,6 +282,9 @@ return (
                         <span>{<br />}</span>
                         <Button  variant='primary' onClick={handleDelete} style={{ borderColor:'#cc0000',backgroundColor:'#cc0000', marginRight: "10px" }}>
                             Delete User
+                        </Button>
+                        <Button disabled = {showPromoteButton}  variant='primary' onClick={promotionHandler} style={{ marginRight: "10px" }}>
+                            Promote to Admin
                         </Button>
                     </form>
                 </Wrapper>
