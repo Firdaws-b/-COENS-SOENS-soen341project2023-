@@ -8,14 +8,14 @@ import './NavBarProfilePage.css';
 import { IconContext } from 'react-icons';
 import { useUserAuth } from '../../firebase/UserAuthContext';
 
-export default function NavBarProfilePage({ onSidebarClick }) {
+export default function NavBarProfilePage() {
     const [sidebar, setSidebar] = useState(false);
     const {userRole, logOut} = useUserAuth();
     const showSidebar = (e) => {
         e.preventDefault();//prevents re-rendering
         setSidebar(!sidebar)};
     const navigate = useNavigate();;
-    const [error, setError] = useState("");
+    const [, setError] = useState("");
 
     const handleLogOut = async (e) => {
         e.preventDefault();

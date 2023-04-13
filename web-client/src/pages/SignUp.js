@@ -47,12 +47,9 @@ const Signup = () => {
         };
         await setDoc(ref, data)
             .then(() => {
-                console.log("Document has been added successfully");
             })
             .catch(error => {
-                console.log(error);
             })
-   
     }
 
     return (

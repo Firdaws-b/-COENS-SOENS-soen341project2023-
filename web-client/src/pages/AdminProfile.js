@@ -11,13 +11,12 @@ import FormRow from "../Components/FormRow"
 
 export default function AdminProfile() {
 
-    const [user, setUser] = useState(null);
+    const [, setUser] = useState(null);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [role, setRole] = useState("");
     const [isLoading, setIsLoading] = useState(true);
-  
     const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
@@ -32,12 +31,7 @@ export default function AdminProfile() {
                     setEmail(snapshot.data().email)
                     setRole(snapshot.data().role)
                 
-                } else {
-                    console.log("User doc missing")
                 }
-            } else {
-                console.log("User not logged in")
-                setUser(null);
             }
             setIsLoading(false);
         });
@@ -54,7 +48,6 @@ export default function AdminProfile() {
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
     }
-   
     const handleSaveChanges = async (event) => {
         event.preventDefault();
         if (!isEditing) {

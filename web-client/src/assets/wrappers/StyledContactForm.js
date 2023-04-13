@@ -1,4 +1,3 @@
-import React, { useRef } from "react";
 import styled from "styled-components";
 import Background from "../office_char.jpg";
 

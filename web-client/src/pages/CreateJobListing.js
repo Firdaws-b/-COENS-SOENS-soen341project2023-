@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState} from "react";
 import { Form, Alert } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { firestore } from "../firebase/firebase";
@@ -14,12 +14,7 @@ export const CreateJobListing = () => {
   const [description, setDescription] = useState("");
   const navigate = useNavigate();
   const { companyName, user } = useUserAuth();
-  const [companyLogo, setCompanyLogo] = useState("");
-
-
-  const navigateHome = () => {
-    navigate('/home');
-  };
+  const [, setCompanyLogo] = useState("");
   const handleSubmit = async (e) => { //handles firebaseUI authentication
     e.preventDefault();
     setError("");
@@ -31,7 +26,6 @@ export const CreateJobListing = () => {
     }
   }
   const handleSave = async (e) => {
-    //e.preventDefault();//so page doesn;t refresh when save button is clicked
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
       minimumFractionDigits: 0,

@@ -1,19 +1,19 @@
 import React,{useEffect, useState, useContext} from 'react'
 import { useUserAuth } from '../firebase/UserAuthContext';
 import { useNavigate } from "react-router-dom";
-import { collection, doc, getDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { firestore } from "../firebase/firebase";
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
 import { UserDataContext } from '../Components/Contexts/userListContext';
 
 export const ListAllUsers = () => {
-    const { userRole, user } = useUserAuth();
+    const { userRole } = useUserAuth();
     const navigate = useNavigate();
     const [users, setUsers] = useState([]);
-    const { userData, setUserData } = useContext(UserDataContext);
-    //const Navigation = useNavigation();
+    const { setUserData } = useContext(UserDataContext);
     useEffect(() => {
         FetchPost();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     useEffect(() => {
         //console.log("JOBS:",jobs)
@@ -54,7 +54,7 @@ export const ListAllUsers = () => {
     }
     if(userRole === "Admin")
     {
-  return (
+return (
     <>
     <NavBarProfilePage/>
     <h1>List of all Users</h1>

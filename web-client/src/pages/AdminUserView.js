@@ -5,8 +5,6 @@ import Wrapper from "../assets/wrappers/ProfilePageFormPage";
 import { auth, firestore } from '../firebase/firebase';
 import { doc, getDoc, updateDoc,collection, query, where, getDocs, writeBatch, deleteDoc} from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { storage } from "../firebase/firebase";
 import FormRow from "../Components/FormRow"
 import { Button } from 'react-bootstrap';
 import userAvatar from '../assets/user-avatar.jpg';
@@ -20,8 +18,7 @@ export const AdminUserView = () => {
     const [role, setRole] = useState("");
     const [isLoading, setIsLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
-    const [companyLogo, setCompanyLogo] = useState(null);
-    const [showSidebar, setShowSidebar] = useState(false);
+    const [companyLogo, setCompanyLogo] = useState(null); 
     const [showPromoteButton, setShowPromoteButton] = useState(false);
 
     const navigate = useNavigate();
@@ -43,8 +40,6 @@ export const AdminUserView = () => {
                         setAddress(snapshot.data().address)
                         setCity(snapshot.data().city)
                         setResume(snapshot.data().resume)
-                    } else {
-                        console.log("User doc missing")
                     }
                 }
                 else if(userData.person.data.role === "Employer")
@@ -57,8 +52,6 @@ export const AdminUserView = () => {
                     setRole(snapshot.data().role)
                     setCompanyName(snapshot.data().companyName)
                     setCompanyLogo(snapshot.data().logoUrl)
-                } else {
-                    console.log("User doc missing")
                 }
             }
             else if(userData.person.data.role === "Admin")
@@ -72,18 +65,12 @@ export const AdminUserView = () => {
                     setEmail(snapshot.data().email)
                     setRole(snapshot.data().role)
                 
-                } else {
-                    console.log("User doc missing")
-                }
+                } 
             }
-
-            } else {
-                console.log("User not logged in")
-                setUser(null);
             }
             setIsLoading(false);
         });
-    }, []);
+    }, [userData.person.data.role, userData.person.data.uid]);
 
     const handleCompanyNameChange = (event) => {
         setCompanyName(event.target.value);
@@ -96,7 +83,7 @@ export const AdminUserView = () => {
     const [address, setAddress] = useState("");
     const [province, setProvince] = useState("");
     const [city, setCity] = useState("");
-    const [resume, setResume] = useState("");
+    const [, setResume] = useState("");
 
     const handleFirstNameChange = (event) => {
         setFirstName(event.target.value);
@@ -133,9 +120,6 @@ export const AdminUserView = () => {
             role: "Admin",
         };
         await updateDoc(userRef, updatedUser);
-        //setUser(updatedUser);
-        //alert("Resume Uploaded successfully !");
-        //handleSaveChanges();
     };
     const handleSaveChanges = async (event) => {
         if(userData.person.data.role === "User")
@@ -233,7 +217,7 @@ export const AdminUserView = () => {
         //auth.deleteUser(userData.person.data.uid);
         await deleteDoc(doc(firestore, "Users", userData.person.data.uid));
         navigate("/list-users");
-      }
+    }
     //-----------------------------------------------------------------------------------------
 
     if (isLoading) {
@@ -241,7 +225,7 @@ export const AdminUserView = () => {
     }
     if(userData.person.data.role === "Employer")
     {
-  return (
+return (
     <>
         <NavBarProfilePage/>
         <div>
@@ -272,7 +256,7 @@ export const AdminUserView = () => {
         </div>
 
     </>
-  )
+)
     }
     else if(userData.person.data.role === "User")
     {

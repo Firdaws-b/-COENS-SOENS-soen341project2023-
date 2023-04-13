@@ -1,15 +1,10 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Button } from 'react-bootstrap';
+import React from "react";
 import { useUserAuth } from '../firebase/UserAuthContext';
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
 import '../Components/NavBars/NavBarProfilePage.css'
 import ListAllJobs, { ListJobsFromUID } from '../Components/jobQuery';
 import AdminDashboard from "../Components/adminDashboard";
-import AdminProfile from "./AdminProfile";
-
 export default function Home() {
-  const [error, setError] = useState("");
   const { userRole } = useUserAuth();
 
     switch(userRole){
@@ -20,7 +15,6 @@ export default function Home() {
             <ListAllJobs />
           </>
         );
-        break;
       case "Employer":
         return (
           <>
@@ -28,7 +22,6 @@ export default function Home() {
             <ListJobsFromUID />
           </>
         );
-        break;
       case "Admin":
         return (
           <>
@@ -37,7 +30,6 @@ export default function Home() {
         
           </>
         );
-        break;
       default:
         
     }
