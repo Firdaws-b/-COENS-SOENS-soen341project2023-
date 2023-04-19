@@ -6,7 +6,7 @@ jest.mock('../../firebase/UserAuthContext', () => ({
     useUserAuth: () => ({ userRole: 'Admin' }),
 }));
 
-jest.mock('../firebase/firebase', () => ({
+jest.mock('../../firebase/firebase', () => ({
     firestore: {
         collection: jest.fn(),
         getDocs: jest.fn(),
