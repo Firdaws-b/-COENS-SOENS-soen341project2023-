@@ -1,7 +1,7 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { CreateJobListing } from './CreateJobListing';
+import { CreateJobListing } from '../CreateJobListing';
 import { useNavigate } from 'react-router-dom';
-import { useUserAuth } from '../firebase/UserAuthContext';
+import { useUserAuth } from '../../firebase/UserAuthContext'
 
 jest.mock('react-router-dom', () => ({
     useNavigate: jest.fn(),

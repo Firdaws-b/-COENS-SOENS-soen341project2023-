@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { ListAllUsers } from '../path/to/ListAllUsers';
+import { ListAllUsers } from '../ListAllUsers';
 
 jest.mock('../firebase/UserAuthContext', () => ({
     useUserAuth: () => ({ userRole: 'Admin' }),

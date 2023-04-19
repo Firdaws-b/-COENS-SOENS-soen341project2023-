@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { RoleSelection } from './RoleSelection';
+import { RoleSelection } from '../RoleSelection';
 
 describe('RoleSelection', () => {
     let wrapper;

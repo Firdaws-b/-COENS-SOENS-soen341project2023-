@@ -1,11 +1,11 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { useUserAuth } from '../firebase/UserAuthContext';
-import { firestore } from '../firebase/firebase';
-import MySavedJobs from './MySavedJobs';
+import { useUserAuth } from '../../firebase/UserAuthContext';
+import { firestore } from '../../firebase/firebase';
+import MySavedJobs from '../MySavedJobs';
 
-jest.mock('../firebase/UserAuthContext');
-jest.mock('../firebase/firebase');
+jest.mock('../../firebase/UserAuthContext');
+jest.mock('../../firebase/firebase');
 
 describe('MySavedJobs component', () => {
     const user = { uid: 'user123' };

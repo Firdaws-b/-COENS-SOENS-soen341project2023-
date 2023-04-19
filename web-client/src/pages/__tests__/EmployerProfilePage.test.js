@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import EmployerProfilePage from './EmployerProfilePage';
+import EmployerProfilePage from '../EmployerProfilePage';
 
 describe('EmployerProfilePage', () => {
     test('renders the page title', () => {
