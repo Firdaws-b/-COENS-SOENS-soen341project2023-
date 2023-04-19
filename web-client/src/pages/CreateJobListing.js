@@ -1,6 +1,5 @@
 import React, { useState} from "react";
-import { Form, Alert } from "react-bootstrap";
-import { Button } from "react-bootstrap";
+import { Form, Alert, Button } from "react-bootstrap";
 import { firestore } from "../firebase/firebase";
 import { useUserAuth } from "../firebase/UserAuthContext";
 import { addDoc, collection, getDoc, doc, updateDoc } from "@firebase/firestore";

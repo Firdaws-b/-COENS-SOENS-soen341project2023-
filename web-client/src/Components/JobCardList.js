@@ -1,9 +1,8 @@
 import { Card, Button, Row, Col } from "react-bootstrap";
 import "../styles.css";
-import { useState} from "react";
+import { useState, useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { DataContext } from "./Contexts/jobPostContext";
-import { useContext } from "react";
 import { useUserAuth } from "../firebase/UserAuthContext";
 const JobCardList = ({ jobs}) => {
     const navigate = useNavigate();

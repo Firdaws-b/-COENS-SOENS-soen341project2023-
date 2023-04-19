@@ -16,7 +16,6 @@ export const ListAllUsers = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     useEffect(() => {
-        //console.log("JOBS:",jobs)
 
     }, [users])
     const FetchPost = async () => {
@@ -28,7 +27,6 @@ export const ListAllUsers = () => {
                     id: doc.id
                 }));
                 setUsers(newData);
-                //console.log(jobs, newData);
             })
             .catch(error => console.log(error.essage))
 
