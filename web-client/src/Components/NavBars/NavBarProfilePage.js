@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,12 +10,14 @@ import { useUserAuth } from '../../firebase/UserAuthContext';
 
 export default function NavBarProfilePage() {
     const [sidebar, setSidebar] = useState(false);
-    const {userRole, logOut} = useUserAuth();
+    const { userRole, logOut } = useUserAuth();
     const showSidebar = (e) => {
         e.preventDefault();//prevents re-rendering
-        setSidebar(!sidebar)};
+        setSidebar(!sidebar)
+    };
     const navigate = useNavigate();;
     const [, setError] = useState("");
+    const iconContextValue = useMemo(() => ({ color: 'white' }), []);
 
     const handleLogOut = async (e) => {
         e.preventDefault();
@@ -31,7 +33,7 @@ export default function NavBarProfilePage() {
     if (userRole === "Employer") {
         return (
             <>
-                <IconContext.Provider value={{ color: 'white' }}>
+                <IconContext.Provider value={iconContextValue}>
                     <div className='nav'>
                         <div className='navBarProfilePage'>
                             <Link to='#' className='menu-bars'>
@@ -60,7 +62,7 @@ export default function NavBarProfilePage() {
                                     <AiIcons.AiOutlineClose />
                                 </Link>
                             </li>
-                            <SideBar userRole={userRole}/>
+                            <SideBar userRole={userRole} />
                         </ul>
                     </nav>
                 </IconContext.Provider>
@@ -70,7 +72,7 @@ export default function NavBarProfilePage() {
     else if (userRole === "User") {
         return (
             <>
-                <IconContext.Provider value={{ color: 'white' }}>
+                <IconContext.Provider value={iconContextValue}>
                     <div className='nav'>
                         <div className='navBarProfilePage'>
                             <Link to='#' className='menu-bars'>
@@ -92,16 +94,16 @@ export default function NavBarProfilePage() {
                                     <AiIcons.AiOutlineClose />
                                 </Link>
                             </li>
-                            <SideBar userRole={userRole}/>
+                            <SideBar userRole={userRole} />
                         </ul>
                     </nav>
                 </IconContext.Provider>
             </>
         );
-    } else if(userRole === "Admin"){
+    } else if (userRole === "Admin") {
         return (
             <>
-                <IconContext.Provider value={{ color: 'white' }}>
+                <IconContext.Provider value={iconContextValue}>
                     <div className='nav'>
                         <div className='navBarProfilePage'>
                             <Link to='#' className='menu-bars'>
@@ -123,9 +125,9 @@ export default function NavBarProfilePage() {
                                     <AiIcons.AiOutlineClose />
                                 </Link>
                             </li>
-                            {AdminSideBar.map((item, index) => {
+                            {AdminSideBar.map((item) => {
                                 return (
-                                    <li key={index} className={item.cName} >
+                                    <li key={item.id} className={item.cName} >
                                         <Link to={item.path}>
                                             {item.icon}
                                             <span>{item.title}</span>

@@ -1,16 +1,14 @@
-
 import React, { useState, useEffect } from 'react';
 import userAvatar from '../assets/user-avatar.jpg';
 import NavBarProfilePage from '../Components/NavBars/NavBarProfilePage';
 import { Button } from 'react-bootstrap';
 import '../Components/NavBars/NavBarProfilePage.css';
 import './MyProfile.css'
-import { auth, firestore } from '../firebase/firebase';
+import { auth, firestore, storage } from '../firebase/firebase';
 import { doc, getDoc, updateDoc,collection, query, where, getDocs, writeBatch} from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import Wrapper from "../assets/wrappers/ProfilePageFormPage";
 import FormRow from "../Components/FormRow"
-import { storage } from "../firebase/firebase";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 export default function EmployerProfilePage() {
@@ -41,11 +39,8 @@ export default function EmployerProfilePage() {
                     setVision(snapshot.data().vision)
                     setCompanyLoaction(snapshot.data().location)
                     setSector(snapshot.data().sector)
-                } else {
-                    console.log("User doc missing")
-                }
+                } 
             } else {
-                console.log("User not logged in")
                 setUser(null);
             }
             setIsLoading(false);
@@ -86,9 +81,6 @@ export default function EmployerProfilePage() {
         await updateDoc(userRef, updatedUser);
         setCompanyLogo(url);
         setUser(updatedUser);
-        setSector(sector);
-        setVision(vision);
-        setCompanyLoaction(location);
         alert("Logo of the company added successfully !");
     };
     const handleSaveChanges = async (event) => {
@@ -96,7 +88,6 @@ export default function EmployerProfilePage() {
         if (!isEditing) {
             return;
         }
-        console.log("State variables before update:", { vision, sector, location }); // log the state variables
         const uid = auth.currentUser.uid;
         const userRef = doc(firestore, "Users", uid);
         
@@ -127,10 +118,6 @@ export default function EmployerProfilePage() {
         await updateDoc(userRef, updatedUser);
         setUser(updatedUser);
         setIsEditing(false);
-        setVision(vision);
-        setSector(sector);
-        setCompanyLoaction(location);
-        console.log("State variables after update:", { vision, sector, location }); // log the state variables
     }
     
 

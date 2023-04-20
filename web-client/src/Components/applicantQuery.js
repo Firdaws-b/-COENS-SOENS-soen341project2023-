@@ -73,21 +73,6 @@ export default function ApplicantQuery(props) {
       })
       .catch((error) => {
         alert("User has not uploaded a Resume/CV!")
-        switch (error.code) {
-          case 'storage/object-not-found':
-            // File doesn't exist
-            break;
-          case 'storage/unauthorized':
-            // User doesn't have permission
-            break;
-          case 'storage/canceled':
-            // User canceled the upload
-            break;
-          case 'storage/unknown':
-            // Unknown error occurred
-            break;
-            default:
-        }
       });
     }
     //changed table back to default for consistency

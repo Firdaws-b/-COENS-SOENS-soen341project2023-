@@ -62,8 +62,8 @@ export const JobPost = () => {
         const userData = docSnap.data();
         const savedJobsData = [];
         if (Array.isArray(userData.savedJobs)) {
-          for (let i = 0; i < userData.savedJobs.length; i++) {
-            const postingRef = doc(firestore, "Postings", userData.savedJobs[i]);
+          for (const element of userData.savedJobs) {
+            const postingRef = doc(firestore, "Postings", element);
             console.log("checking the posting ref");
             const postingSnap = await getDoc(postingRef);
             if (postingSnap.exists()) {
@@ -98,15 +98,9 @@ export const JobPost = () => {
         setJob(snapshot.data().Job)
         setCompany(snapshot.data().Company)
         setSalary(snapshot.data().Salary)
-      } else {
       }
-      /*} /*else {
-          console.log("User not logged in")
-          setPosting(null);
-      }*/
       setIsLoading(false);
     });
-    console.log("COMPANY IS: ", company);
   }, [company, data.jobby.data.jobID]);
   const handleSaveChanges = async (event) => {
     event.preventDefault();
