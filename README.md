@@ -92,14 +92,3 @@ There are many ways to build a website, but our team will have the following app
 
 - Implementing a payment gateway for employers to pay for additional services such as priority job posting, featured job    posting, candidate search, and resume download.
 
-## How to Use the Project: 
-**TBD**
-
-## Sprint 2 demo video: 
-https://www.dropbox.com/s/tnasq31bsd06214/Screen%20Recording%202023-03-01%20at%206.15.13%20PM.mov?dl=0
-
-## Sprint 3 demo video:
-https://www.dropbox.com/s/gg3i5nklnt4zh0o/Screen%20Recording%202023-03-25%20at%208.57.35%20PM.mov?dl=0
-
-## Final Demo video: 
-https://www.dropbox.com/s/2mpdf797qroac8o/video1950811139.mp4?dl=0
